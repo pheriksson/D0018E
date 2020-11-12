@@ -1,0 +1,55 @@
+<html>
+<body>
+
+<div class="container">
+    <form method="post" action="<?php echo $_SERVER['PHP_SELF'];?>">
+        <div id="div_login">
+            <h1>Login</h1>
+            <div>
+                <input type="text" class="textbox" id="txt_uname" name="txt_uname" placeholder="Username" />
+            </div>
+            <div>
+                <input type="password" class="textbox" id="txt_uname" name="txt_pwd" placeholder="Password"/>
+            </div>
+            <div>
+                <input type="submit" value="Submit" name="but_submit" id="but_submit" />
+            </div>
+        </div>
+    </form>
+</div>
+
+
+<?php
+include "config.php";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST"){
+
+    $uname = mysqli_real_escape_string($conn,$_POST['txt_uname']);
+    $password = mysqli_real_escape_string($conn,$_POST['txt_pwd']);
+    if ($uname != "" && $password !=""){
+
+        $sql = "SELECT * FROM test_1 WHERE attr1='$uname' and attr2='$password'";
+		$result = mysqli_query($conn,$sql);
+
+        $row = mysqli_fetch_row($result);
+        $count = $row[0];
+        if($count > 0){
+
+            $_SESSION["uname"] = $uname;
+            echo $uname;
+            header('Location: welcome.php');
+        }else{
+            echo "Invalid username and password";
+        }
+
+    }
+    else{
+    	echo "Fill in the fields retard";
+    }
+
+}
+?>
+
+
+</body>
+</html>
