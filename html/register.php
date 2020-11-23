@@ -53,7 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
         else{
 
         $sql = "INSERT INTO users (email, first_name, last_name, password)
-        Values ($email, $fname, $lname, $password)";
+        Values ('$email', '$fname', '$lname', '$password')";
         if (mysqli_query($conn, $sql)) {
             header('Location: login.php');
         } else {

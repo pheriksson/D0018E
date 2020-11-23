@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
     if ($uname != "" && $password !=""){
 
         $sql = "SELECT * FROM test_1 WHERE attr1='$uname' and attr2='$password'";
-		$result = mysqli_query($conn,$sql);
+		    $result = mysqli_query($conn,$sql);
 
         $row = mysqli_fetch_row($result);
         $count = $row[0];
