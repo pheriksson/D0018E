@@ -6,7 +6,7 @@
         <div id="div_login">
             <h1>Login</h1>
             <div>
-                <input type="text" class="textbox" id="txt_uname" name="txt_uname" placeholder="Username" />
+                <input type="text" class="textbox" id="txt_uname" name="txt_uname" placeholder="Email" />
             </div>
             <div>
                 <input type="password" class="textbox" id="txt_uname" name="txt_pwd" placeholder="Password"/>
@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
     $password = mysqli_real_escape_string($conn,$_POST['txt_pwd']);
     if ($uname != "" && $password !=""){
 
-        $sql = "SELECT * FROM test_1 WHERE attr1='$uname' and attr2='$password'";
+        $sql = "SELECT * FROM users WHERE email='$uname' and password='$password'";
 		    $result = mysqli_query($conn,$sql);
 
         $row = mysqli_fetch_row($result);
