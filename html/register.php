@@ -42,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
     $email = mysqli_real_escape_string($conn,$_POST['txt_email']);
     if ($uname != "" && $password !="" && $fname != "" && $uname !="" && $email !=""){
 
-        $sql = "SELECT * FROM test_1 WHERE attr1='$uname' and attr2='$password'";
+        $sql = "SELECT * FROM users WHERE attr1='$email';
 		$result = mysqli_query($conn,$sql);
 
         $row = mysqli_fetch_row($result);
