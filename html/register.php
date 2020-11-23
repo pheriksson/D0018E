@@ -5,9 +5,7 @@
     <form method="post" action="<?php echo $_SERVER['PHP_SELF'];?>">
         <div id="div_createuser">
             <h1>Login</h1>
-            <div>
-                <input type="text" class="textbox" id="txt_uname" name="txt_uname" placeholder="Username" />
-            </div>
+
             <div>
                 <input type="password" class="textbox" id="txt_pwd" name="txt_pwd" placeholder="Password"/>
             </div>
@@ -35,25 +33,25 @@ include "config.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST"){
 
-    $uname = mysqli_real_escape_string($conn,$_POST['txt_uname']);
+
     $password = mysqli_real_escape_string($conn,$_POST['txt_pwd']);
     $fname = mysqli_real_escape_string($conn,$_POST['txt_fname']);
     $lname = mysqli_real_escape_string($conn,$_POST['txt_lname']);
     $email = mysqli_real_escape_string($conn,$_POST['txt_email']);
-    if ($uname != "" && $password !="" && $fname != "" && $uname !="" && $email !=""){
+    if ($lname != "" && $password !="" && $fname != "" && $email !=""){
 
-        $sql = "SELECT * FROM users WHERE email='$email';
+        $sql = "SELECT * FROM users WHERE email='$email'";
 		$result = mysqli_query($conn,$sql);
 
         $row = mysqli_fetch_row($result);
         $count = $row[0];
         if($count > 0){
 
-            $_SESSION["uname"] = $uname;
-            echo $uname;
-            header('Location: welcome.php');
+          //  echo $email + ' email already exists';
+
         }else{
-            echo "Invalid username and password";
+            header('Location: login.php');
+        
         }
 
     }
