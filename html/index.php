@@ -25,10 +25,10 @@ include "config.php";
 <?php
 if ($_SESSION["uname"] != 0){
   echo $_SESSION["uname"];
-};
+}
 else{
   echo "test";
-};
+}
 ?>
 </div>
 
