@@ -24,7 +24,7 @@ echo $_SESSION["uname"];
 
 <div class="topright">
 <?php
-if ($_SESSION["uname"] != 0){
+if ($_SESSION["uname"] != ""){
   echo $_SESSION["uname"];
 }
 else{
