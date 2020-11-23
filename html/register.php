@@ -46,9 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
         $row = mysqli_fetch_row($result);
         $count = $row[0];
         if($count > 0){
-
-          //  echo $email + ' email already exists';
-
+          echo $email + ' email already exists';
         }
         else{
 
