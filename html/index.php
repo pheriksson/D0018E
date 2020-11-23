@@ -5,17 +5,16 @@
 include "config.php";
 ?>
 
-<div class="topright.css">
+<div rel="stylesheet" href="index.css">
 <?php
 if ($_SESSION["uname"] != 0){
   echo $_SESSION["uname"];
-}
-else(
+};
+else{
   echo "test";
-  )
+};
 ?>
 </div>
-
 
 
 </body>
