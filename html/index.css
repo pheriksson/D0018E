@@ -1,0 +1,14 @@
+<style type="text/css">
+.topright {
+  position: fixed;
+  right: 5px; top: 5px;
+  width: 200px;
+  height:40px;
+  background-color:lightblue;
+  padding: 5px;
+}
+.large {
+  width: 2000px; height: 500px;
+  background-color: lightgray;
+}
+</style>
