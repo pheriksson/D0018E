@@ -18,6 +18,8 @@
     </form>
 </div>
 
+<a href="./register.php">Create account</a>
+
 
 <?php
 include "config.php";
