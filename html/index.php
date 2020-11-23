@@ -19,7 +19,6 @@
 
 <?php
 include "config.php";
-echo $_SESSION["uname"];
 ?>
 
 <div class="topright">
