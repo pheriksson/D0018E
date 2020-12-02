@@ -10,8 +10,6 @@
     padding: 5px;
 }
 
-
-
   .large {
     width: 2000px; height: 500px;
     background-color: lightgray;
@@ -20,10 +18,14 @@
 </head>
 <body>
 
+//------------------------Init-----------------------------
 <?php
 include "config.php";
 ?>
+//----------------------------------------------------------
 
+
+//--------------- Display username or login------------------
 <div class="topright">
   <?php
   if (isset($_SESSION["uname"]) && !empty($_SESSION["uname"])){
@@ -33,27 +35,33 @@ include "config.php";
     echo "<a href='./login.php'>Login</a>";
   }
   ?>
+  //-------------------------------------------------------
 
+  //------------------------ Display amount----------------
   <div style=" position: fixed; top: 5px; right: 5px; padding: 5px;">
       <?php
+      $sqlCart = "SELECT * FROM users WHERE email='$uname' and password='$password'";
+      $resultCart = mysqli_query($conn,$sqlCart);
+      $rowCart = mysqli_fetch_row($resultCart);
+
       if (isset($_SESSION["uname"]) && !empty($_SESSION["uname"])){
-        // String amount = SQL for cart amount
-        echo "X items."; //Replace X with "<a href='./cart.php'>amount</a>";
+        echo $rowCart[1]." items.";
       }
       ?>
   </div>
+  //-------------------------------------------------------
 
+  //--------------------- Display total cost---------------
   <div style=" position: fixed; top: 30px; right: 5px; padding: 5px;">
       <?php
       if (isset($_SESSION["uname"]) && !empty($_SESSION["uname"])){
         echo "Total: ";
-        echo "X"; //replace with sql-call
+        echo $rowCart[2];
         echo " kr.";
       }
       ?>
   </div>
-
-
+  //-------------------------------------------------------
 </div>
 
 

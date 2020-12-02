@@ -36,7 +36,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 
         $sql = "SELECT * FROM users WHERE email='$uname' and password='$password'";
 		    $result = mysqli_query($conn,$sql);
-
         $row = mysqli_fetch_row($result);
         $count = $row[0];
         if($count > 0){
