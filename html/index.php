@@ -48,7 +48,7 @@ include "config.php";
       if ($_SESSION["uname"] != ""){
         echo "Total: ";
         echo "X"; //replace with sql-call
-        echo " kr."
+        echo " kr.";
       }
       ?>
   </div>
