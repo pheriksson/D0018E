@@ -40,7 +40,7 @@ include "config.php";
   //------------------------ Display amount----------------
   <div style=" position: fixed; top: 5px; right: 5px; padding: 5px;">
       <?php
-      $sqlCart = "SELECT * FROM users WHERE email='$uname' and password='$password'";
+      $sqlCart = "SELECT * FROM cart WHERE email='$uname'";
       $resultCart = mysqli_query($conn,$sqlCart);
       $rowCart = mysqli_fetch_row($resultCart);
 
