@@ -24,6 +24,10 @@
 <?php
 include "config.php";
 
+if(isset($_SESSION["uname"]) && !empty($_SESSION["uname"])){
+  header('Location: index.php');
+}
+
 if ($_SERVER["REQUEST_METHOD"] == "POST"){
 
     $uname = mysqli_real_escape_string($conn,$_POST['txt_uname']);

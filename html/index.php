@@ -26,7 +26,7 @@ include "config.php";
 
 <div class="topright">
   <?php
-  if ($_SESSION["uname"] != ""){
+  if (isset($_SESSION["uname"]) && !empty($_SESSION["uname"])){
     echo "<a href='./profile.php'>".$_SESSION["uname"]."</a>";
   }
   else{
@@ -36,7 +36,7 @@ include "config.php";
 
   <div style=" position: fixed; top: 5px; right: 5px; padding: 5px;">
       <?php
-      if ($_SESSION["uname"] != ""){
+      if (isset($_SESSION["uname"]) && !empty($_SESSION["uname"])){
         // String amount = SQL for cart amount
         echo "X items."; //Replace X with "<a href='./cart.php'>amount</a>";
       }
@@ -45,7 +45,7 @@ include "config.php";
 
   <div style=" position: fixed; top: 30px; right: 5px; padding: 5px;">
       <?php
-      if ($_SESSION["uname"] != ""){
+      if (isset($_SESSION["uname"]) && !empty($_SESSION["uname"])){
         echo "Total: ";
         echo "X"; //replace with sql-call
         echo " kr.";
