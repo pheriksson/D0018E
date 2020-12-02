@@ -27,7 +27,7 @@ include "config.php";
 <div class="topright">
   <?php
   if ($_SESSION["uname"] != ""){
-    "<a href='./profile.php'>$_SESSION["uname"]</a>";
+  //  "<a href='./profile.php'>$_SESSION["uname"]</a>";
   }
   else{
     echo "<a href='./login.php'>Login</a>";
