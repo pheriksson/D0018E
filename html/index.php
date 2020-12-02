@@ -27,7 +27,7 @@ include "config.php";
 <div class="topright">
   <?php
   if ($_SESSION["uname"] != ""){
-    echo "<a href='./profile.php'>$_SESSION["uname"]</a>";
+    echo "<a href='./profile.php'>".$_SESSION["uname"]."</a>";
   }
   else{
     echo "<a href='./login.php'>Login</a>";
@@ -43,7 +43,7 @@ include "config.php";
       ?>
   </div>
 
-  <div style=" position: fixed; top: 20px; right: 5px; padding: 5px;">
+  <div style=" position: fixed; top: 30px; right: 5px; padding: 5px;">
       <?php
       if ($_SESSION["uname"] != ""){
         echo "Total: ";
