@@ -18,14 +18,14 @@
 </head>
 <body>
 
-//------------------------Init-----------------------------
+<!--                           Init                       -->
 <?php
 include "config.php";
 ?>
 
 
 
-//--------------- Display username or login------------------
+<!--               Display username or login          -->
 <div class="topright">
   <?php
   if (isset($_SESSION["uname"]) && !empty($_SESSION["uname"])){
@@ -37,7 +37,7 @@ include "config.php";
   }
   ?>
 
-  //------------------------ Display amount----------------
+  <!--               Display amount                    -->
   <div style=" position: fixed; top: 5px; right: 5px; padding: 5px;">
       <?php
       if (isset($_SESSION["uname"]) && !empty($_SESSION["uname"])){
@@ -50,7 +50,7 @@ include "config.php";
   </div>
 
 
-  //--------------------- Display total cost---------------
+  <!--                 Display total cost                   -->
   <div style=" position: fixed; top: 30px; right: 5px; padding: 5px;">
       <?php
       if (isset($_SESSION["uname"]) && !empty($_SESSION["uname"])){
