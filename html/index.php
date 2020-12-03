@@ -41,7 +41,7 @@ include "config.php";
   <div style=" position: fixed; top: 5px; right: 5px; padding: 5px;">
       <?php
       if (isset($_SESSION["uname"]) && !empty($_SESSION["uname"])){
-        $sqlCart = "SELECT * FROM cart WHERE email='$uname'";
+        $sqlCart = "SELECT * FROM cart WHERE user_id='$uname'";
         $resultCart = mysqli_query($conn,$sqlCart);
         $rowCart = mysqli_fetch_row($resultCart);
         echo $rowCart[1]." items.";
