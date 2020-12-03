@@ -28,7 +28,7 @@ $card = $ArrayUser["credit_card"];
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Update Record</title>
+    <title>Profile</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
     <style type="text/css">
         .wrapper{
@@ -45,9 +45,7 @@ $card = $ArrayUser["credit_card"];
                     <div class="page-header">
                         <h2>Update Profile</h2>
                     </div>
-
                     <p>Fill in the fields you like to update.</p>
-                    </br>
                     If you would like to change your password, fill in the
                     password fields. Otherwise leave them blank.
                     </br>
@@ -55,7 +53,7 @@ $card = $ArrayUser["credit_card"];
                         <div class="form-group">
                             <label>First Name</label>
                             <input type="text" name="fname" class="form-control" value="<?php echo $fname; ?>">
-                            <span class="help-block"></span>
+                            <!-- <span class="help-block"></span> -->
                         </div>
                         <div class="form-group">
                             <label>Last name</label>
@@ -129,7 +127,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
       die("error");
     }
     else{
-      header('Location: login.php');
+      header('Location: index.php');
     }
   }
   else{
@@ -140,7 +138,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
         die("error");
       }
       else{
-        header('Location: login.php');
+        header('Location: index.php');
       }
     }
     else{
