@@ -123,7 +123,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 
 
   if($_POST['pw1'] == "" && $_POST['pw2'] == ""){
-    $sqltable = "INSERT INTO users (first_name, last_name, adress, city, country, zip_code, credit_card) VALUES ('$fnametable', '$lnametable', '$adresstable', '$citytable', '$countrytable', '$ziptable', '$cardtable')";
+    $sqltable = "UPDATE users SET first_name= '$fnametable', last_name = '$lnametable', adress = '$adresstable', city = '$citytable', country = '$countrytable', zip_code = '$ziptable', credit_card = '$cardtable' WHERE email= $uname";
 
     if(!mysqli_query($conn,$sqltable)){
       die("pw not filled, error");
@@ -131,7 +131,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
   }
   else{
     if($_POST['pw1'] == $_POST['pw2']){
-      $sql = "INSERT INTO users (first_name, last_name, adress, city, country, zip_code, credit_card, password) VALUES ('$fnametable', '$lnametable', '$adresstable', '$citytable', '$countrytable', $ziptable', '$cardtable', '$pw1table')";
+    $sqltable = "UPDATE users SET first_name= '$fnametable', last_name = '$lnametable', adress = '$adresstable', city = '$citytable', country = '$countrytable', zip_code = '$ziptable', credit_card = '$cardtable', password = '$pw1table' WHERE email= $uname";
 
       if(!mysqli_query($conn,$sqltable)){
         die("pw filled, error");
