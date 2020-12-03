@@ -17,7 +17,8 @@ CREATE TABLE users (
 
 CREATE TABLE products (
   id int PRIMARY KEY,
-  stock int UNIQUE NOT NULL,
+  name varchar(30) UNIQUE NOT NULL,
+  stock int NOT NULL,
   cost_unit int
 );
 
