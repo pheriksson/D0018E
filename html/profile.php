@@ -123,7 +123,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 
 
   if($_POST['pw1'] == "" && $_POST['pw2'] == ""){
-    $sqltable = "INSERT INTO users (first_name, last_name, adress, city, country, zip_code, credit_card) VALUES ('$fnametable', '$lnametable', '$adresstable', $citytable', $countrytable', $ziptable', '$cardtable')";
+    $sqltable = "INSERT INTO users (first_name, last_name, adress, city, country, zip_code, credit_card) VALUES ('$fnametable', '$lnametable', '$adresstable', '$citytable', '$countrytable', '$ziptable', '$cardtable')";
 
     if(!mysqli_query($conn,$sqltable)){
       die("pw not filled, error");
