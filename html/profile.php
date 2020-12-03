@@ -126,7 +126,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
     $sqltable = "UPDATE users SET first_name= '$fnametable', last_name = '$lnametable', adress = '$adresstable', city = '$citytable', country = '$countrytable', zip_code = '$ziptable', credit_card = '$cardtable' WHERE email= '$uname'";
 
     if(!mysqli_query($conn,$sqltable)){
-      die("pw not filled, error");
+      die("error");
+    }
+    else{
+      header('Location: login.php');
     }
   }
   else{
@@ -134,7 +137,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
     $sqltable = "UPDATE users SET first_name= '$fnametable', last_name = '$lnametable', adress = '$adresstable', city = '$citytable', country = '$countrytable', zip_code = '$ziptable', credit_card = '$cardtable', password = '$pw1table' WHERE email= '$uname'";
 
       if(!mysqli_query($conn,$sqltable)){
-        die("pw filled, error");
+        die("error");
+      }
+      else{
+        header('Location: login.php');
       }
     }
     else{
