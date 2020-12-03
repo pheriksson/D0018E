@@ -107,10 +107,23 @@ $card = $ArrayUser["credit_card"];
     </div>
 
 <?php
+
 if ($_SERVER["REQUEST_METHOD"] == "POST"){
 
+  $pw1table = mysqli_real_escape_string($conn,$_POST['pw1']);
+  $fnametable = mysqli_real_escape_string($conn,$_POST['fname']);
+  $lnametable = mysqli_real_escape_string($conn,$_POST['lname']);
+  $adresstable = mysqli_real_escape_string($conn,$_POST['adress']);
+  $citytable = mysqli_real_escape_string($conn,$_POST['city']);
+  $countrytable = mysqli_real_escape_string($conn,$_POST['country']);
+  $ziptable = mysqli_real_escape_string($conn,$_POST['zip']);
+  $cardtable = mysqli_real_escape_string($conn,$_POST['card']);
+
+
+
+
   if($_POST['pw1'] == "" && $_POST['pw2'] == ""){
-    $sql = "INSERT INTO users (first_name, last_name, adress, city, country, zip_code, credit_card) VALUES ($_POST['fname'], $_POST['lname'], $_POST['adress'], $_POST['city'], $_POST['country'], $_POST['zip'], $_POST['card'])";
+    $sql = "INSERT INTO users (first_name, last_name, adress, city, country, zip_code, credit_card) VALUES ($fnametable, $lnametable, $adresstable, $citytable, $countrytable, $ziptable, $cardtable)";
 
     if(!mysqli_query($conn,$sql)){
       die("pw not filled, error");
@@ -118,7 +131,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
   }
   else{
     if($_POST['pw1'] == $_POST['pw2']){
-      $sql = "INSERT INTO users (first_name, last_name, adress, city, country, zip_code, credit_card, password) VALUES ($_POST['fname'], $_POST['lname'], $_POST['adress'], $_POST['city'], $_POST['country'], $_POST['zip'], $_POST['card'], $_POST['pw1'])";
+      $sql = "INSERT INTO users (first_name, last_name, adress, city, country, zip_code, credit_card, password) VALUES ($fnametable, $lnametable, $adresstable, $citytable, $countrytable, $ziptable, $cardtable, $pw1table)";
 
       if(!mysqli_query($conn,$sql)){
         die("pw filled, error");
