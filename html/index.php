@@ -75,6 +75,5 @@ $loggedin = (isset($_SESSION["uname"]) && !empty($_SESSION["uname"]))
       ?>
   </div>
 </div>
-<iframe width="1280" height="720" src="https://www.youtube.com/embed/m0n0hwI0X48" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </body>
 </html>
