@@ -110,9 +110,7 @@ $card = $ArrayUser["credit_card"];
 if ($_SERVER["REQUEST_METHOD"] == "POST"){
 
   if($_POST['pw1'] == "" && $_POST['pw2'] == ""){
-    $sql = "INSERT INTO users (first_name, last_name, adress, city, country, zip_code, credit_card)
-    VALUES ($_POST['fname'], $_POST['lname'], $_POST['adress'], $_POST['city'],
-    $_POST['country'], $_POST['zip'], $_POST['card'])";
+    $sql = "INSERT INTO users (first_name, last_name, adress, city, country, zip_code, credit_card) VALUES ($_POST['fname'], $_POST['lname'], $_POST['adress'], $_POST['city'], $_POST['country'], $_POST['zip'], $_POST['card'])";
 
     if(!mysqli_query($conn,$sql)){
       die("pw not filled, error");
@@ -120,9 +118,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
   }
   else{
     if($_POST['pw1'] == $_POST['pw2']){
-      $sql = "INSERT INTO users (first_name, last_name, adress, city, country, zip_code, credit_card, password)
-      VALUES ($_POST['fname'], $_POST['lname'], $_POST['adress'], $_POST['city'],
-      $_POST['country'], $_POST['zip'], $_POST['card'], $_POST['pw1'])";
+      $sql = "INSERT INTO users (first_name, last_name, adress, city, country, zip_code, credit_card, password) VALUES ($_POST['fname'], $_POST['lname'], $_POST['adress'], $_POST['city'], $_POST['country'], $_POST['zip'], $_POST['card'], $_POST['pw1'])";
 
       if(!mysqli_query($conn,$sql)){
         die("pw filled, error");
