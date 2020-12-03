@@ -50,7 +50,8 @@ $card = $ArrayUser["credit_card"];
                     </br>
                     If you would like to change your password, fill in the
                     password fields. Otherwise leave them blank.
-                    <form action="<?php echo htmlspecialchars(basename($_SERVER['REQUEST_URI'])); ?>" method="post">
+                    </br>
+                    <form method="post" action="<?php echo $_SERVER['PHP_SELF'];?>">
                         <div class="form-group">
                             <label>First Name</label>
                             <input type="text" name="fname" class="form-control" value="<?php echo $fname; ?>">
@@ -86,6 +87,17 @@ $card = $ArrayUser["credit_card"];
                             <input type="text" name="card" class="form-control" value="<?php echo $card; ?>">
                             <span class="help-block"></span>
                         </div>
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input type="password" name="pw1" class="form-control">
+                            <span class="help-block"></span>
+                        </div>
+                        <div class="form-group">
+                            <label>Confirm password</label>
+                            <input type="password" name="pw2" class="form-control">
+                            <span class="help-block"></span>
+                        </div>
+
                         <input type="submit" class="btn btn-primary" value="Update">
                         <a href="index.php" class="btn btn-default">Back</a>
                     </form>
@@ -94,7 +106,37 @@ $card = $ArrayUser["credit_card"];
         </div>
     </div>
 
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST"){
 
+  if($_POST['pw1'] == "" && $_POST['pw2'] == ""){
+    $sql = "INSERT INTO users (first_name, last_name, adress, city, country, zip_code, credit_card)
+    VALUES ($_POST['fname'], $_POST['lname'], $_POST['adress'], $_POST['city'],
+    $_POST['country'], $_POST['zip'], $_POST['card'])";
+
+    if(!mysqli_query($conn,$sql)){
+      die("pw not filled, error");
+    }
+  }
+  else{
+    if($_POST['pw1'] == $_POST['pw2']){
+      $sql = "INSERT INTO users (first_name, last_name, adress, city, country, zip_code, credit_card, password)
+      VALUES ($_POST['fname'], $_POST['lname'], $_POST['adress'], $_POST['city'],
+      $_POST['country'], $_POST['zip'], $_POST['card'], $_POST['pw1'])";
+
+      if(!mysqli_query($conn,$sql)){
+        die("pw filled, error");
+      }
+    }
+    else{
+      echo "Passwords does not match";
+    }
+  }
+}
+
+
+
+ ?>
 
 </body>
 </html>
