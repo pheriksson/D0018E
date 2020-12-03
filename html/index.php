@@ -5,7 +5,7 @@
     position: fixed;
     right: 5px; top: 5px;
     width: 200px;
-    height:40px;
+    height:70px;
     background-color:lightgrey;
     padding: 5px;
 }
@@ -59,6 +59,16 @@ include "config.php";
         echo " kr.";
       }
       ?>
+  </div>
+  <div style=" position: fixed; bottom: 5px; right: 5px; padding: 5px;">
+    <a href="profile.php">
+      <img src="/pictures/profile.png" alt="Profile" style="width:10px;height:10px;">
+    </a>
+  </div>
+  <div style=" position: fixed; bottom: 5px; left: 5px; padding: 5px;">
+    <a href="/pictures/cart.php">
+      <img src="cart.png" alt="Cart" style="width:10px;height:10px;">
+    </a>
   </div>
 </div>
 
