@@ -11,7 +11,7 @@ $uname = ($_SESSION["uname"]);
 
 $sql = "SELECT * FROM users WHERE email='$uname'";
 $result = mysqli_query($conn,$sql);
-$ArrayUser = mysqli_fetch_row($result);
+$ArrayUser = mysqli_fetch_array($result);
 
 
 $fname = $ArrayUser["first_name"];
