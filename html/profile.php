@@ -144,7 +144,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
       }
     }
     else{
-      echo "Passwords does not match";
+      echo ""<b style='color:red'>This is a paragraph.</b>"";
     }
   }
 }
