@@ -1,9 +1,24 @@
 <?php
-// Include config file
+// Include config file and get user-data.
 include "config.php";
-$fname = "Viktor";
-$lname = "";
-$name = $address = $salary = "";
+
+//Send to login if not logged in.
+if(!isset($_SESSION["uname"]) && empty($_SESSION["uname"])){
+  header('Location: login.php');
+}
+
+$uname = ($_SESSION["uname"]);
+
+$sql = "SELECT * FROM users WHERE email='$uname'";
+$result = mysqli_query($conn,$sql);
+$ArrayUser = mysqli_fetch_row($result);
+
+
+$fname = $ArrayUser["first_name"];
+$lname = $ArrayUser["last_name"];
+$adress = $ArrayUser["adress"];
+
+
 
 ?>
 
@@ -43,7 +58,7 @@ $name = $address = $salary = "";
                         </div>
                         <div class="form-group">
                             <label>Address</label>
-                            <input type="text" name="name" class="form-control" value="<?php echo $address; ?>">
+                            <input type="text" name="name" class="form-control" value="<?php echo $adress; ?>">
                             <span class="help-block"></span>
                         </div>
                         <input type="submit" class="btn btn-primary" value="Submit">
