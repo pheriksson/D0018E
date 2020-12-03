@@ -45,9 +45,9 @@ $card = $ArrayUser["credit_card"];
                     <div class="page-header">
                         <h2>Update Profile</h2>
                     </div>
-                    <p>Fill in the fields you like to update.</p>
+                    <p>Fill in the fields you like to update.
                     If you would like to change your password, fill in the
-                    password fields. Otherwise leave them blank.
+                    password fields. Otherwise leave them blank.</p>
                     </br>
                     <form method="post" action="<?php echo $_SERVER['PHP_SELF'];?>">
                         <div class="form-group">
@@ -142,7 +142,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
       }
     }
     else{
-      echo "<b style='color:red'>Passwords do not match.</b>";
+      echo "<b style='color:red', class='form-group'>Passwords do not match.</b>";
     }
   }
 }
