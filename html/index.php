@@ -9,11 +9,6 @@
     background-color:lightgrey;
     padding: 5px;
 }
-
-  .large {
-    width: 2000px; height: 500px;
-    background-color: lightgray;
-}
 </style>
 </head>
 <body>
@@ -21,6 +16,7 @@
 <!--                           Init                       -->
 <?php
 include "config.php";
+$loggedin = (isset($_SESSION["uname"]) && !empty($_SESSION["uname"]))
 ?>
 
 
@@ -28,7 +24,7 @@ include "config.php";
 <!--               Display username or login          -->
 <div class="topright">
   <?php
-  if (isset($_SESSION["uname"]) && !empty($_SESSION["uname"])){
+  if ($loggedin){
     echo "<a href='./profile.php'>".$_SESSION["uname"]."</a>";
     $uname = $_SESSION["uname"];
   }
@@ -37,21 +33,28 @@ include "config.php";
   }
   ?>
 
+
+  <!-- icons -->
   <div style=" position: absolute; bottom: 5px; left: 5px; padding: 5px;">
-    <a href="profile.php">
-      <img src="/pictures/profile.png" alt="Profile" style="width:30px;height:30px;">
-    </a>
+    <?php
+    if($loggedin){
+    echo "<a href="profile.php"><img src="/pictures/profile.png" alt="Profile" style="width:30px;height:30px;"></a>";
+    }
+    ?>
   </div>
   <div style=" position: absolute; bottom: 5px; right: 5px; padding: 5px;">
-    <a href="cart.php">
-      <img src="/pictures/cart.png" alt="Cart" style="width:20px;height:20px;">
-    </a>
+    <?php
+    if($loggedin){
+    echo "<a href="cart.php"><img src="/pictures/cart.png" alt="Cart" style="width:20px;height:20px;"></a>";
+    }
+    ?>
   </div>
+
 
   <!--               Display amount                    -->
   <div style=" position: fixed; top: 5px; right: 5px; padding: 5px;">
       <?php
-      if (isset($_SESSION["uname"]) && !empty($_SESSION["uname"])){
+      if ($loggedin){
         $sqlCart = "SELECT * FROM cart WHERE user_id='$uname'";
         $resultCart = mysqli_query($conn,$sqlCart);
         $rowCart = mysqli_fetch_row($resultCart);
@@ -64,16 +67,13 @@ include "config.php";
   <!--                 Display total cost                   -->
   <div style=" position: fixed; top: 30px; right: 5px; padding: 5px;">
       <?php
-      if (isset($_SESSION["uname"]) && !empty($_SESSION["uname"])){
+      if ($loggedin){
         echo "Total: ";
         echo $rowCart[2];
         echo " kr.";
       }
       ?>
   </div>
-
 </div>
-
-
 </body>
 </html>
