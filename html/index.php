@@ -38,14 +38,14 @@ $loggedin = (isset($_SESSION["uname"]) && !empty($_SESSION["uname"]))
   <div style=" position: absolute; bottom: 5px; left: 5px; padding: 5px;">
     <?php
     if($loggedin){
-    echo "<a href="profile.php"><img src="/pictures/profile.png" alt="Profile" style="width:30px;height:30px;"></a>";
+    echo "<a href='profile.php'><img src='/pictures/profile.png' alt='Profile' style='width:30px;height:30px;'></a>";
     }
     ?>
   </div>
   <div style=" position: absolute; bottom: 5px; right: 5px; padding: 5px;">
     <?php
     if($loggedin){
-    echo "<a href="cart.php"><img src="/pictures/cart.png" alt="Cart" style="width:20px;height:20px;"></a>";
+    echo "<a href='cart.php'><img src='/pictures/cart.png' alt='Cart' style='width:30px;height:30px;'></a>";
     }
     ?>
   </div>
