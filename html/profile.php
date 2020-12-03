@@ -53,7 +53,7 @@ $card = $ArrayUser["credit_card"];
                         <div class="form-group">
                             <label>First Name</label>
                             <input type="text" name="fname" class="form-control" value="<?php echo $fname; ?>">
-                            <!-- <span class="help-block"></span> -->
+                            <span class="help-block"></span>
                         </div>
                         <div class="form-group">
                             <label>Last name</label>
