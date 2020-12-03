@@ -22,7 +22,7 @@
 <?php
 include "config.php";
 ?>
-//----------------------------------------------------------
+
 
 
 //--------------- Display username or login------------------
@@ -30,26 +30,25 @@ include "config.php";
   <?php
   if (isset($_SESSION["uname"]) && !empty($_SESSION["uname"])){
     echo "<a href='./profile.php'>".$_SESSION["uname"]."</a>";
+    $uname = $_SESSION["uname"];
   }
   else{
     echo "<a href='./login.php'>Login</a>";
   }
   ?>
-  //-------------------------------------------------------
 
   //------------------------ Display amount----------------
   <div style=" position: fixed; top: 5px; right: 5px; padding: 5px;">
       <?php
-      $sqlCart = "SELECT * FROM cart WHERE email='$uname'";
-      $resultCart = mysqli_query($conn,$sqlCart);
-      $rowCart = mysqli_fetch_row($resultCart);
-
       if (isset($_SESSION["uname"]) && !empty($_SESSION["uname"])){
+        $sqlCart = "SELECT * FROM cart WHERE email='$uname'";
+        $resultCart = mysqli_query($conn,$sqlCart);
+        $rowCart = mysqli_fetch_row($resultCart);
         echo $rowCart[1]." items.";
       }
       ?>
   </div>
-  //-------------------------------------------------------
+
 
   //--------------------- Display total cost---------------
   <div style=" position: fixed; top: 30px; right: 5px; padding: 5px;">
@@ -61,7 +60,6 @@ include "config.php";
       }
       ?>
   </div>
-  //-------------------------------------------------------
 </div>
 
 
