@@ -24,6 +24,7 @@
             <select Sex = 'NEW'>
             <option value="">--- Select ---</option>
             <?
+                mysql_selct_db($conn, "test");
                 $list = mysql_query($conn,"select * from sex");
               while ($row_list = mysql_fetch_assoc($list)){
                 ?>
