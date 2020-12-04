@@ -46,6 +46,13 @@ $card = $ArrayUser["credit_card"];
         padding: 5px;
     }
     </style>
+    <style>
+      .topright {
+        position: fixed;
+        right: 5px; top: 5px;
+        padding: 5px;
+    }
+    </style>
 </head>
 <body>
     <div class="wrapper">
@@ -166,7 +173,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
  ?>
 
 
-
 <div class="secretmenu">
   <?php
     if($ArrayUser["role"] > 1){
@@ -179,9 +185,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
       echo "<a href='./users.php'>View and edit users</a>";
     }
    ?>
- </div>
-   <a href="Logout.php" class="btn btn-default" style= "position: fixed",
-   "Right: 5px", "top: 5px">Logout</a>
+</div>
+<div class = "topright">
+  <a href="Logout.php" class="btn btn-default">Logout</a>
+</div>
 
 
 
