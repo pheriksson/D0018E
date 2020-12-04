@@ -10,6 +10,14 @@
     padding: 5px;
 }
 </style>
+<style>
+	.frame{
+	margin: auto;
+	width: 60%;
+	border: 2px solid #FFFF00;
+	padding: 10px;	
+}
+</style>
 </head>
 <body>
 
@@ -75,5 +83,11 @@ $loggedin = (isset($_SESSION["uname"]) && !empty($_SESSION["uname"]))
       ?>
   </div>
 </div>
+
+	<!--			Display iframe			-->
+<div>
+<li><iframe src="http://130.240.200.28/table_frame.php" width="1400" height="800" scrolling="no" style="overflow:hidden; margin-top:-4px; margin-left:-4px; border:none;"></iframe></li>
+</div>
+
 </body>
 </html>
