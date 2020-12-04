@@ -1,6 +1,8 @@
 <html>
 <body>
-
+<?php
+include "config.php";
+?>
 <div class="container">
     <form method="post" action="<?php echo $_SERVER['PHP_SELF'];?>">
         <div id="div_createuser">
@@ -24,8 +26,8 @@
             <select Sex = 'NEW'>
             <option value="">--- Select ---</option>
             <?
-                mysql_selct_db($conn, "test");
-                $list = mysql_query($conn,"select * from sex");
+                mysql_connect ($servername, $username, $password, $dbname);
+                $list = mysql_query("select * from sex");
               while ($row_list = mysql_fetch_assoc($list)){
                 ?>
                   <option value = "<? echo $row_list['gender']; ?>"
