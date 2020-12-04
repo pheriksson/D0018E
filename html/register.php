@@ -30,6 +30,7 @@ include "config.php";
               while ($rows = $genders.fetch_assoc()){
                   $gender_val = $rows['sex'];
                   echo "<option value = '$gender_val'> $gender_val </option>";
+                }
             ?>
 
 
