@@ -100,6 +100,7 @@ $card = $ArrayUser["credit_card"];
                         <a href="index.php" class="btn btn-default">Back</a>
                         <div class="form-group">
                         <?php
+                          echo "<b style='color:red' , class='form-group'>Passwords do not match.</b>";
                           if (($_SERVER["REQUEST_METHOD"] == "POST") && ($_POST['pw2'] != $_POST['pw1'])){
                             echo "<b style='color:red' , class='form-group'>Passwords do not match.</b>";
                           }
