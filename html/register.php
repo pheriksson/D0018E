@@ -21,7 +21,7 @@ include "config.php";
                 <input type="text" class="textbox" id="txt_lname" name="txt_lname" placeholder="Last Name"/>
             </div>
             <div>
-        <form id="form1" name="form1" method="post" action="<?php echo $PHP_SELF; ?>">
+
             Sex :
             <select Sex = 'NEW'>
             <option value="">--- Select ---</option>
