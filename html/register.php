@@ -32,7 +32,6 @@ include "config.php";
                 }
                   ?>
                   <label for="dropdown">Sex</label>
-          </form>
             </div>
             <div>
                 <input type="text" class="textbox" id="txt_pnumb" name="txt_pnumb"
