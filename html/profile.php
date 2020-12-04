@@ -172,7 +172,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
       die("error");
     }
     else{
-      header('Location: index.php');
+      header('Location: profile.php');
     }
   }
   else{
@@ -183,7 +183,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
         die("error");
       }
       else{
-        header('Location: index.php');
+        header('Location: profile.php');
       }
     }
   }
