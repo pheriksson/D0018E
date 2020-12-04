@@ -88,7 +88,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
         echo "Fill in all the fields.";
       }
   //  if ($lname != "" && $password !="" && $fname != "" && $email !=""){
-      if ($lname != "" && $password !="" && $fname != "" && $email !=""){
+      else{
         $sql = "SELECT * FROM users WHERE email='$email'";
 		    $result = mysqli_query($conn,$sql);
 
