@@ -23,10 +23,23 @@ include "config.php";
             <div>
               <select name="dropdown" id="dropdown">
                 <?php
-                $res = mysqli_query($conn, "SELECT * FROM sex");
-                  while($row = mysqli_fetch_array($res)) {
-                    echo("<option value='".$row['gender']."'></option>");
+
+                $result = mysqli_query($conn, "SELECT * FROM sex");
+                if ($result != 0) {
+                  echo '<label>Sex:';
+                  echo '<select name="sex">';
+                  echo '<option value="">all</option>';
+
+                  $num_results = mysqli_num_rows($result);
+                  for ($i=0;$i<$num_results;$i++) {
+                    $row = mysqli_fetch_array($result);
+                    $name = $row['gender'];
+                    echo '<option value="' .$name. '">' .$name. '</option>';
                   }
+
+                  echo '</select>';
+                  echo '</label>';
+                }
                   ?>
                   <label for="dropdown">Select</label>
                 </select>
