@@ -79,7 +79,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
     $userInfo = array($email, $password, $fname, $lname, $pnumb, $country,
                       $address, $city, $zip, $cc);
     $empty = false;
-    for ($i = 0; $i < count($userInfo), $i++){
+    for ($i = 0; $i < count($userInfo); , $i++){
       if (empty($userInfo[i])){
         $empty = true;
       }
