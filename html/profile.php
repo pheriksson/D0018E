@@ -187,7 +187,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
    ?>
 </div>
 <div class = "topright">
-  <a href="Logout.php" class="btn btn-default" style="color:red;">Logout</a>
+  <a href="Logout.php" class="btn btn-default" style="color:white;background-color: red;">Logout</a>
 </div>
 
 
