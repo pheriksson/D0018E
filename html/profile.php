@@ -36,6 +36,16 @@ $card = $ArrayUser["credit_card"];
             margin: 0 auto;
         }
     </style>
+    <style>
+      .secretmenu {
+        position: fixed;
+        left: 5px; top: 5px;
+        width: 150px;
+        height:200px;
+        background-color:;
+        padding: 5px;
+    }
+    </style>
 </head>
 <body>
     <div class="wrapper">
@@ -154,6 +164,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 
 
  ?>
+
+
+
+<div class="secretmenu">
+  <?php
+    if($ArrayUser["role"] > 1){
+      echo "<a href='./orders.php'>Manage orders</a>";
+      echo "<a href='./stock.php'>Show and edit stock</a>";
+    }
+    if($ArrayUser["role"] == 2){
+      echo "<a href='./users.php'>View and edit users</a>";
+    }
+   ?>
+
+
 
 </body>
 </html>
