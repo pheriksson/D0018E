@@ -42,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 
             $_SESSION["uname"] = $uname;
             echo $uname;
-            header('Location: welcome.php');
+            header('Location: index.php');
         }else{
             echo "Invalid username and password";
         }
