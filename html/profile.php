@@ -173,7 +173,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
       echo "<a href='./orders.php'>Manage orders</a>";
       echo "<a href='./stock.php'>Show and edit stock</a>";
     }
-    if($ArrayUser["role"] == 2){
+    if($ArrayUser["role"] == 3){
       echo "<a href='./users.php'>View and edit users</a>";
     }
    ?>
