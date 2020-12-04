@@ -22,20 +22,17 @@ include "config.php";
             </div>
             <div>
 
-            Sex :
-            <select Sex = 'NEW'>
-            <option value="">--- Select ---</option>
-            <?php
-            $genders = mysql_query($conn, "SELECT * from sex");
-              while ($rows = $genders.fetch_assoc()){
-                  $gender_val = $rows['sex'];
-                  echo "<option value = '$gender_val'> $gender_val </option>";
-                }
-            ?>
 
+              <select name="dropdown" id="dropdown">
+                <?php
+                $res = mysqli_query($conn, "SELECT * FROM sex");
+                  while($row = mysqli_fetch_array($res)) {
+                    echo("<option value='".$row['id']."'>".$row['name']."</option>");
+                  }
+                  ?>
+                  <label for="dropdown">Select</label>
+                </select>
 
-
-          </select>
 
             </div>
 
