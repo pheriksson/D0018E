@@ -142,7 +142,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
       }
     }
     else{
-      echo "<b style='color:red', class='form-group'>Passwords do not match.</b>";
+      echo "<b style='color:red', class='container-fluid'>Passwords do not match.</b>";
     }
   }
 }
