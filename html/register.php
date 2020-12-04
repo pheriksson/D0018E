@@ -23,8 +23,7 @@
             <select Sex = 'NEW'>
             <option value="">--- Select ---</option>
             <?
-              mysql_connect("localhost", "root", "");
-              mysql_select_db ("sex");
+              mysql_select_db ($conn, "sex");
               $select = "sex";
               if (isset (&select) && $select !=""){
                 $select = $_POST ['NEW'];
