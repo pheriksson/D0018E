@@ -26,8 +26,7 @@ include "config.php";
             <select Sex = 'NEW'>
             <option value="">--- Select ---</option>
             <?
-                mysql_connect ($servername, $username, $password, $dbname);
-                $list = mysql_query("select * from sex");
+                $list = mysql_query($conn, "select * from sex");
               while ($row_list = mysql_fetch_assoc($list)){
                 ?>
                   <option value = "<? echo $row_list['gender']; ?>"
