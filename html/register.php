@@ -1,8 +1,6 @@
 <html>
 <body>
-<?php
-include "config.php";
-?>
+
 <div class="container">
     <form method="post" action="<?php echo $_SERVER['PHP_SELF'];?>">
         <div id="div_createuser">
