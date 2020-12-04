@@ -27,7 +27,7 @@ include "config.php";
                 <?php
                 $res = mysqli_query($conn, "SELECT * FROM sex");
                   while($row = mysqli_fetch_array($res)) {
-                    echo("<option value='".$row['gender']"'></option>");
+                    echo("<option value='".$row['gender']."'>""</option>");
                   }
                   ?>
                   <label for="dropdown">Select</label>
