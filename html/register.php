@@ -21,8 +21,9 @@ include "config.php";
                 <input type="text" class="textbox" id="txt_lname" name="txt_lname" placeholder="Last Name"/>
             </div>
             <div>
-              <form>
+              Sex :
               <select name = "dropdown" id = "dropdown">
+              <option value = "">--- Select --- </option>
                 <?php
                 $result = mysqli_query($conn, "SELECT * FROM sex");
                 while($rows = $result->fetch_assoc()){
@@ -31,7 +32,6 @@ include "config.php";
                 }
                   ?>
                   <label for="dropdown">Sex</label>
-            </select>
           </form>
             </div>
             <div>
