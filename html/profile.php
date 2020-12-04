@@ -55,6 +55,27 @@ $card = $ArrayUser["credit_card"];
     </style>
 </head>
 <body>
+
+  <div class="secretmenu">
+    <?php
+      if($ArrayUser["role"] > 1){
+        echo "<a href='./orders.php'>Manage orders</a>";
+        echo "<br>";
+        echo "<a href='./stock.php'>Show and edit stock</a>";
+        echo "<br>";
+      }
+      if($ArrayUser["role"] == 3){
+        echo "<a href='./users.php'>View and edit users</a>";
+      }
+     ?>
+  </div>
+  <div class = "topright">
+    <a href="logout.php" class="btn btn-default" style="color:white;background-color: red;">Logout</a>
+  </div>
+
+
+
+
     <div class="wrapper">
         <div class="container-fluid">
             <div class="row">
@@ -171,25 +192,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 
 
  ?>
-
-
-<div class="secretmenu">
-  <?php
-    if($ArrayUser["role"] > 1){
-      echo "<a href='./orders.php'>Manage orders</a>";
-      echo "<br>";
-      echo "<a href='./stock.php'>Show and edit stock</a>";
-      echo "<br>";
-    }
-    if($ArrayUser["role"] == 3){
-      echo "<a href='./users.php'>View and edit users</a>";
-    }
-   ?>
-</div>
-<div class = "topright">
-  <a href="logout.php" class="btn btn-default" style="color:white;background-color: red;">Logout</a>
-</div>
-
 
 
 
