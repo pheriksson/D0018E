@@ -15,6 +15,17 @@ CREATE TABLE users (
   credit_card int
 );
 
+CREATE TRIGGER avoid_empty
+  BEFORE INSERT ON users
+    FOR EACH ROW
+    BEGIN
+    IF first_name = '' THEN SET first_name = NULL END IF;
+    IF p_nmb = '' THEN SET p_numb = NULL END IF;
+
+END;
+
+
+
 CREATE TABLE products (
   id int PRIMARY KEY,
   name varchar(30) UNIQUE NOT NULL,

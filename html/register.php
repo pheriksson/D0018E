@@ -18,10 +18,38 @@
             <div>
                 <input type="text" class="textbox" id="txt_lname" name="txt_lname" placeholder="Last Name"/>
             </div>
+            <div>
+            Sex :
+            <select Sex = 'NEW'>
+            <option value="">--- Select ---</option>
+            <?
+              mysql_connect("localhost", "root", "");
+              mysql_select_db ("sex");
+              $select = "sex";
+              if (isset (&select) && $select !=""){
+                $select = $_POST ['NEW'];
+              }
+            ?>
+            <?
+                $list = mysql_query("select * from sex");
+              while ($row_list = mysql_fetch_assoc($list)){
+                ?>
+                  <option value = "<? echo $row_list['gender']; ?>"
+                    <? if($row_list['gender']==$select){ echo "selected"; } ?>>
+                      <? echo $row_list['gender'];?>
+                  </option>
+              <?
+            }
+            ?>
+          </select>
+
+              }
+            </div>
 
             <div>
                 <input type="submit" value="Submit" name="but_submit" id="but_submit" />
             </div>
+
         </div>
     </form>
 </div>
