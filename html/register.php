@@ -23,13 +23,6 @@
             <select Sex = 'NEW'>
             <option value="">--- Select ---</option>
             <?
-              mysql_select_db ($conn, "sex");
-              $select = "sex";
-              if (isset (&select) && $select !=""){
-                $select = $_POST ['NEW'];
-              }
-            ?>
-            <?
                 $list = mysql_query("select * from sex");
               while ($row_list = mysql_fetch_assoc($list)){
                 ?>
