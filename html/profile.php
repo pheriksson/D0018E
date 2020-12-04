@@ -179,7 +179,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
       echo "<a href='./users.php'>View and edit users</a>";
     }
    ?>
-
+ </div>
    <a href="Logout.php" class="btn btn-default" style= "position: fixed",
    "Right: 5px", "top: 5px">Logout</a>
 
