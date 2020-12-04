@@ -33,7 +33,7 @@ include "config.php";
             </div>
             <div>
                 <input type="text" class="textbox" id="txt_pnumb" name="txt_pnumb"
-                 placeholder="Swedish social security equivalent (YYYY-MM-DD-XXXX)"/>
+                 placeholder="Swedish social security equivalent (YYYY-MM-DD-XXXX)" size = 50/>
             </div>
             <div>
                 <input type="text" class="textbox" id="txt_ctr" name="txt_ctr" placeholder="Country"/>
@@ -69,9 +69,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
     $password = mysqli_real_escape_string($conn,$_POST['txt_pwd']);
     $fname = mysqli_real_escape_string($conn,$_POST['txt_fname']);
     $lname = mysqli_real_escape_string($conn,$_POST['txt_lname']);
+    $pnumb = mysqli_real_escape_string($conn,$_POST['txt_pnumb']);
+    $country = mysqli_real_escape_string($conn,$_POST['txt_ctr']);
+    $address = mysqli_real_escape_string($conn,$_POST['txt_adr']);
+    $city = mysqli_real_escape_string($conn,$_POST['txt_city']);
+    $zip = mysqli_real_escape_string($conn,$_POST['txt_zip']);
+    $cc = mysqli_real_escape_string($conn,$_POST['txt_cc']);
 
-    if ($lname != "" && $password !="" && $fname != "" && $email !=""){
-
+    $userInfo = array($email, $password, $fname, $lname, $pnumb, $country,
+                      $address, $city, $zip, $cc);
+    $empty = false;
+    foreach($userInfo as $ui){
+      if (empty($_POST[$ui])){
+        $empty = true;
+      }
+}
+      if($empty){
+        echo "Fill in all the fields.";
+      }
+  //  if ($lname != "" && $password !="" && $fname != "" && $email !=""){
+      if ($lname != "" && $password !="" && $fname != "" && $email !=""){
         $sql = "SELECT * FROM users WHERE email='$email'";
 		    $result = mysqli_query($conn,$sql);
 
@@ -80,6 +97,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
         if($count > 0){
           echo $email + ' email already exists';
         }
+    }
         else{
 
         $sql = "INSERT INTO users (email, first_name, last_name, password)
@@ -92,9 +110,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
         }
 
     }
-    else{
+  /*  else{
     	echo "Fill in the fields retard";
-    }
+    }*/
 
 }
 ?>
