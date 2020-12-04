@@ -109,7 +109,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
         }
         }
 
-    }
+
   /*  else{
     	echo "Fill in the fields retard";
     }*/
