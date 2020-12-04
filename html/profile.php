@@ -99,8 +99,8 @@ $card = $ArrayUser["credit_card"];
                         <input type="submit" class="btn btn-primary" value="Update">
                         <a href="index.php" class="btn btn-default">Back</a>
                         <?php
-                            printPasswordError(){
-                              echo "<b style='color:red', class='container-fluid'>Passwords do not match.</b>";
+                            function printPasswordError() {
+                              echo "<b style='color:red'>Passwords do not match.</b>";
                             }
                          ?>
                     </form>
