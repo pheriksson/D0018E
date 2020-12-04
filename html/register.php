@@ -25,6 +25,10 @@ include "config.php";
                 <?php
 
                 $result = mysqli_query($conn, "SELECT * FROM sex");
+                while($rows = $result->fetch_assoc()){
+                  $genders = $rows['gender'];
+                  echo "<option value = '$genders'>$genders</option>";
+                }
                 if ($result != 0) {
                   echo '<label>Sex:';
                   echo '<select name="sex">';
