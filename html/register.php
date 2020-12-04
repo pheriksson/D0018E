@@ -29,9 +29,10 @@ include "config.php";
                 while($rows = $result->fetch_assoc()){
                   $genders = $rows['gender'];
                   echo "<option value = '$genders'>$genders</option>";
+                  echo "\n";
                 }
                   ?>
-                  <label for="dropdown">Sex</label>
+
             </div>
             <div>
                 <input type="text" class="textbox" id="txt_pnumb" name="txt_pnumb"
