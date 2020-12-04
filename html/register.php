@@ -34,6 +34,7 @@ include "config.php";
                   ?>
 
             </div>
+            <br style="clear: both;"> 
             <div>
                 <input type="text" class="textbox" id="txt_pnumb" name="txt_pnumb"
                  placeholder="Swedish social security equivalent (YYYY-MM-DD-XXXX)" size = 50/>
