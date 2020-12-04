@@ -1,6 +1,8 @@
 <html>
 <body>
-
+<?php
+include "config.php";
+?>
 <div class="container">
     <form method="post" action="<?php echo $_SERVER['PHP_SELF'];?>">
         <div id="div_createuser">
@@ -23,17 +25,15 @@
             Sex :
             <select Sex = 'NEW'>
             <option value="">--- Select ---</option>
-            <?
-                $list = mysql_query($conn, "select * from sex");
-              while ($row_list = mysql_fetch_assoc($list)){
-                ?>
-                  <option value = "<? echo $row_list['gender']; ?>"
-                    <? if($row_list['gender']==$select){ echo "selected"; } ?>>
-                      <? echo $row_list['gender'];?>
-                  </option>
-              <?
-
+            <?php
+            $genders = mysql_query($conn, "SELECT * from sex");
+              while ($rows = $genders.fetch_assoc()){
+                  $gender_val = $rows['sex'];
+                  echo "<option value = '$gender_val'> $gender_val </option>";
             ?>
+
+
+
           </select>
 
             </div>
@@ -49,7 +49,7 @@
 
 
 <?php
-include "config.php";
+
 
 if ($_SERVER["REQUEST_METHOD"] == "POST"){
 
