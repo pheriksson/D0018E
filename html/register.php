@@ -21,8 +21,6 @@ include "config.php";
                 <input type="text" class="textbox" id="txt_lname" name="txt_lname" placeholder="Last Name"/>
             </div>
             <div>
-
-
               <select name="dropdown" id="dropdown">
                 <?php
                 $res = mysqli_query($conn, "SELECT * FROM sex");
@@ -32,10 +30,26 @@ include "config.php";
                   ?>
                   <label for="dropdown">Select</label>
                 </select>
-
-
             </div>
-
+            <div>
+                <input type="text" class="textbox" id="txt_pnumb" name="txt_pnumb"
+                 placeholder="Swedish social security equivalent (YYYY-MM-DD-XXXX)"/>
+            </div>
+            <div>
+                <input type="text" class="textbox" id="txt_ctr" name="txt_ctr" placeholder="Country"/>
+            </div>
+            <div>
+                <input type="text" class="textbox" id="txt_adr" name="txt_adr" placeholder="Address"/>
+            </div>
+            <div>
+                <input type="text" class="textbox" id="txt_city" name="txt_city" placeholder="City"/>
+            </div>
+            <div>
+                <input type="text" class="textbox" id="txt_zip" name="txt_zip" placeholder="Postal code"/>
+            </div>
+            <div>
+                <input type="text" class="textbox" id="txt_cc" name="txt_cc" placeholder="Credit card number"/>
+            </div>
             <div>
                 <input type="submit" value="Submit" name="but_submit" id="but_submit" />
             </div>
