@@ -22,8 +22,53 @@ $zip_code = $ArrayUser["zip_code"];
 $country = $ArrayUser["country"];
 $card = $ArrayUser["credit_card"];
 
-?>
 
+
+
+
+if ($_SERVER["REQUEST_METHOD"] == "POST"){
+
+  $pw1table = mysqli_real_escape_string($conn,$_POST['pw1']);
+  $fnametable = mysqli_real_escape_string($conn,$_POST['fname']);
+  $lnametable = mysqli_real_escape_string($conn,$_POST['lname']);
+  $adresstable = mysqli_real_escape_string($conn,$_POST['adress']);
+  $citytable = mysqli_real_escape_string($conn,$_POST['city']);
+  $countrytable = mysqli_real_escape_string($conn,$_POST['country']);
+  $ziptable = mysqli_real_escape_string($conn,$_POST['zip']);
+  $cardtable = mysqli_real_escape_string($conn,$_POST['card']);
+
+
+
+
+  if($_POST['pw1'] == "" && $_POST['pw2'] == ""){
+    $sqltable = "UPDATE users SET first_name= '$fnametable', last_name = '$lnametable', adress = '$adresstable', city = '$citytable', country = '$countrytable', zip_code = '$ziptable', credit_card = '$cardtable' WHERE email= '$uname'";
+
+    if(!mysqli_query($conn,$sqltable)){
+      die("error");
+    }
+    else{
+      header('Location: profile.php');
+    }
+  }
+  else{
+    if($_POST['pw1'] == $_POST['pw2'])
+    {
+      $sqltable = "UPDATE users SET first_name= '$fnametable', last_name = '$lnametable', adress = '$adresstable', city = '$citytable', country = '$countrytable', zip_code = '$ziptable', credit_card = '$cardtable', password = '$pw1table' WHERE email= '$uname'";
+
+      if(!mysqli_query($conn,$sqltable)){
+        die("error");
+      }
+      else{
+        header('Location: profile.php');
+      }
+    }
+  }
+}
+
+
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -148,46 +193,5 @@ $card = $ArrayUser["credit_card"];
             </div>
         </div>
     </div>
-
-<?php
-
-if ($_SERVER["REQUEST_METHOD"] == "POST"){
-
-  $pw1table = mysqli_real_escape_string($conn,$_POST['pw1']);
-  $fnametable = mysqli_real_escape_string($conn,$_POST['fname']);
-  $lnametable = mysqli_real_escape_string($conn,$_POST['lname']);
-  $adresstable = mysqli_real_escape_string($conn,$_POST['adress']);
-  $citytable = mysqli_real_escape_string($conn,$_POST['city']);
-  $countrytable = mysqli_real_escape_string($conn,$_POST['country']);
-  $ziptable = mysqli_real_escape_string($conn,$_POST['zip']);
-  $cardtable = mysqli_real_escape_string($conn,$_POST['card']);
-
-
-
-
-  if($_POST['pw1'] == "" && $_POST['pw2'] == ""){
-    $sqltable = "UPDATE users SET first_name= '$fnametable', last_name = '$lnametable', adress = '$adresstable', city = '$citytable', country = '$countrytable', zip_code = '$ziptable', credit_card = '$cardtable' WHERE email= '$uname'";
-
-    if(!mysqli_query($conn,$sqltable)){
-      die("error");
-    }
-    else{
-      header('Location: profile.php');
-    }
-  }
-  else{
-    if($_POST['pw1'] == $_POST['pw2']){
-    $sqltable = "UPDATE users SET first_name= '$fnametable', last_name = '$lnametable', adress = '$adresstable', city = '$citytable', country = '$countrytable', zip_code = '$ziptable', credit_card = '$cardtable', password = '$pw1table' WHERE email= '$uname'";
-
-      if(!mysqli_query($conn,$sqltable)){
-        die("error");
-      }
-      else{
-        header('Location: profile.php');
-      }
-    }
-  }
-}
-?>
 </body>
 </html>
