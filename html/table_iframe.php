@@ -71,11 +71,16 @@ class TableState{
 
 
 include "config.php";
+
 //Init state for user.
 
 if(empty($_SESSION['state'])){
 	$_SESSION['state'] = new TableState();
 }
+
+//Cannot be in init since if you loog out you will still keep your state
+$logged_in=(isset($_SESSION['uname']) && !empty($_SESSION['uname'])); //stolen from viktor 00:31
+
 
 
 //QUERY FOR table
@@ -180,8 +185,8 @@ function gen_array($query_dump){
 			<td>Product</td>
 			<td>Price</td>
 			<td>In stock</td>
-			<td>Place order</td>
-			<!--<?php if(loggedin){echo "<td>Place Order </td>";} ?>-->
+			<?php if($logged_in){echo "<td>Place Order</td>";}?>
+			<!--<td>Place order</td> -->
 		</tr>
 		<?php $row_count = 0;?>
 		<?php while(($row_count<10) And (($row_count+$_SESSION['state']->get_page()) < $max_num_items) ):?>
@@ -189,7 +194,14 @@ function gen_array($query_dump){
 		<td><?php echo $huge_array[0][$row_count+$_SESSION['state']->get_page()];?></td>
 		<td><?php echo $huge_array[1][$row_count+$_SESSION['state']->get_page()];?></td>
 		<td><?php if($huge_array[2][$row_count+$_SESSION['state']->get_page()]>0){echo "YES";}else{echo "NO";}?> </td>
-		<td><button type="submit" name="<?php echo $row_count;?>" value="<?php echo $huge_array[0][$row_count+$_SESSION['state']->get_page()];?>">Add to cart</button> </td> <!-- HAHAHAHAHA DENNA FUNKA -->
+		
+		<?php 
+			if($logged_in){
+			echo "<td><button type='submit' name='" . $row_count ."' value='". $huge_array[0][$row_count+$_SESSION['state']->get_page()] ."'>Add to cart</button> </td>";
+			
+			}
+		?>
+		<!-- <td><button type="submit" name="<?php echo $row_count;?>" value="<?php echo $huge_array[0][$row_count+$_SESSION['state']->get_page()];?>">Add to cart</button> </td> --><!-- HAHAHAHAHA DENNA FUNKA -->
 		<?php $row_count++; ?>
 
 
