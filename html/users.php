@@ -13,6 +13,7 @@ if($_SESSION["role"] != 3){
 if (isset($_GET['del'])) {
 	$id = $_GET['del'];
 	mysqli_query($conn, "DELETE FROM users WHERE id=$id");
+  unset($_GET['del'];
 	header('location: users.php');
 }
 
@@ -39,7 +40,7 @@ if (isset($_GET['del'])) {
 				<a href="index.php?edit=<?php echo $user['id']; ?>">Edit</a>
 			</td>
 			<td>
-				<a href="server.php?del=<?php echo $user['id']; ?>">Delete</a>
+				<a href="users.php?del=<?php echo $user['id']; ?>">Delete</a>
 			</td>
 		</tr>
 	<?php } ?>
