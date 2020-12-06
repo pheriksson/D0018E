@@ -1,7 +1,7 @@
 <?php
 
 include "config.php";
-if($_session["role"] != 3){
+if($_SESSION["role"] != 3){
   header("Location:index.php");
 }
 
