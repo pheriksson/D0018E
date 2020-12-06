@@ -37,15 +37,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 
         $sql = "SELECT * FROM users WHERE email='$uname' and password='$password'";
         $result = mysqli_query($conn,$sql);
-        $result2 = mysqli_query($conn,$sql);
         $row = mysqli_fetch_row($result);
         $count = $row[0];
         if($count > 0){
 	    $result2= mysqli_query($conn,$sql);
             $_SESSION["uname"] = $uname;
-            $row2 = mysqli_fetch_array($result2);
-            $_SESSION["role"] = $row2["role"];
-            $_SESSION["user_id"] = $row2["id"];
+            mysql_data_seek($result, 0);
+            $row = mysqli_fetch_array($result);
+            $_SESSION["role"] = $row["role"];
+            $_SESSION["user_id"] = $row["id"];
 	          header('Location: index.php');
         }else{
             echo "Invalid username and password";
