@@ -79,8 +79,11 @@ if(empty($_SESSION['state'])){
 }
 
 //Cannot be in init since if you loog out you will still keep your state
-$logged_in=(isset($_SESSION['uname']) And !empty($_SESSION['uname']) And $_SESSION['uname']!=""); //stolen from viktor 00:31
-//Empty string -> should be not true eller wut, går inte att kolla.
+if(isset($_SESSION['uname']) && ($_SESSION['uname']!="")){
+	$logged_in=True;
+}else{
+	$logged_in=False;
+}
 
 
 //QUERY FOR table
@@ -120,36 +123,30 @@ if(isset($_POST['next_page'])){
 
 //Should only be able to be called if user is logged in. Item (name of) to be stored in cart = $_POST[x]
 if(isset($_POST['0'])){
-	echo "ORDER FOR " . $_POST['0'] . "TO BE IMPLEMENTED";
-	
 }
 elseif(isset($_POST['1'])){
-	echo "ORDER FOR " . $_POST['1'] . "TO BE IMPLEMENTED";
 }
 elseif(isset($_POST['2'])){
-	echo "ORDER FOR " . $_POST['2'] . "TO BE IMPLEMENTED";
 
 }
 elseif(isset($_POST['3'])){
-	echo "ORDER FOR " . $_POST['3'] . "TO BE IMPLEMENTED";
 }
 elseif(isset($_POST['4'])){
-	echo "ORDER FOR " . $_POST['4'] . "TO BE IMPLEMENTED";
 }
 elseif(isset($_POST['5'])){
-	echo "ORDER FOR " . $_POST['5'] . "TO BE IMPLEMENTED";
+	//echo "ORDER FOR " . $_POST['5'] . "TO BE IMPLEMENTED";
 }
 elseif(isset($_POST['6'])){
-	echo "ORDER FOR " . $_POST['6'] . "TO BE IMPLEMENTED";
+	//echo "ORDER FOR " . $_POST['6'] . "TO BE IMPLEMENTED";
 }
 elseif(isset($_POST['7'])){
-	echo "ORDER FOR " . $_POST['7'] . "TO BE IMPLEMENTED";
+	//echo "ORDER FOR " . $_POST['7'] . "TO BE IMPLEMENTED";
 }
 elseif(isset($_POST['8'])){
-	echo "ORDER FOR " . $_POST['8'] . "TO BE IMPLEMENTED";
+	//echo "ORDER FOR " . $_POST['8'] . "TO BE IMPLEMENTED";
 }
 elseif(isset($_POST['9'])){
-	echo "ORDER FOR " . $_POST['9'] . "TO BE IMPLEMENTED";
+	//echo "ORDER FOR " . $_POST['9'] . "TO BE IMPLEMENTED";
 	
 }
 
@@ -174,13 +171,12 @@ function gen_array($query_dump){
 
 
 
-<form method="POST" action="p_test_table.php">
+<form method="POST" action="table_iframe.php">
 	<div>
 		<input type="text" name="search_bar" >
 		<input type="submit" name="send_bar" value="Search"> <br><br> 
 	</div>
 	<div>
-		<?php echo "AM I LOGGED IN:". $logged_in. "!"; ?>
 		<table>
 		<tr>
 			<td>Product</td>
@@ -199,10 +195,7 @@ function gen_array($query_dump){
 				echo "<td><button type='submit' name='" . $row_count ."' value='". $huge_array[0][$row_count+$_SESSION['state']->get_page()] ."'>Add to cart</button> </td>";
 			}
 		?>
-		<!-- <td><button type="submit" name="<?php echo $row_count;?>" value="<?php echo $huge_array[0][$row_count+$_SESSION['state']->get_page()];?>">Add to cart</button> </td> --><!-- HAHAHAHAHA DENNA FUNKA -->
 		<?php $row_count++; ?>
-
-
 		</tr>
 		<?php endwhile;?>
 		</table>
