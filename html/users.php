@@ -2,7 +2,7 @@
 
 include "config.php";
 if($_session["role"] != 2){
-  header("Location:index.php")
+  header("Location:index.php");
 }
 
 $results = mysqli_query($conn, "SELECT * FROM users");
