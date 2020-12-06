@@ -31,6 +31,7 @@ if(isset($_SESSION["uname"]) && !empty($_SESSION["uname"])){
 if ($_SERVER["REQUEST_METHOD"] == "POST"){
 
     $uname = mysqli_real_escape_string($conn,$_POST['txt_uname']);
+
     $password = mysqli_real_escape_string($conn,$_POST['txt_pwd']);
     if ($uname != "" && $password !=""){
 
@@ -43,7 +44,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
             $_SESSION["uname"] = $uname;
             $row = mysqli_fetch_array($result);
             $_SESSION["role"] = $row["role"];
-            header('Location: index.php');
+            $_SESSION['user_id'] = $row['id'];
+	    header('Location: index.php');
         }else{
             echo "Invalid username and password";
         }

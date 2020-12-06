@@ -123,6 +123,10 @@ if(isset($_POST['next_page'])){
 
 //Should only be able to be called if user is logged in. Item (name of) to be stored in cart = $_POST[x]
 if(isset($_POST['0'])){
+	//$_POST['0'] = product_id
+	//$_SESSION['uname'] = email of user.
+	//cart_items(user_id, prod_id, amount) = users(id), products(id), amount=1;
+	
 }
 elseif(isset($_POST['1'])){
 }
@@ -150,7 +154,12 @@ elseif(isset($_POST['9'])){
 	
 }
 
+function add_item_to_cart($user_id, $prod_id){
+	//user id = $_SESSION['user_id'];
+	//$query = 
 
+
+}
 
 function gen_array($query_dump){
 	$temp_arr = array(array(),array(),array(),array());
@@ -192,7 +201,7 @@ function gen_array($query_dump){
 		<td><?php if($huge_array[2][$row_count+$_SESSION['state']->get_page()]>0){echo "YES";}else{echo "NO";}?> </td>
 		<?php
 			if($logged_in){
-				echo "<td><button type='submit' name='" . $row_count ."' value='". $huge_array[0][$row_count+$_SESSION['state']->get_page()] ."'>Add to cart</button> </td>";
+				echo "<td><button type='submit' name='" . $row_count ."' value='". $huge_array[3][$row_count+$_SESSION['state']->get_page()] ."'>Add to cart</button> </td>";
 			}
 		?>
 		<?php $row_count++; ?>
