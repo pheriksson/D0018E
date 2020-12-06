@@ -1,13 +1,13 @@
 <?php
 
 include "config.php";
-echo $_SESSION["role"];
-
 
 
 $results = mysqli_query($conn, "SELECT * FROM users");
 
-
+if($_SESSION["role"] != 3){
+  header("Location:index.php");
+}
 
 ?>
 
