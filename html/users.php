@@ -29,15 +29,12 @@ if (isset($_GET['del'])) {
 	</thead>
 
 	<?php
-  $int = 1;
   while($user = mysqli_fetch_array($results)){
-    echo $int;
-    $int= $int + 1;
     ?>
 		<tr>
 			<td><?php echo $user['email']; ?></td>
 			<td>
-				<a href="index.php?edit=<?php echo $user['id']; ?>">Edit</a>
+				<a href="profile.php?edit=<?php echo $user['email']; ?>">Edit</a>
 			</td>
 			<td>
 				<a href="users.php?del=<?php echo $user['id']; ?>">Delete</a>

@@ -7,7 +7,14 @@ if(!isset($_SESSION["uname"]) && empty($_SESSION["uname"])){
   header('Location: login.php');
 }
 
+if (isset($_GET['edit'])) {
+	$uname = $_GET['edit'];
+  unset($_GET['del']);
+}
+
+else{
 $uname = ($_SESSION["uname"]);
+}
 
 $sql = "SELECT * FROM users WHERE email='$uname'";
 $result = mysqli_query($conn,$sql);
@@ -178,9 +185,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
                             <input type="password" name="pw2" class="form-control">
                             <span class="help-block"></span>
                         </div>
-
                         <input type="submit" class="btn btn-primary" value="Update">
-                        <a href="index.php" class="btn btn-default">Back</a>
+                        <a href=<?php echo $_SERVER['REQUEST_URI']?> class="btn btn-default">Back</a>
                         <div class="form-group">
                         <?php
                           if (($_SERVER["REQUEST_METHOD"] == "POST") && ($_POST['pw2'] != $_POST['pw1'])){
