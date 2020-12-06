@@ -11,7 +11,6 @@ if (isset($_GET['edit'])) {
 	$uname = $_GET['edit'];
   unset($_GET['del']);
 }
-
 else{
 $uname = ($_SESSION["uname"]);
 }
@@ -139,7 +138,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
                     If you would like to change your password, fill in the
                     password fields. Otherwise leave them blank.</p>
                     </br>
-                    <form method="post" action="<?php echo $_SERVER['PHP_SELF'];?>">
+                    <form method="post" action="<?php echo $_SERVER['request_uri'];?>">
                         <div class="form-group">
                             <label>First Name</label>
                             <input type="text" name="fname" class="form-control" value="<?php echo $fname; ?>">
