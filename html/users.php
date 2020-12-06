@@ -1,9 +1,9 @@
 <?php
 
 include "config.php";
-if($_SESSION["role"] != 3){
-  header("Location:index.php");
-}
+echo '$_SESSION["role"]';
+
+
 
 $results = mysqli_query($conn, "SELECT * FROM users");
 
