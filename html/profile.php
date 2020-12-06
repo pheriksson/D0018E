@@ -27,6 +27,7 @@ $city = $ArrayUser["city"];
 $zip_code = $ArrayUser["zip_code"];
 $country = $ArrayUser["country"];
 $card = $ArrayUser["credit_card"];
+$role = $ArrayUser["role"];
 
 
 
@@ -42,12 +43,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
   $countrytable = mysqli_real_escape_string($conn,$_POST['country']);
   $ziptable = mysqli_real_escape_string($conn,$_POST['zip']);
   $cardtable = mysqli_real_escape_string($conn,$_POST['card']);
+  $roletable = mysqli_real_escape_string($conn,$_POST['role']);
 
 
 
 
   if($_POST['pw1'] == "" && $_POST['pw2'] == ""){
-    $sqltable = "UPDATE users SET first_name= '$fnametable', last_name = '$lnametable', adress = '$adresstable', city = '$citytable', country = '$countrytable', zip_code = '$ziptable', credit_card = '$cardtable' WHERE email= '$uname'";
+    $sqltable = "UPDATE users SET first_name= '$fnametable', last_name = '$lnametable', adress = '$adresstable', city = '$citytable', country = '$countrytable', zip_code = '$ziptable', credit_card = '$cardtable', role = '$role' WHERE email= '$uname'";
 
     if(!mysqli_query($conn,$sqltable)){
       die("error");
@@ -59,7 +61,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
   else{
     if($_POST['pw1'] == $_POST['pw2'])
     {
-      $sqltable = "UPDATE users SET first_name= '$fnametable', last_name = '$lnametable', adress = '$adresstable', city = '$citytable', country = '$countrytable', zip_code = '$ziptable', credit_card = '$cardtable', password = '$pw1table' WHERE email= '$uname'";
+      $sqltable = "UPDATE users SET first_name= '$fnametable', last_name = '$lnametable', adress = '$adresstable', city = '$citytable', country = '$countrytable', zip_code = '$ziptable', credit_card = '$cardtable', role = '$role', password = '$pw1table' WHERE email= '$uname'";
 
       if(!mysqli_query($conn,$sqltable)){
         die("error");
@@ -184,6 +186,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
                             <input type="password" name="pw2" class="form-control">
                             <span class="help-block"></span>
                         </div>
+                        <?php if(isset($_GET['edit']) && ($_SESSION["role"] == 3){ ?>
+                          <div class="form-group">
+                              <label>Role</label>
+                              <input type="text" name="role" class="form-control" value="<?php echo $role; ?>">
+                              <span class="help-block"></span>
+                          </div>
+                        <?php } ?>
                         <input type="submit" class="btn btn-primary" value="Update">
                         <a href="index.php" class="btn btn-default">Back</a>
                         <div class="form-group">
