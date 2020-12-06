@@ -186,7 +186,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
                             <span class="help-block"></span>
                         </div>
                         <input type="submit" class="btn btn-primary" value="Update">
-                        <a href=<?php echo $_SERVER['REQUEST_URI']?> class="btn btn-default">Back</a>
+                        <a href="index.php" class="btn btn-default">Back</a>
                         <div class="form-group">
                         <?php
                           if (($_SERVER["REQUEST_METHOD"] == "POST") && ($_POST['pw2'] != $_POST['pw1'])){
