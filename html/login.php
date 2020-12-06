@@ -4,7 +4,7 @@
 <div class="container">
     <form method="post" action="<?php echo $_SERVER['PHP_SELF'];?>">
         <div id="div_login">
-            <h1>Login1</h1>
+            <h1>Login</h1>
             <div>
                 <input type="text" class="textbox" id="txt_uname" name="txt_uname" placeholder="Email" />
             </div>
