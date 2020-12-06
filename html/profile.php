@@ -7,9 +7,9 @@ if(!isset($_SESSION["uname"]) && empty($_SESSION["uname"])){
   header('Location: login.php');
 }
 
-if (isset($_GET['edit'])) {
+if (isset($_GET['edit']) && ($_SESSION["role"] == 3)) {
 	$uname = $_GET['edit'];
-  unset($_GET['del']);
+  unset($_GET['edit']);
 }
 else{
 $uname = ($_SESSION["uname"]);
