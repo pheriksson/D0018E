@@ -21,17 +21,18 @@ if($_SESSION["role"] != 3){
 
 	<?php
   $int = 1;
-  while ($row = mysqli_fetch_array($results)) {
+  $row = mysqli_fetch_array($results)
+  foreach ($row as $user) {
     echo $int;
     $int= $int + 1;
     ?>
 		<tr>
-			<td><?php echo $row['email']; ?></td>
+			<td><?php echo $user['email']; ?></td>
 			<td>
-				<a href="index.php?edit=<?php echo $row['id']; ?>">Edit</a>
+				<a href="index.php?edit=<?php echo $user['id']; ?>">Edit</a>
 			</td>
 			<td>
-				<a href="server.php?del=<?php echo $row['id']; ?>">Delete</a>
+				<a href="server.php?del=<?php echo $user['id']; ?>">Delete</a>
 			</td>
 		</tr>
 	<?php } ?>
