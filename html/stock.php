@@ -3,6 +3,6 @@
 include "config.php";
 echo $_SESSION["role"];
 echo $_SESSION["uname"];
-echo $_SESSION["id"];
-echo $_SESSION['id'];
+echo $_SESSION["user_id"];
+echo $_SESSION['user_id'];
 ?>
