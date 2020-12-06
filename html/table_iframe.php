@@ -79,8 +79,8 @@ if(empty($_SESSION['state'])){
 }
 
 //Cannot be in init since if you loog out you will still keep your state
-$logged_in=(isset($_SESSION['uname']) && !empty($_SESSION['uname'])); //stolen from viktor 00:31
-
+$logged_in=(isset($_SESSION['uname']) And !empty($_SESSION['uname']) And $_SESSION['uname']!=""); //stolen from viktor 00:31
+//Empty string -> should be not true eller wut, går inte att kolla.
 
 
 //QUERY FOR table
@@ -180,13 +180,13 @@ function gen_array($query_dump){
 		<input type="submit" name="send_bar" value="Search"> <br><br> 
 	</div>
 	<div>
+		<?php echo "AM I LOGGED IN:". $logged_in. "!"; ?>
 		<table>
 		<tr>
 			<td>Product</td>
 			<td>Price</td>
 			<td>In stock</td>
 			<?php if($logged_in){echo "<td>Place Order</td>";}?>
-			<!--<td>Place order</td> -->
 		</tr>
 		<?php $row_count = 0;?>
 		<?php while(($row_count<10) And (($row_count+$_SESSION['state']->get_page()) < $max_num_items) ):?>
@@ -194,11 +194,9 @@ function gen_array($query_dump){
 		<td><?php echo $huge_array[0][$row_count+$_SESSION['state']->get_page()];?></td>
 		<td><?php echo $huge_array[1][$row_count+$_SESSION['state']->get_page()];?></td>
 		<td><?php if($huge_array[2][$row_count+$_SESSION['state']->get_page()]>0){echo "YES";}else{echo "NO";}?> </td>
-		
-		<?php 
+		<?php
 			if($logged_in){
-			echo "<td><button type='submit' name='" . $row_count ."' value='". $huge_array[0][$row_count+$_SESSION['state']->get_page()] ."'>Add to cart</button> </td>";
-			
+				echo "<td><button type='submit' name='" . $row_count ."' value='". $huge_array[0][$row_count+$_SESSION['state']->get_page()] ."'>Add to cart</button> </td>";
 			}
 		?>
 		<!-- <td><button type="submit" name="<?php echo $row_count;?>" value="<?php echo $huge_array[0][$row_count+$_SESSION['state']->get_page()];?>">Add to cart</button> </td> --><!-- HAHAHAHAHA DENNA FUNKA -->
