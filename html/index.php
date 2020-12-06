@@ -84,10 +84,10 @@ $loggedin = (isset($_SESSION["uname"]) && !empty($_SESSION["uname"]))
   </div>
 </div>
 
-	<!--			Display iframe			-->
+	<!--			Display iframe SKICKAR REQUEST TILL p_test_frame.php !?!?!??! HUR			-->
 <div>
-<li><iframe src="http://130.240.200.28/table_iframe.php" width="1400" height="800" scrolling="no" style="overflow:hidden; margin-top:-4px; margin-left:-4px; border:none;"></iframe></li>
-</div>
 
+<iframe src="http://130.240.200.28/table_iframe.php" width="1400" height="800" scrolling="no" style="overflow:hidden; margin-top:-4px; margin-left:-4px; border:none;"></iframe>
+</div>
 </body>
 </html>
