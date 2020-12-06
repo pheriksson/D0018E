@@ -186,7 +186,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
                             <input type="password" name="pw2" class="form-control">
                             <span class="help-block"></span>
                         </div>
-                        <?php if(isset($_GET['edit']) && ($_SESSION["role"] == 3){ ?>
+                        <?php if(isset($_GET['edit']) && ($_SESSION["role"] == 3)){ ?>
                           <div class="form-group">
                               <label>Role</label>
                               <input type="text" name="role" class="form-control" value="<?php echo $role; ?>">
