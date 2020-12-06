@@ -21,8 +21,7 @@ if($_SESSION["role"] != 3){
 
 	<?php
   $int = 1;
-  $row = mysqli_fetch_array($results);
-  foreach($row as $user) {
+  while($user = mysqli_fetch_array($results)){
     echo $int;
     $int= $int + 1;
     ?>
