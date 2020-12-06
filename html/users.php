@@ -15,12 +15,16 @@ if($_SESSION["role"] != 3){
 	<thead>
 		<tr>
 			<th>Name</th>
-			<th>Address</th>
 			<th colspan="2">Action</th>
 		</tr>
 	</thead>
 
-	<?php while ($row = mysqli_fetch_array($results)) { ?>
+	<?php
+  $int = 1;
+  while ($row = mysqli_fetch_array($results)) {
+    echo $int;
+    $int= $int + 1;
+    ?>
 		<tr>
 			<td><?php echo $row['email']; ?></td>
 			<td>
