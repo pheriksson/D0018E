@@ -154,7 +154,6 @@ elseif(isset($_POST['9'])){
 }
 
 function add_item_to_cart($conn,$user_id,$prod_id){
-	die("user_ID = ".$user_id);
 	//1. query database to se if user already has exsisting item in cart -> update quantity+1.
 	$query="SELECT * FROM cart_items WHERE user_id='$user_id' AND product_id='$prod_id'";
 	//if query result returns a result -> item arleady in cart -> increase 'amount'.
@@ -163,18 +162,19 @@ function add_item_to_cart($conn,$user_id,$prod_id){
 	$count= $row[0];
 	if($count>0){
 		//Item exists, upd amount.
-		$row=mysqli_fetch_array($res_query);
+		$res_query2=mysqli_query($conn, $query);
+		$row=mysqli_fetch_array($res_query2);
 		$new_amount= (int)$row['amount']+1;
 		$query="UPDATE cart_items SET amount='$new_amount' WHERE user_id='$user_id' AND product_id='$prod_id'";
 
 	}else{
-		$query="INSERT INTO cart_items(user_id, prod_id, amount) VALUES($user_id, $prod_id,1)";
+		$query="INSERT INTO cart_items(user_id, product_id, amount) VALUES($user_id, $prod_id,1)";
 	}
-	$ret_val=mysqli_query($conn,$query);
 
+	$ret_val=mysqli_query($conn,$query);
 	//Check if query succeded.
-	if(! $ret_val){
-		die("query failed, query that failed = ".$query. "");
+	if(!$ret_val){
+		die("query failed, query that failed = ".$query);
 
 	}
 	//2. if user does not have item in cart -> place item in cart.
