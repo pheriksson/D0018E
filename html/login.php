@@ -41,7 +41,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
         if($count > 0){
 
             $_SESSION["uname"] = $uname;
-            echo $uname;
+            $row = mysqli_fetch_array($result);
+            $_SESSION["role"] = $row["role"];
             header('Location: index.php');
         }else{
             echo "Invalid username and password";
