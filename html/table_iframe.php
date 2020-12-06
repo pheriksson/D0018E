@@ -123,38 +123,61 @@ if(isset($_POST['next_page'])){
 
 //Should only be able to be called if user is logged in. Item (name of) to be stored in cart = $_POST[x]
 if(isset($_POST['0'])){
-	//$_POST['0'] = product_id
-	//$_SESSION['uname'] = email of user.
-	//cart_items(user_id, prod_id, amount) = users(id), products(id), amount=1;
-	
+	add_item_to_cart($conn,$_SESSION['user_id'],$_POST['0']);
 }
 elseif(isset($_POST['1'])){
+	add_item_to_cart($conn,$_SESSION['user_id'],$_POST['1']);
 }
 elseif(isset($_POST['2'])){
-
+	add_item_to_cart($conn,$_SESSION['user_id'],$_POST['2']);
 }
 elseif(isset($_POST['3'])){
+	add_item_to_cart($conn,$_SESSION['user_id'],$_POST['3']);
 }
 elseif(isset($_POST['4'])){
+	add_item_to_cart($conn,$_SESSION['user_id'],$_POST['4']);
 }
 elseif(isset($_POST['5'])){
-	//echo "ORDER FOR " . $_POST['5'] . "TO BE IMPLEMENTED";
+	add_item_to_cart($conn,$_SESSION['user_id'],$_POST['5']);
 }
 elseif(isset($_POST['6'])){
-	//echo "ORDER FOR " . $_POST['6'] . "TO BE IMPLEMENTED";
+	add_item_to_cart($conn,$_SESSION['user_id'],$_POST['6']);
 }
 elseif(isset($_POST['7'])){
-	//echo "ORDER FOR " . $_POST['7'] . "TO BE IMPLEMENTED";
+	add_item_to_cart($conn,$_SESSION['user_id'],$_POST['7']);
 }
 elseif(isset($_POST['8'])){
-	//echo "ORDER FOR " . $_POST['8'] . "TO BE IMPLEMENTED";
+	add_item_to_cart($conn,$_SESSION['user_id'],$_POST['8']);
 }
 elseif(isset($_POST['9'])){
-	//echo "ORDER FOR " . $_POST['9'] . "TO BE IMPLEMENTED";
-	
+	add_item_to_cart($conn,$_SESSION['user_id'],$_POST['9']);
 }
 
-function add_item_to_cart($user_id, $prod_id){
+function add_item_to_cart($conn,$user_id,$prod_id){
+	die("user_ID = ".$user_id);
+	//1. query database to se if user already has exsisting item in cart -> update quantity+1.
+	$query="SELECT * FROM cart_items WHERE user_id='$user_id' AND product_id='$prod_id'";
+	//if query result returns a result -> item arleady in cart -> increase 'amount'.
+	$res_query=mysqli_query($conn, $query);
+	$row=mysqli_fetch_row($res_query);
+	$count= $row[0];
+	if($count>0){
+		//Item exists, upd amount.
+		$row=mysqli_fetch_array($res_query);
+		$new_amount= (int)$row['amount']+1;
+		$query="UPDATE cart_items SET amount='$new_amount' WHERE user_id='$user_id' AND product_id='$prod_id'";
+
+	}else{
+		$query="INSERT INTO cart_items(user_id, prod_id, amount) VALUES($user_id, $prod_id,1)";
+	}
+	$ret_val=mysqli_query($conn,$query);
+
+	//Check if query succeded.
+	if(! $ret_val){
+		die("query failed, query that failed = ".$query. "");
+
+	}
+	//2. if user does not have item in cart -> place item in cart.
 	//user id = $_SESSION['user_id'];
 	//$query = 
 
