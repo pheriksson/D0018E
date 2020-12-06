@@ -44,8 +44,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
             $_SESSION["uname"] = $uname;
             $row2 = mysqli_fetch_array($result);
             $_SESSION["role"] = $row2["role"];
-            $_SESSION['user_id'] = $row2['id'];
-	    header('Location: index.php');
+            $_SESSION["user_id"] = $row2["id"];
+	          header('Location: index.php');
         }else{
             echo "Invalid username and password";
         }
