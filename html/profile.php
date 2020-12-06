@@ -48,7 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 
 
   if($_POST['pw1'] == "" && $_POST['pw2'] == ""){
-    $sqltable = "UPDATE users SET first_name= '$fnametable', last_name = '$lnametable', adress = '$adresstable', city = '$citytable', country = '$countrytable', zip_code = '$ziptable', credit_card = '$cardtable', role = '$role' WHERE email= '$uname'";
+    $sqltable = "UPDATE users SET first_name= '$fnametable', last_name = '$lnametable', adress = '$adresstable', city = '$citytable', country = '$countrytable', zip_code = '$ziptable', credit_card = '$cardtable', role = '$roletable' WHERE email= '$uname'";
 
     if(!mysqli_query($conn,$sqltable)){
       die("error");
@@ -60,7 +60,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
   else{
     if($_POST['pw1'] == $_POST['pw2'])
     {
-      $sqltable = "UPDATE users SET first_name= '$fnametable', last_name = '$lnametable', adress = '$adresstable', city = '$citytable', country = '$countrytable', zip_code = '$ziptable', credit_card = '$cardtable', role = '$role', password = '$pw1table' WHERE email= '$uname'";
+      $sqltable = "UPDATE users SET first_name= '$fnametable', last_name = '$lnametable', adress = '$adresstable', city = '$citytable', country = '$countrytable', zip_code = '$ziptable', credit_card = '$cardtable', role = '$roletable', password = '$pw1table' WHERE email= '$uname'";
 
       if(!mysqli_query($conn,$sqltable)){
         die("error");
