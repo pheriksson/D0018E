@@ -3,7 +3,8 @@
 You have been logged out.
 <?php
 include "config.php";
-session_destroy();
+$_SESSION["uname"] = ""; 
+$_SESSION['state'] = ""; //Reset state.
 header('Location: index.php');
 ?>
 
