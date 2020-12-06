@@ -1,7 +1,7 @@
 <?php
 
 include "config.php";
-echo '$_SESSION["role"]';
+echo $_SESSION["role"];
 
 
 
