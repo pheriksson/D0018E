@@ -13,7 +13,7 @@ if($_SESSION["role"] != 3){
 if (isset($_GET['del'])) {
 	$id = $_GET['del'];
 	mysqli_query($conn, "DELETE FROM users WHERE id=$id");
-  unset($_GET['del'];
+  unset($_GET['del']);
 	header('location: users.php');
 }
 
