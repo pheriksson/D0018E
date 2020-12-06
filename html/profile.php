@@ -9,7 +9,6 @@ if(!isset($_SESSION["uname"]) && empty($_SESSION["uname"])){
 
 if (isset($_GET['edit']) && ($_SESSION["role"] == 3)) {
 	$uname = $_GET['edit'];
-  unset($_GET['edit']);
 }
 else{
 $uname = ($_SESSION["uname"]);
@@ -176,6 +175,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
                             <input type="text" name="card" class="form-control" value="<?php echo $card; ?>">
                             <span class="help-block"></span>
                         </div>
+                        <?php if(isset($_GET['edit']) && ($_SESSION["role"] == 3)){ ?>
+                          <div class="form-group">
+                              <label>Role</label>
+                              <input type="text" name="role" class="form-control" value="<?php echo $role; ?>">
+                              <span class="help-block"></span>
+                          </div>
+                        <?php } ?>
                         <div class="form-group">
                             <label>Password</label>
                             <input type="password" name="pw1" class="form-control">
@@ -186,13 +192,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
                             <input type="password" name="pw2" class="form-control">
                             <span class="help-block"></span>
                         </div>
-                        <?php if(isset($_GET['edit']) && ($_SESSION["role"] == 3)){ ?>
-                          <div class="form-group">
-                              <label>Role</label>
-                              <input type="text" name="role" class="form-control" value="<?php echo $role; ?>">
-                              <span class="help-block"></span>
-                          </div>
-                        <?php } ?>
                         <input type="submit" class="btn btn-primary" value="Update">
                         <a href="index.php" class="btn btn-default">Back</a>
                         <div class="form-group">
