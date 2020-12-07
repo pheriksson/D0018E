@@ -81,7 +81,7 @@
 
       $userInfo = array($email, $password, $fname, $lname, $pnumb, $country,
       $address, $city, $zip, $cc, $sex);
-      print($userInfo);
+      print_r($userInfo);
       $empty = false;
       for ($i = 0; $i < count($userInfo); $i++){
         if (empty($userInfo[$i])){
