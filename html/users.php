@@ -1,5 +1,4 @@
 <?php
-
 include "config.php";
 
 
@@ -19,14 +18,30 @@ if (isset($_GET['del'])) {
 
 
 ?>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
+    <style type="text/css">
+        .wrapper{
+            width: 500px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+
+
 <div class="wrapper">
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
                 <form method="post" action="<?php echo $_SERVER['REQUEST_URI'];?>">
                     <div class="form-group">
-                        <label>First Name</label>
-                        <input type="text" name="fname" class="form-control" value="<?php echo $fname; ?>">
+                        <label>Email</label>
+                        <input type="text" name="fname" class="form-control" value="Search">
                         <span class="help-block"></span>
                     </div>
                 </form>
@@ -57,3 +72,5 @@ if (isset($_GET['del'])) {
         </div>
     </div>
 </div>
+</body>
+</html>
