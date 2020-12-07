@@ -33,75 +33,74 @@
             ?>
           </div>
 
-            <div>
-              <input type="text" class="textbox" id="txt_pnumb" name="txt_pnumb"
-              placeholder="Swedish social security equivalent (YYYY-MM-DD-XXXX)" size = 50/>
-            </div>
-            <div>
-              <input type="text" class="textbox" id="txt_ctr" name="txt_ctr" placeholder="Country"/>
-            </div>
-            <div>
-              <input type="text" class="textbox" id="txt_adr" name="txt_adr" placeholder="Address"/>
-            </div>
-            <div>
-              <input type="text" class="textbox" id="txt_city" name="txt_city" placeholder="City"/>
-            </div>
-            <div>
-              <input type="text" class="textbox" id="txt_zip" name="txt_zip" placeholder="Postal code"/>
-            </div>
-            <div>
-              <input type="text" class="textbox" id="txt_cc" name="txt_cc" placeholder="Credit card number"/>
-            </div>
-            <div>
-              <input type="submit" value="Submit" name="but_submit" id="but_submit" />
-            </div>
-
+          <div>
+            <input type="text" class="textbox" id="txt_pnumb" name="txt_pnumb"
+            placeholder="Swedish social security equivalent (YYYY-MM-DD-XXXX)" size = 50/>
           </div>
-        </form>
-      </div>
+          <div>
+            <input type="text" class="textbox" id="txt_ctr" name="txt_ctr" placeholder="Country"/>
+          </div>
+          <div>
+            <input type="text" class="textbox" id="txt_adr" name="txt_adr" placeholder="Address"/>
+          </div>
+          <div>
+            <input type="text" class="textbox" id="txt_city" name="txt_city" placeholder="City"/>
+          </div>
+          <div>
+            <input type="text" class="textbox" id="txt_zip" name="txt_zip" placeholder="Postal code"/>
+          </div>
+          <div>
+            <input type="text" class="textbox" id="txt_cc" name="txt_cc" placeholder="Credit card number"/>
+          </div>
+          <div>
+            <input type="submit" value="Submit" name="but_submit" id="but_submit" />
+          </div>
+
+        </div>
+      </form>
+    </div>
 
 
 
-      <?php
+    <?php
 
 
-      if ($_SERVER["REQUEST_METHOD"] == "POST"){
-        $sex =  mysqli_real_escape_string($conn,$_POST['dropdown']);
-        $email = mysqli_real_escape_string($conn,$_POST['txt_email']);
-        $password = mysqli_real_escape_string($conn,$_POST['txt_pwd']);
-        $fname = mysqli_real_escape_string($conn,$_POST['txt_fname']);
-        $lname = mysqli_real_escape_string($conn,$_POST['txt_lname']);
-        $pnumb = mysqli_real_escape_string($conn,$_POST['txt_pnumb']);
-        $country = mysqli_real_escape_string($conn,$_POST['txt_ctr']);
-        $address = mysqli_real_escape_string($conn,$_POST['txt_adr']);
-        $city = mysqli_real_escape_string($conn,$_POST['txt_city']);
-        $zip = mysqli_real_escape_string($conn,$_POST['txt_zip']);
-        $cc = mysqli_real_escape_string($conn,$_POST['txt_cc']);
+    if ($_SERVER["REQUEST_METHOD"] == "POST"){
+      $sex =  mysqli_real_escape_string($conn,$_POST['dropdown']);
+      $email = mysqli_real_escape_string($conn,$_POST['txt_email']);
+      $password = mysqli_real_escape_string($conn,$_POST['txt_pwd']);
+      $fname = mysqli_real_escape_string($conn,$_POST['txt_fname']);
+      $lname = mysqli_real_escape_string($conn,$_POST['txt_lname']);
+      $pnumb = mysqli_real_escape_string($conn,$_POST['txt_pnumb']);
+      $country = mysqli_real_escape_string($conn,$_POST['txt_ctr']);
+      $address = mysqli_real_escape_string($conn,$_POST['txt_adr']);
+      $city = mysqli_real_escape_string($conn,$_POST['txt_city']);
+      $zip = mysqli_real_escape_string($conn,$_POST['txt_zip']);
+      $cc = mysqli_real_escape_string($conn,$_POST['txt_cc']);
       //  $sex = mysqli_real_escape_string($conn,$_POST['submit']);
 
-        $userInfo = array($email, $password, $fname, $lname, $pnumb, $country,
-        $address, $city, $zip, $cc, $sex);
-        print_r($userInfo);
-        $empty = false;
-        for ($i = 0; $i < count($userInfo); $i++){
-          if (empty($userInfo[$i])){
-            $empty = true;
-            echo "Vafan?";
-          }
+      $userInfo = array($email, $password, $fname, $lname, $pnumb, $country,
+      $address, $city, $zip, $cc, $sex);
+      print($userInfo);
+      $empty = false;
+      for ($i = 0; $i < count($userInfo); $i++){
+        if (empty($userInfo[$i])){
+          $empty = true;
+          echo "Vafan?";
         }
-        if($empty){
-          echo "Fill in all the fields.";
-        }
-        //  if ($lname != "" && $password !="" && $fname != "" && $email !=""){
-        if(!$empty){
-          $sql = "SELECT * FROM users WHERE email='$email'";
-          $result = mysqli_query($conn,$sql);
+      }
+      if($empty){
+        echo "Fill in all the fields.";
+      }
+      //  if ($lname != "" && $password !="" && $fname != "" && $email !=""){
+      if(!$empty){
+        $sql = "SELECT * FROM users WHERE email='$email'";
+        $result = mysqli_query($conn,$sql);
 
-          $row = mysqli_fetch_row($result);
-          $count = $row[0];
-          if($count > 0){
-            echo $email + ' email already exists';
-          }
+        $row = mysqli_fetch_row($result);
+        $count = $row[0];
+        if($count > 0){
+          echo $email + ' email already exists';
         }
         else{
 
@@ -115,15 +114,15 @@
                 echo "Funka inte.. noob";
               }
             }
+          }
+
+          /*  else{
+          echo "Fill in the fields retard";
+        }*/
+
+      }
+      ?>
 
 
-            /*  else{
-            echo "Fill in the fields retard";
-          }*/
-
-        }
-        ?>
-
-
-      </body>
-      </html>
+    </body>
+    </html>
