@@ -19,7 +19,7 @@ class TableState{
         public $reset_table;
         public $cur_query;
 
-        function __construct(){
+	        function __construct(){
                 $this->cur_page=0;
                 $this->reset_table=1;
                 $this->cur_query="";
@@ -70,8 +70,11 @@ include "config.php";
 
 if(empty($_SESSION['state_cart'])){
         $_SESSION['state_cart'] = new TableState();
-	$_SESSION['state_cart']->upd_query("SELECT amount, name, cost_unit, product_id, stock FROM cart_items AS C INNER JOIN products AS P ON C.product_id=P.id WHERE C.user_id='".$_SESSION['user_id']."'");
 }
+
+$_SESSION['state_cart']->upd_query("SELECT amount, name, cost_unit, product_id, stock FROM cart_items AS C INNER JOIN products AS P ON C.product_id=P.id WHERE C.user_id=".$_SESSION['user_id']."");
+
+
 
 //Cannot be in init since if you log out you will still keep your state
 if(isset($_SESSION['uname']) && ($_SESSION['uname']!="")){
@@ -151,6 +154,11 @@ if(isset($_POST['next_page'])){
 }
 
 
+if(isset($_POST['sub_order'])){
+	order_items($conn,$huge_array);
+	unset($_POST['sub_order']);
+}
+
 
 
 //Table är efter sql state. 
@@ -191,8 +199,122 @@ function gen_array($query_dump){
         return $temp_arr;
 }
 
-function order_items(){
+function order_items($conn,$items){
+
 	//To be implemented.
+	if(!(empty($items[3][0]))){
+		echo "no items in cart, buy some items and spend that bukaki dollar";
+	}else{
+	//$commit_state=True;
+	//START TRANSACTION.
+	mysqli_begin_transaction($conn); //Begin transaction
+	
+	////////////////////////////////////////////////////////////THIS WOKRS /////////////////////////////
+	//$test_query="INSERT INTO products(stock, cost_unit, name) VALUES(2,4,'cum socks')";
+	//$test_bool=True;
+	//mysqli_query($conn,$test_query);
+	//if($test_bool){
+	//	mysqli_commit($conn);
+	//}else{
+	//	mysqli_rollback($conn);
+	//}
+	///////////////////////////////////////////////////////THIS WORKS /////////////////////////////////
+	//Check that cart amount exists in warehouse.
+	
+
+
+
+	
+
+	$item_not_in_stock=array();
+	$n=0;
+	$query="SELECT amount, stock, name FROM products AS P INNER JOIN cart_items AS C ON C.product_id=P.id WHERE C.user_id=" .$_SESSION['user_id']. "";
+	$res_1 = mysqli_query($conn,$query);
+	while($res_arr = mysqli_fetch_array($res_1)){
+		$test1 = $res_arr['stock'];
+		$test2 = $res_arr['amount'];
+		if($res_arr['stock'] < $res_arr['amount']){
+			$item_not_in_stock[$n]=$res_arr['name'];
+			$commit_state=False;
+			$n++;
+		}
+	}
+	print_r($res_arr);
+
+	//////////////////////////////////////////   KLAR 2 /////////////////////////////////////////////
+	// Assuming above was succesfull (will be caught later otherwise)
+	//Create order.
+
+	//$query="INSERT INTO orders(user_id) VALUES(".$_SESSION['user_id'] .")";
+	//$res_2= mysqli_query($conn, $query);
+
+	//Now we need to query the orders table to find it, but now it gets fukky, how are we going to find the correct order since a user can have several orders at the same time...
+	//UGGLY FUCKING SOLUTION, We set the order_sent == null then we will know that it is the latest order placed from this user, and update that order at the last stpe!!!!!
+	//mysqli_commit($conn);
+	//mysqli_rollback($conn);
+
+	$query="SELECT id FROM orders WHERE order_sent IS NULL AND user_id=".$_SESSION['user_id']."";
+	$res_3= mysqli_query($conn, $query);
+	$order_id = mysqli_fetch_array($res_3)['id'];
+	//$kek = $order_id;
+	//echo "BAJS2------------->".$kek;
+	////////////////////////////////////// KLAR 2 ///////////////////////////////////////////////////
+	//Now we have the id of the fucking order that is to be processed.
+	//Transfer cart_items to order_items.
+	$query="SELECT product_id, amount FROM cart_items WHERE user_id=".$_SESSION['user_id']."";
+	$res_4 = mysqli_query($conn, $query);
+	$commit_state2=True; //HGAGAGAGAGAGAAHAHAHAHAHAH ANOTHER ONE HAHAHAHAHAHAHA
+	//if($res_4){echo "SUCCESSSSS";}
+
+
+	///////////////////////////////////////////////// KLAR3 /////////////////////////////////////////////
+	while($res_arr=mysqli_fetch_array($res_4)){
+		$temp_pid=$res_arr['product_id'];
+		$temp_amount=$res_arr['amount'];
+		//$fml_1 = mysqli_query($conn, "INSERT INTO order_items(order_id, product_id, user_id, amount) VALUES(".$order_id.",".$temp_pid.",".$_SESSION['user_id'].",".$temp_amount.")");
+		//if(!$fml_1){
+		//	$commit_state2=False;
+		//}
+	}
+	/////////////////////////////////////////////// KLAR3 ////////////////////
+	
+
+
+	//mysqli_commit($conn);
+	//mysqli_rollback($conn);
+
+
+
+	//Now are all order items created.
+
+	//Left to do, delete all cart_items, set order sent on the order to false.
+
+	//Remove all cart_items for user id.
+
+	//$query="DELETE FROM cart_items WHERE user_id=".$_SESSION['user_id']."";
+	//$res_5=mysqli_query($conn, $query);
+
+	//Now update order.
+
+	$query="UPDATE orders SET order_sent=0 WHERE user_id=".$_SESSION['user_id']." AND order_sent IS NULL";
+	$res_6=mysqli_query($conn, $query);
+	mysqli_commit($conn);
+	//mysqli_rollback($conn);
+
+
+	//JUST add all the fucking queries in this if statement, so if one of the queries failed rollback that shit.
+//	if(!$commit_state || !$commit_state2 || !$res_1 || !$res_2 || !$res_3 || !$res_4 || !$res_5 || !$res_6){
+//		mysqli_rollback($conn); //Rollback transaction.
+//	}else{
+	//mysqli_commit($conn);
+//	}
+
+	}
+
+
+
+
+
 }
 
 function get_total_cost($cost_arr, $amount_arr, $n){
@@ -213,33 +335,36 @@ function get_total_cost($cost_arr, $amount_arr, $n){
 <div>
 <form method="POST" action="cart.php">
         <div>
-	<div>
-		Total cost for this KALAS = <?php echo $total_cost;?> bukake dollars. 	<input type="submit" name="sub_order" value="Confirm order">
-	</div>
+		<div>
+		<?php if($logged_in){	echo "Total cost for this KALAS = ". $total_cost." bukake dollars.";
+					echo "<input type='submit' name='sub_order' value='Confirm order'>";
+				    }
+		?>
+		</div>
                 <table>
-                <tr>
+                	<tr>
                         <td>Product</td>
                         <td>Cost per unit</td>
                         <td>Amount requested</td>
 			<td>Remove</td>
-                </tr>
+                	</tr>
                 <?php $row_count = 0;?>
-                <?php while(($row_count<10) And (($row_count+$_SESSION['state_cart']->get_page()) < $max_num_items) ):?>
-                <tr>
-                <td><?php echo $huge_array[3][$row_count+$_SESSION['state_cart']->get_page()];?></td>
-                <td><?php echo $huge_array[2][$row_count+$_SESSION['state_cart']->get_page()];?></td>
-                <td><?php echo $huge_array[1][$row_count+$_SESSION['state_cart']->get_page()];?></td>
-                <td><?php echo "<button type='submit' name='" . $row_count ."' value='". $huge_array[0][$row_count+$_SESSION['state_cart']->get_page()] ."'>Remove item</button>";?></td>
-                <?php $row_count++; ?>
-                </tr>
+		<?php while(($row_count<10) And (($row_count+$_SESSION['state_cart']->get_page()) < $max_num_items) ):?>
+                	<tr>
+                	<td><?php echo $huge_array[3][$row_count+$_SESSION['state_cart']->get_page()];?></td>
+                	<td><?php echo $huge_array[2][$row_count+$_SESSION['state_cart']->get_page()];?></td>
+                	<td><?php echo $huge_array[1][$row_count+$_SESSION['state_cart']->get_page()];?></td>
+                	<td><?php echo "<button type='submit' name='" . $row_count ."' value='". $huge_array[0][$row_count+$_SESSION['state_cart']->get_page()] ."'>Remove item</button>";?></td>
+                	<?php $row_count++; ?>
+                	</tr>
                 <?php endwhile;?>
                 </table>
-        <div>
+        	<div>
                 <input type="submit" name="prev_page" value="<<">
                 <?php $page_calc = (intdiv($_SESSION['state_cart']->get_page(),10)); echo "( $page_calc )"; ?>
                 <input type="submit" name="next_page" value=">>">
+        	</div>
         </div>
-        </div
 
 
 
@@ -250,4 +375,4 @@ function get_total_cost($cost_arr, $amount_arr, $n){
 
 
 </body>
-</html> 
+</html>
