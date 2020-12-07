@@ -28,8 +28,7 @@
             $result = mysqli_query($conn, "SELECT * FROM sex");
             while($rows = $result->fetch_assoc()){
               $genders = $rows['gender'];
-              echo "<option value = '.$genders.' type= "Submit" name ='sex'>
-            '.$genders.'</option>";
+              echo "<option value = '.$genders.'>'.$genders.'</option>";
             }
             ?>
           </div>
