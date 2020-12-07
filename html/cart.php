@@ -83,20 +83,6 @@ if(isset($_SESSION['uname']) && ($_SESSION['uname']!="")){
 
 
 
-//Next page, prev page
-if(isset($_POST['prev_page'])){
-        if(($_SESSION['state_cart']->get_page())>=10){
-                $_SESSION['state_cart']->prev_page();
-        }
-
-}
-if(isset($_POST['next_page'])){
-        if(($_SESSION['state_cart']->get_page()+10)<$max_num_items){
-                $_SESSION['state_cart']->next_page();
-        }
-}
-
-
 
 
 
@@ -148,6 +134,24 @@ $query=$_SESSION['state_cart']->get_query();
 $huge_array= gen_array(mysqli_query($conn,$query));
 $max_num_items=count($huge_array[0]); //used for loop when creating table.
 $total_cost= get_total_cost($huge_array[1],$huge_array[2],$max_num_items); //ha[1][x]*ha[2][x] = cost for num of items in that row.
+
+
+
+//Next page, prev page
+if(isset($_POST['prev_page'])){
+        if(($_SESSION['state_cart']->get_page())>=10){
+                $_SESSION['state_cart']->prev_page();
+        }
+
+}
+if(isset($_POST['next_page'])){
+        if(($_SESSION['state_cart']->get_page()+10)<$max_num_items){
+                $_SESSION['state_cart']->next_page();
+        }
+}
+
+
+
 
 //Table är efter sql state. 
 function delete_item($conn, $user_id, $prod_id){
@@ -232,7 +236,7 @@ function get_total_cost($cost_arr, $amount_arr, $n){
                 </table>
         <div>
                 <input type="submit" name="prev_page" value="<<">
-                <?php $page_calc = (intdiv($_SESSION['state']->get_page(),10)); echo "( $page_calc )"; ?>
+                <?php $page_calc = (intdiv($_SESSION['state_cart']->get_page(),10)); echo "( $page_calc )"; ?>
                 <input type="submit" name="next_page" value=">>">
         </div>
         </div
