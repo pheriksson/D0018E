@@ -41,10 +41,11 @@ include "config.php";
               <option value="Strawberry">Strawberry</option>
           </select>
            <input type="submit" name="submit" vlaue="Choose options">
-          <?php
-          $sex = $_POST['Fruit'];
-          ?>
+
       </form>
+      <?php
+      $sex = $_POST['Fruit'];
+      ?>
 
             </div>
             <div>
