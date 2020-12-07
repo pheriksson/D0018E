@@ -29,11 +29,11 @@
             while($rows = $result->fetch_assoc()){
               $genders = $rows['gender'];
               echo "<option value = '.$genders.' type= "Submit" name ='sex'>
-              $genders</option>";
+            '.$genders.'</option>";
             }
             ?>
           </div>
-        
+
             <div>
               <input type="text" class="textbox" id="txt_pnumb" name="txt_pnumb"
               placeholder="Swedish social security equivalent (YYYY-MM-DD-XXXX)" size = 50/>
