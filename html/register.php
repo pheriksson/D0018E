@@ -40,6 +40,7 @@ include "config.php";
               <option value="Blueberry">Blueberry</option>
               <option value="Strawberry">Strawberry</option>
           </select>
+           <input type="submit" name="submit" vlaue="Choose options">
           <?php
           $sex = $_POST['Fruit'];
           ?>
@@ -90,7 +91,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
     $city = mysqli_real_escape_string($conn,$_POST['txt_city']);
     $zip = mysqli_real_escape_string($conn,$_POST['txt_zip']);
     $cc = mysqli_real_escape_string($conn,$_POST['txt_cc']);
-    $sex = mysqli_real_escape_string($conn,$_POST[$sex]);
+    $sex = mysqli_real_escape_string($conn,$_POST['submit']);
 
     $userInfo = array($email, $password, $fname, $lname, $pnumb, $country,
                       $address, $city, $zip, $cc, $sex);
