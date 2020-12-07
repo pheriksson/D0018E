@@ -2,7 +2,6 @@
 include "config.php";
 
 
-$results = mysqli_query($conn, "SELECT * FROM users");
 
 if($_SESSION["role"] != 3){
   header("Location:index.php");
@@ -16,6 +15,14 @@ if (isset($_GET['del'])) {
 	header('location: users.php');
 }
 
+if (isset($_GET['email'])) {
+	$email = $_GET['email'];
+	$results = mysqli_query($conn, "SELECT * FROM users WHERE email = '$email'");
+  unset($_GET['email']);
+}
+else{
+  $results = mysqli_query($conn, "SELECT * FROM users");
+}
 
 ?>
 
@@ -38,11 +45,12 @@ if (isset($_GET['del'])) {
 </style>
 </head>
 <body>
-                <form method="post" action="<?php echo $_SERVER['REQUEST_URI'];?>">
+                <form method="get" action="users.php">
                     <div>
                         <label>Email</label>
-                        <input type="text" name="fname" value="Search">
+                        <input type="text" name="email" value="Search">
                         <span class="help-block"></span>
+                        <input type="submit" class="btn btn-primary" value="Search">
                     </div>
                 </form>
 <table>
