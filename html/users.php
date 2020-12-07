@@ -31,7 +31,7 @@ if (isset($_GET['del'])) {
         }
     </style>
     <style type="text/css">
-    td
+    td, th
     {
       padding:0 15px;
     }
