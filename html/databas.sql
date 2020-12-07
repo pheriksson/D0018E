@@ -24,6 +24,10 @@ CREATE TRIGGER avoid_empty
 
 END;
 
+CREATE TABLE sex (
+  gender varchar(255)
+);
+
 
 
 CREATE TABLE products (

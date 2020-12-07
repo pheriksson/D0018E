@@ -29,12 +29,23 @@ include "config.php";
                 while($rows = $result->fetch_assoc()){
                   $genders = $rows['gender'];
                   echo "<option value = '$genders'>$genders</option>";
-                  echo "\n";
                 }
                   ?>
+                  <form action="" method="post">
+          <select name="Fruit">
+              <option value="" disabled selected>Choose option</option>
+              <option value="Apple">Apple</option>
+              <option value="Banana">Banana</option>
+              <option value="Coconut">Coconut</option>
+              <option value="Blueberry">Blueberry</option>
+              <option value="Strawberry">Strawberry</option>
+          </select>
+          <?php
+          $sex = $_POST['Fruit'];
+          ?>
+      </form>
 
             </div>
-            <br style="clear: both;"> 
             <div>
                 <input type="text" class="textbox" id="txt_pnumb" name="txt_pnumb"
                  placeholder="Swedish social security equivalent (YYYY-MM-DD-XXXX)" size = 50/>
@@ -79,13 +90,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
     $city = mysqli_real_escape_string($conn,$_POST['txt_city']);
     $zip = mysqli_real_escape_string($conn,$_POST['txt_zip']);
     $cc = mysqli_real_escape_string($conn,$_POST['txt_cc']);
+    $sex = mysqli_real_escape_string($conn,$_POST[$sex]);
 
     $userInfo = array($email, $password, $fname, $lname, $pnumb, $country,
-                      $address, $city, $zip, $cc);
+                      $address, $city, $zip, $cc, $sex);
     $empty = false;
     for ($i = 0; $i < count($userInfo); $i++){
-      if (empty($userInfo[i])){
+      if (empty($userInfo[$i])){
         $empty = true;
+        echo "Vafan?";
       }
 }
       if($empty){
@@ -104,8 +117,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
     }
         else{
 
-        $sql = "INSERT INTO users (email, first_name, last_name, password)
-        Values ('$email', '$fname', '$lname', '$password')";
+        $sql = "INSERT INTO users (email, first_name, last_name,  sex,
+        p_nmb, password, adress, city, zip_code, country, role, credit_card)
+        Values ('$email', '$fname', '$lname', '$sex', '$pnumb', '$password',
+        '$address', '$city', '$zip', '$country', '$cc')";
         if (mysqli_query($conn, $sql)) {
             header('Location: login.php');
         } else {
