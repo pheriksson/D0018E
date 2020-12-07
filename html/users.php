@@ -19,7 +19,17 @@ if (isset($_GET['del'])) {
 
 
 ?>
-
+<div class="wrapper">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <form method="post" action="<?php echo $_SERVER['REQUEST_URI'];?>">
+                    <div class="form-group">
+                        <label>First Name</label>
+                        <input type="text" name="fname" class="form-control" value="<?php echo $fname; ?>">
+                        <span class="help-block"></span>
+                    </div>
+                </form>
 <table>
 	<thead>
 		<tr>
@@ -42,3 +52,8 @@ if (isset($_GET['del'])) {
 		</tr>
 	<?php } ?>
 </table>
+
+            </div>
+        </div>
+    </div>
+</div>
