@@ -28,7 +28,7 @@
             $result = mysqli_query($conn, "SELECT * FROM sex");
             while($rows = $result->fetch_assoc()){
               $genders = $rows['gender'];
-              echo "<option value = $genders>'.$genders.'</option>";
+              echo "<option value = $genders>$genders</option>";
             }
             ?>
           </div>
@@ -78,9 +78,10 @@
         $zip = mysqli_real_escape_string($conn,$_POST['txt_zip']);
         $cc = mysqli_real_escape_string($conn,$_POST['txt_cc']);
       //  $sex = mysqli_real_escape_string($conn,$_POST['submit']);
-
+        die("SEX = $sex");
         $userInfo = array($email, $password, $fname, $lname, $pnumb, $country,
         $address, $city, $zip, $cc, $sex);
+
         $empty = false;
         for ($i = 0; $i < count($userInfo); $i++){
           if (empty($userInfo[$i])){
