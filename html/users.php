@@ -30,12 +30,18 @@ if (isset($_GET['del'])) {
             margin: 0 auto;
         }
     </style>
+    <style type="text/css">
+    td
+    {
+      padding:0 15px;
+    }
+</style>
 </head>
 <body>
                 <form method="post" action="<?php echo $_SERVER['REQUEST_URI'];?>">
-                    <div class="form-group">
+                    <div>
                         <label>Email</label>
-                        <input type="text" name="fname" class="form-control" value="Search">
+                        <input type="text" name="fname" value="Search">
                         <span class="help-block"></span>
                     </div>
                 </form>
