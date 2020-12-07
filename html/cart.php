@@ -202,112 +202,81 @@ function gen_array($query_dump){
 function order_items($conn,$items){
 
 	//To be implemented.
-	if(!(empty($items[3][0]))){
+	if(empty($items[3][0])){
 		echo "no items in cart, buy some items and spend that bukaki dollar";
 	}else{
-	//$commit_state=True;
+
 	//START TRANSACTION.
 	mysqli_begin_transaction($conn); //Begin transaction
-	
-	////////////////////////////////////////////////////////////THIS WOKRS /////////////////////////////
-	//$test_query="INSERT INTO products(stock, cost_unit, name) VALUES(2,4,'cum socks')";
-	//$test_bool=True;
-	//mysqli_query($conn,$test_query);
-	//if($test_bool){
-	//	mysqli_commit($conn);
-	//}else{
-	//	mysqli_rollback($conn);
-	//}
-	///////////////////////////////////////////////////////THIS WORKS /////////////////////////////////
-	//Check that cart amount exists in warehouse.
-	
 
 
 
-	
-
+	// <----------------- CHECK TO SE IF ITEMS IN CART IS IN STOCK --------------------> //
+	$items_in_stock=True;
 	$item_not_in_stock=array();
 	$n=0;
 	$query="SELECT amount, stock, name FROM products AS P INNER JOIN cart_items AS C ON C.product_id=P.id WHERE C.user_id=" .$_SESSION['user_id']. "";
 	$res_1 = mysqli_query($conn,$query);
 	while($res_arr = mysqli_fetch_array($res_1)){
-		$test1 = $res_arr['stock'];
-		$test2 = $res_arr['amount'];
 		if($res_arr['stock'] < $res_arr['amount']){
 			$item_not_in_stock[$n]=$res_arr['name'];
-			$commit_state=False;
+			$items_in_stock=False;
 			$n++;
 		}
 	}
-	print_r($res_arr);
 
-	//////////////////////////////////////////   KLAR 2 /////////////////////////////////////////////
-	// Assuming above was succesfull (will be caught later otherwise)
-	//Create order.
+	// <------------------- Create empty order with order_status set to null (default) since we need to link product_items to a order ---------> //
 
-	//$query="INSERT INTO orders(user_id) VALUES(".$_SESSION['user_id'] .")";
-	//$res_2= mysqli_query($conn, $query);
+	$query="INSERT INTO orders(user_id) VALUES(".$_SESSION['user_id'] .")";
+	$res_1= mysqli_query($conn, $query);
 
-	//Now we need to query the orders table to find it, but now it gets fukky, how are we going to find the correct order since a user can have several orders at the same time...
-	//UGGLY FUCKING SOLUTION, We set the order_sent == null then we will know that it is the latest order placed from this user, and update that order at the last stpe!!!!!
-	//mysqli_commit($conn);
-	//mysqli_rollback($conn);
+	// <------------- Fetch the order id from the order previously created (we cannot know the id from previous query and we need it for the order items) ------> //
 
 	$query="SELECT id FROM orders WHERE order_sent IS NULL AND user_id=".$_SESSION['user_id']."";
-	$res_3= mysqli_query($conn, $query);
-	$order_id = mysqli_fetch_array($res_3)['id'];
-	//$kek = $order_id;
-	//echo "BAJS2------------->".$kek;
-	////////////////////////////////////// KLAR 2 ///////////////////////////////////////////////////
+	$res_2= mysqli_query($conn, $query);
+	$order_id = mysqli_fetch_array($res_2)['id'];
+
 	//Now we have the id of the fucking order that is to be processed.
-	//Transfer cart_items to order_items.
+
+
+	// <----------------- Fetch the information from the cart_items to be transfered to order_items ------------------> //
+
 	$query="SELECT product_id, amount FROM cart_items WHERE user_id=".$_SESSION['user_id']."";
-	$res_4 = mysqli_query($conn, $query);
-	$commit_state2=True; //HGAGAGAGAGAGAAHAHAHAHAHAH ANOTHER ONE HAHAHAHAHAHAHA
-	//if($res_4){echo "SUCCESSSSS";}
+	$res_3 = mysqli_query($conn, $query);
+	$create_oi=1; //Create order items: if one of the queries fails to create a order_item -> create_oi = false.
 
-
-	///////////////////////////////////////////////// KLAR3 /////////////////////////////////////////////
-	while($res_arr=mysqli_fetch_array($res_4)){
-		$temp_pid=$res_arr['product_id'];
-		$temp_amount=$res_arr['amount'];
-		//$fml_1 = mysqli_query($conn, "INSERT INTO order_items(order_id, product_id, user_id, amount) VALUES(".$order_id.",".$temp_pid.",".$_SESSION['user_id'].",".$temp_amount.")");
-		//if(!$fml_1){
-		//	$commit_state2=False;
-		//}
+	while($res_arr=mysqli_fetch_array($res_3)){
+		//$temp_pid=$res_arr['product_id'];
+		//$temp_amount=$res_arr['amount'];
+		$fml_1 = mysqli_query($conn, "INSERT INTO order_items(order_id, product_id, user_id, amount) VALUES(".$order_id.",".$res_arr['product_id'].",".$_SESSION['user_id'].",".$res_arr['amount'].")");
+		if(!$fml_1){
+			$create_oi=0;
+		}
 	}
-	/////////////////////////////////////////////// KLAR3 ////////////////////
-	
-
-
-	//mysqli_commit($conn);
-	//mysqli_rollback($conn);
 
 
 
-	//Now are all order items created.
 
-	//Left to do, delete all cart_items, set order sent on the order to false.
+	//Now all order items created. Left to do: delete all cart_items and set order_sent on the order table to false.
 
-	//Remove all cart_items for user id.
 
-	//$query="DELETE FROM cart_items WHERE user_id=".$_SESSION['user_id']."";
-	//$res_5=mysqli_query($conn, $query);
+	// <----------------------------- Remove all cart_items for user id ----------------------------->//
 
-	//Now update order.
+	$query="DELETE FROM cart_items WHERE user_id=".$_SESSION['user_id']."";
+	$res_4=mysqli_query($conn, $query);
+
+	// <----------------------------- Update order 'order_sent' --------------------------------------->//
 
 	$query="UPDATE orders SET order_sent=0 WHERE user_id=".$_SESSION['user_id']." AND order_sent IS NULL";
-	$res_6=mysqli_query($conn, $query);
-	mysqli_commit($conn);
-	//mysqli_rollback($conn);
+	$res_5=mysqli_query($conn, $query);
 
+	// <-------------------------- Check all flags, if all queries passed commit, else rollback ------------------>//
 
-	//JUST add all the fucking queries in this if statement, so if one of the queries failed rollback that shit.
-//	if(!$commit_state || !$commit_state2 || !$res_1 || !$res_2 || !$res_3 || !$res_4 || !$res_5 || !$res_6){
-//		mysqli_rollback($conn); //Rollback transaction.
-//	}else{
-	//mysqli_commit($conn);
-//	}
+	if($items_in_stock && $create_oi && $res_1 && $res_2 && $res_3 && $res_4 && $res_5){
+		mysqli_commit($conn);
+	}else{
+		mysqli_rollback($conn);
+	}
 
 	}
 
