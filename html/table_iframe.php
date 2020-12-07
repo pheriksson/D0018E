@@ -89,6 +89,7 @@ if(isset($_SESSION['uname']) && ($_SESSION['uname']!="")){
 //QUERY FOR table
 if(isset($_POST['send_bar'])){
 	if(!(empty($_POST['search_bar']))){
+		//Sanitize input field to prevent sql injections .
 		$read_field = $_POST['search_bar'];
 		$_SESSION['state']->upd_query("SELECT * FROM products WHERE name LIKE '$read_field%'");
 	}else{
@@ -154,9 +155,7 @@ elseif(isset($_POST['9'])){
 }
 
 function add_item_to_cart($conn,$user_id,$prod_id){
-	//1. query database to se if user already has exsisting item in cart -> update quantity+1.
 	$query="SELECT * FROM cart_items WHERE user_id='$user_id' AND product_id='$prod_id'";
-	//if query result returns a result -> item arleady in cart -> increase 'amount'.
 	$res_query=mysqli_query($conn, $query);
 	$row=mysqli_fetch_row($res_query);
 	$count= $row[0];
@@ -172,14 +171,9 @@ function add_item_to_cart($conn,$user_id,$prod_id){
 	}
 
 	$ret_val=mysqli_query($conn,$query);
-	//Check if query succeded.
 	if(!$ret_val){
 		die("query failed, query that failed = ".$query);
-
 	}
-	//2. if user does not have item in cart -> place item in cart.
-	//user id = $_SESSION['user_id'];
-	//$query = 
 
 
 }
