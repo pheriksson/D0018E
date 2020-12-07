@@ -32,12 +32,6 @@ if (isset($_GET['del'])) {
     </style>
 </head>
 <body>
-
-
-<div class="wrapper">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-12">
                 <form method="post" action="<?php echo $_SERVER['REQUEST_URI'];?>">
                     <div class="form-group">
                         <label>Email</label>
@@ -45,7 +39,6 @@ if (isset($_GET['del'])) {
                         <span class="help-block"></span>
                     </div>
                 </form>
-            </div>
 <table>
 	<thead>
 		<tr>
@@ -69,8 +62,5 @@ if (isset($_GET['del'])) {
 	<?php } ?>
 </table>
 
-        </div>
-    </div>
-</div>
 </body>
 </html>
