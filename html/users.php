@@ -45,6 +45,7 @@ if (isset($_GET['del'])) {
                         <span class="help-block"></span>
                     </div>
                 </form>
+            </div>
 <table>
 	<thead>
 		<tr>
@@ -68,7 +69,6 @@ if (isset($_GET['del'])) {
 	<?php } ?>
 </table>
 
-            </div>
         </div>
     </div>
 </div>
