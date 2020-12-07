@@ -15,9 +15,9 @@ if (isset($_GET['del'])) {
 	header('location: users.php');
 }
 
-if (isset($_GET['email'])) {
+if (isset($_GET['email']) && $_GET['email'] != "") {
 	$email = $_GET['email'];
-	$results = mysqli_query($conn, "SELECT * FROM users WHERE email = '$email'");
+	$results = mysqli_query($conn, "SELECT * FROM users WHERE email LIKE '%$email%'");
   unset($_GET['email']);
 }
 else{
@@ -50,7 +50,7 @@ else{
                         <label>Email</label>
                         <input type="text" name="email" value="Search">
                         <span class="help-block"></span>
-                        <input type="submit" class="btn btn-primary" value="Search">
+                        <input type="submit" class="btn btn-primary" value="">
                     </div>
                 </form>
 <table>
