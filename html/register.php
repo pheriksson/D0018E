@@ -28,28 +28,12 @@
             $result = mysqli_query($conn, "SELECT * FROM sex");
             while($rows = $result->fetch_assoc()){
               $genders = $rows['gender'];
-              echo "<option value = '$genders'>$genders</option>";
+              echo "<option value = '.$genders.' type= "Submit" name ='sex'>
+              $genders</option>";
             }
             ?>
           </div>
-          <div>
-            <div class = "select-block">
-              <select name="Fruit">
-                <option value="" disabled selected>Choose option</option>
-                <option value="Apple">Apple</option>
-                <option value="Banana">Banana</option>
-                <option value="Coconut">Coconut</option>
-                <option value="Blueberry">Blueberry</option>
-                <option value="Strawberry">Strawberry</option>
-              </select>
-              <div class ="selectIcon">
-                <svg focusable="false" viewBox="0 0 104 128" width="25" height="35" class="icon">
-                  <path d="m2e1 95a9 9 0 0 1 -9 9 9 9 0 0 1 -9 -9 9 9 0 0 1 9 -9 9 9 0 0 1 9 9zm0-3e1a9 9 0 0 1 -9 9 9 9 0 0 1 -9 -9 9 9 0 0 1 9 -9 9 9 0 0 1 9 9zm0-3e1a9 9 0 0 1 -9 9 9 9 0 0 1 -9 -9 9 9 0 0 1 9 -9 9 9 0 0 1 9 9zm14 55h68v1e1h-68zm0-3e1h68v1e1h-68zm0-3e1h68v1e1h-68z"></path>
-                </svg>
-              </div>
-              <input type="submit" name="submit" vlaue="Choose options">
-
-            </div>
+        
             <div>
               <input type="text" class="textbox" id="txt_pnumb" name="txt_pnumb"
               placeholder="Swedish social security equivalent (YYYY-MM-DD-XXXX)" size = 50/>
@@ -83,7 +67,7 @@
 
 
       if ($_SERVER["REQUEST_METHOD"] == "POST"){
-        $sex = $_POST['Fruit'];
+        $sex =  mysqli_real_escape_string($conn,$_POST['sex']);
         $email = mysqli_real_escape_string($conn,$_POST['txt_email']);
         $password = mysqli_real_escape_string($conn,$_POST['txt_pwd']);
         $fname = mysqli_real_escape_string($conn,$_POST['txt_fname']);
