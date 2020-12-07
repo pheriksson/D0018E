@@ -48,9 +48,9 @@ else{
                 <form method="get" action="users.php">
                     <div>
                         <label>Email</label>
-                        <input type="text" name="email" value="Search">
+                        <input type="text" name="email" value="">
                         <span class="help-block"></span>
-                        <input type="submit" class="btn btn-primary" value="">
+                        <input type="submit" class="btn btn-primary" value="Search">
                     </div>
                 </form>
 <table>
