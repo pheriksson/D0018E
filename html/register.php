@@ -81,7 +81,7 @@
 
         $userInfo = array($email, $password, $fname, $lname, $pnumb, $country,
         $address, $city, $zip, $cc, $sex);
-        echo count($userInfo);
+        print_r($userInfo);
         $empty = false;
         for ($i = 0; $i < count($userInfo); $i++){
           if (empty($userInfo[$i])){
@@ -108,7 +108,7 @@
           $sql = "INSERT INTO users (email, first_name, last_name,  sex,
             p_nmb, password, adress, city, zip_code, country, role, credit_card)
             Values ('$email', '$fname', '$lname', '$sex', '$pnumb', '$password',
-              '$address', '$city', '$zip', '$country', '$cc')";
+              '$address', '$city', '$zip', '$country', 1, '$cc')";
               if (mysqli_query($conn, $sql)) {
                 header('Location: login.php');
               } else {
