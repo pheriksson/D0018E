@@ -78,10 +78,10 @@
         $zip = mysqli_real_escape_string($conn,$_POST['txt_zip']);
         $cc = mysqli_real_escape_string($conn,$_POST['txt_cc']);
       //  $sex = mysqli_real_escape_string($conn,$_POST['submit']);
-        die("SEX = $sex");
+
         $userInfo = array($email, $password, $fname, $lname, $pnumb, $country,
         $address, $city, $zip, $cc, $sex);
-
+        echo count($userInfo);
         $empty = false;
         for ($i = 0; $i < count($userInfo); $i++){
           if (empty($userInfo[$i])){
