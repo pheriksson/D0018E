@@ -28,7 +28,7 @@
             $result = mysqli_query($conn, "SELECT * FROM sex");
             while($rows = $result->fetch_assoc()){
               $genders = $rows['gender'];
-              echo "<option value = '.$genders.'>'.$genders.'</option>";
+              echo "<option value = $genders>'.$genders.'</option>";
             }
             ?>
           </div>
@@ -66,7 +66,7 @@
 
 
       if ($_SERVER["REQUEST_METHOD"] == "POST"){
-        $sex =  mysqli_real_escape_string($conn,$_POST['sex']);
+        $sex =  mysqli_real_escape_string($conn,$_POST['dropdown']);
         $email = mysqli_real_escape_string($conn,$_POST['txt_email']);
         $password = mysqli_real_escape_string($conn,$_POST['txt_pwd']);
         $fname = mysqli_real_escape_string($conn,$_POST['txt_fname']);
