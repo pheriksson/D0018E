@@ -97,7 +97,7 @@
 
       //Validate input for Email, must contain @ and '.' sign
       if (!filter_var($email, FILTER_VALIDATE_EMAIL)){
-        echo "Invalid E-mail format, must contain '@' and '.'.";
+        echo "Invalid E-mail format, must contain '@' and '.'."; // OK!
       }
 
       //Helper function
@@ -115,7 +115,7 @@
 
       //Helper function validate integers and correct length
       function validate_integers($input){
-        switch(n){
+        switch('n'){
           case $zip:
           if (strlen($zip) != 5){
             echo "Valid zipcode is 5 numbers";
