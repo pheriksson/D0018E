@@ -97,7 +97,7 @@
 
       //Validate input for Email, must contain @ and '.' sign
       if (!filter_var($email, FILTER_VALIDATE_EMAIL)){
-        echo "Invalid E-mail format, must contain '@' and '.'."
+        echo "Invalid E-mail format, must contain '@' and '.'.";
       }
 
       //Validate input for text-only fields
@@ -118,28 +118,28 @@
 
       //Helper function validate integers and correct length
       function validate_integers($input){
-          switch(n){
-            case $zip:
-              if (strlen($zip) != 5){
-                echo "Valid zipcode is 5 numbers";
-              } else {
-                break;
-              }
-            case $cc:
-              if(strlen($cc) != 16){
-                echo "Valid credict card length is 16 digits";
-              } else {
-                break;
-              }
-            case $pnumb:
-              if(strlen($pnumb) != 12){
-                echo "Valid personal number is 12 digits";
-              } else {
-                break;
-              }
-            default:
-              return preg_match("/^[0-9]*$/", $input);
+        switch(n){
+          case $zip:
+          if (strlen($zip) != 5){
+            echo "Valid zipcode is 5 numbers";
+          } else {
+            break;
           }
+          case $cc:
+          if(strlen($cc) != 16){
+            echo "Valid credict card length is 16 digits";
+          } else {
+            break;
+          }
+          case $pnumb:
+          if(strlen($pnumb) != 12){
+            echo "Valid personal number is 12 digits";
+          } else {
+            break;
+          }
+          default:
+          return preg_match("/^[0-9]*$/", $input);
+        }
       }
 
       if(!$empty){
@@ -164,9 +164,9 @@
               }
             }
           }
-      }
-      ?>
+        }
+        ?>
 
 
-    </body>
-    </html>
+      </body>
+      </html>
