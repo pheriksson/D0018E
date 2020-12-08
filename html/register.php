@@ -4,7 +4,8 @@
   include "config.php";
   ?>
   <div class="container">
-    <form method="post" action="<?php echo $_SERVER['PHP_SELF'];?>">
+    //Htmlspecialchars validates input, prevents XSS attacks
+    <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>">
       <div id="div_createuser">
         <h1>Login</h1>
 
@@ -81,7 +82,8 @@
 
       $userInfo = array($email, $password, $fname, $lname, $pnumb, $country,
       $address, $city, $zip, $cc, $sex);
-      
+
+      //Check for empty fields
       $empty = false;
       for ($i = 0; $i < count($userInfo); $i++){
         if (empty($userInfo[$i])){
@@ -92,7 +94,54 @@
       if($empty){
         echo "Fill in all the fields.";
       }
-      //  if ($lname != "" && $password !="" && $fname != "" && $email !=""){
+
+      //Validate input for Email, must contain @ and '.' sign
+      if (!filter_var($email, FILTER_VALIDATE_EMAIL)){
+        echo "Invalid E-mail format, must contain '@' and '.'."
+      }
+
+      //Validate input for text-only fields
+      if (!(validate_text($fname) && validate_text($lname) && validate_text($country)
+      && validate_text($city) && validate_text($address))) {
+        echo "Name, Country, City, Address can only contain letters.";
+      }
+      //Helper function
+      function validate_text($input){
+        return preg_match("/^[a-zA-Z-']*$/", $input);
+      }
+
+      //Validate input for integer only fields
+      if (!(validate_integers($cc) validate_integers($zip)
+      && validate_integers($pnumb))){
+        echo "Personal number, zipcode and credict card can only contain numbers";
+      }
+
+      //Helper function validate integers and correct length
+      function validate_integers($input){
+          switch(n){
+            case $zip:
+              if (strlen($zip) != 5){
+                echo "Valid zipcode is 5 numbers";
+              } else {
+                break;
+              }
+            case $cc:
+              if(strlen($cc) != 16){
+                echo "Valid credict card length is 16 digits";
+              } else {
+                break;
+              }
+            case $pnumb:
+              if(strlen($pnumb) != 12){
+                echo "Valid personal number is 12 digits";
+              } else {
+                break;
+              }
+            default:
+              return preg_match("/^[0-9]*$/", $input);
+          }
+      }
+
       if(!$empty){
         $sql = "SELECT * FROM users WHERE email='$email'";
         $result = mysqli_query($conn,$sql);
@@ -115,11 +164,6 @@
               }
             }
           }
-
-          /*  else{
-          echo "Fill in the fields retard";
-        }*/
-
       }
       ?>
 
