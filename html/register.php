@@ -4,7 +4,7 @@
   include "config.php";
   ?>
   <div class="container">
-    //Htmlspecialchars validates input, prevents XSS attacks
+    <!-- Htmlspecialchars validates input, prevents XSS attacks -->
     <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>">
       <div id="div_createuser">
         <h1>Login</h1>
@@ -100,21 +100,18 @@
         echo "Invalid E-mail format, must contain '@' and '.'.";
       }
 
+      //Helper function
+      function validate_text($input){
+        return preg_match("/^[a-zA-Z-']*$/", $input);
+      }
       //Validate input for text-only fields
       if (!(validate_text($fname) && validate_text($lname) && validate_text($country)
       && validate_text($city) && validate_text($address))) {
         echo "Name, Country, City, Address can only contain letters.";
       }
-      //Helper function
-      function validate_text($input){
-        return preg_match("/^[a-zA-Z-']*$/", $input);
-      }
 
-      //Validate input for integer only fields
-      if (!(validate_integers($cc) && validate_integers($zip)
-      && validate_integers($pnumb))){
-        echo "Personal number, zipcode and credict card can only contain numbers";
-      }
+
+
 
       //Helper function validate integers and correct length
       function validate_integers($input){
@@ -140,6 +137,12 @@
           default:
           return preg_match("/^[0-9]*$/", $input);
         }
+      }
+
+      //Validate input for integer only fields
+      if (!(validate_integers($cc) && validate_integers($zip)
+      && validate_integers($pnumb))){
+        echo "Personal number, zipcode and credict card can only contain numbers";
       }
 
       if(!$empty){
