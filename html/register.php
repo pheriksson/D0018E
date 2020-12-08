@@ -115,7 +115,7 @@
 
       //Helper function validate integers and correct length
       function validate_integers($input){
-        switch('n'){
+        switch($input){
           case $zip:
           if (strlen($zip) != 5){
             echo "Valid zipcode is 5 numbers";
