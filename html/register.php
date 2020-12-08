@@ -111,7 +111,7 @@
       }
 
       //Validate input for integer only fields
-      if (!(validate_integers($cc) validate_integers($zip)
+      if (!(validate_integers($cc) && validate_integers($zip)
       && validate_integers($pnumb))){
         echo "Personal number, zipcode and credict card can only contain numbers";
       }
