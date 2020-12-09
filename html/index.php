@@ -4,24 +4,17 @@
 <title>Page Title</title>
 </head>
 <body style= "background-color:white;">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
 
-<!-- table styling -->
 <style>
-      table,
-      th,
-      td {
-        padding: 10px;
-        border: 1px solid black;
-        border-collapse: collapse;
+      .c {
+		margin:auto;
+		position:relative;
+		width:125px;
+		height:200px;
       }
 </style>
 
-<!-- -->
-<!-- -->
-<!-- -->
-
-
-<!-- 		FÖRSÖK TILL CONSTRUCTOR		-->
 
 <?php
 class TableState{
@@ -196,42 +189,50 @@ function gen_array($query_dump){
 
 
 <form method="POST" action="index.php">
-	<div>
-		<input type="text" name="search_bar" >
-		<input type="submit" name="send_bar" value="Search"> <br><br>
+	<div class="container">
+	<div class="c">
+		<div class="container">
+			<input type="text" name="search_bar" >
+			<input class="btn btn-primary" type="submit" name="send_bar" value="Search"> <br><br>
+		</div>
 	</div>
-	<div>
-		<table>
-		<tr>
-			<td>Product</td>
-			<td>Price</td>
-			<td>In stock</td>
-			<?php if($logged_in){echo "<td>Place Order</td>";}?>
-		</tr>
+		<table class="table table-striped table-dark">
+		<thead class="thead-dark">
+			<tr>
+				<th scope="col">Product</th>
+				<th scope="col">Price</th>
+				<th scope="col">In stock</th>
+				<th><?php if($logged_in){echo "Place Order";}?></th>
+			</tr>
+		</thead>
+
+		<tbody>
 		<?php $row_count = 0;?>
 		<?php while(($row_count<10) And (($row_count+$_SESSION['state']->get_page()) < $max_num_items) ):?>
-		<tr>
-		<td><?php echo $huge_array[0][$row_count+$_SESSION['state']->get_page()];?></td>
-		<td><?php echo $huge_array[1][$row_count+$_SESSION['state']->get_page()];?></td>
-		<td><?php if($huge_array[2][$row_count+$_SESSION['state']->get_page()]>0){echo "YES";}else{echo "NO";}?> </td>
-		<?php
-			if($logged_in){
-				echo "<td><button type='submit' name='" . $row_count ."' value='". $huge_array[3][$row_count+$_SESSION['state']->get_page()] ."'>Add to cart</button> </td>";
-			}
-		?>
-		<?php $row_count++; ?>
-		</tr>
+			<tr>
+			<th scope="row"><?php echo $huge_array[0][$row_count+$_SESSION['state']->get_page()];?></th>
+			<td><?php echo $huge_array[1][$row_count+$_SESSION['state']->get_page()];?></td>
+			<td><?php if($huge_array[2][$row_count+$_SESSION['state']->get_page()]>0){echo "YES";}else{echo "NO";}?> </td>
+			<td><?php
+				if($logged_in){
+					echo "<button class='btn btn-info' type='submit' name='" . $row_count ."' value='". $huge_array[3][$row_count+$_SESSION['state']->get_page()] ."'>Add to cart</button>";
+				}?> </td>
+			<?php $row_count++; ?>
+			</tr>
 		<?php endwhile;?>
+		</tbody>
 		</table>
-	<div>
-		<input type="submit" name="prev_page" value="<<">
-		<?php $page_calc = (intdiv($_SESSION['state']->get_page(),10)); echo "( $page_calc )"; ?>
-		<input type="submit" name="next_page" value=">>">
+
+	<div class="c">
+		<div class="c btn-group" role="group" aria-label="Secret2">
+			<input class="btn btn-info" type="submit" name="prev_page" value="<<">
+			<text class="btn btn-info"><?php $page_calc = (intdiv($_SESSION['state']->get_page(),10)); echo "$page_calc"; ?></text>
+			<input class="btn btn-info" type="submit" name="next_page" value=">>">
+		</div>
+	</div>
 	</div>
 
 
-
-	</div
 
 
 

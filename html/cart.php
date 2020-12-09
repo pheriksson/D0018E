@@ -1,14 +1,22 @@
 <!DOCTYPE html>
 <html>
-<body>
+<meta charset="utf-8">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
 <style>
-      table,
-      th,
-      td {
-        padding: 10px;
-        border: 1px solid black;
-        border-collapse: collapse;
-      }
+	.c {
+		margin:auto;
+		position:relative;
+		width:125px;
+		height:200px;
+	}
+
+	.b {
+		margin:auto;
+		position:relative;
+		width: 450px;
+		height:200px;
+	}
+
 </style>
 
 
@@ -59,16 +67,21 @@ class TableState{
 <?php
 include "config.php";
 
+
+
 //Cleanup of inactive items for all users in 'cart_items'
 mysqli_query($conn,"DELETE cart_items FROM cart_items INNER JOIN products ON cart_items.product_id=products.id WHERE active=0");
 
 
 
-
 //Init state for user on cart.
 
-if(empty($_SESSION['state_cart'])){
-        $_SESSION['state_cart'] = new TableState();
+if(!$_SESSION['state_cart'] || !$_SESSION['user_id']){
+	//Check to see if user is logged in.
+        if(!$_SESSION['user_id']){
+		header('Location: index.php');
+	}
+	$_SESSION['state_cart'] = new TableState();
 }
 
 //Fråga efter alla status här så att vi kan plocka bort sen.
@@ -307,47 +320,53 @@ function get_total_cost($cost_arr, $amount_arr, $n){
 
 ?>
 
-<div>
+
 <form method="POST" action="cart.php">
-        <div>
-		<div>
-		<?php if($logged_in){	echo "Total cost for this KALAS = ". $total_cost." bukake dollars.";
-					echo "<input type='submit' name='sub_order' value='Confirm order'>";
-				    }
-		?>
-		</div>
-                <table>
-                	<tr>
-                        <td>Product</td>
-                        <td>Cost per unit</td>
-                        <td>Amount requested</td>
-			<td>Remove</td>
-                	</tr>
+        
+		<div class="container">
+                <table class="table table-striped table-dark">
+			<thead class="thead-dark">
+                		<tr>
+                        		<th scope="col">Product</th>
+                        		<th scope="col">Cost per unit</th>
+                        		<th scope="col">Amount requested</th>
+					<th scope="col">Remove</th>
+                		</tr>
+			</thead>
+		<tbody>
                 <?php $row_count = 0;?>
 		<?php while(($row_count<10) And (($row_count+$_SESSION['state_cart']->get_page()) < $max_num_items) ):?>
                 	<tr>
-                	<td><?php echo $huge_array[3][$row_count+$_SESSION['state_cart']->get_page()];?></td>
+                	<th scope="row"><?php echo $huge_array[3][$row_count+$_SESSION['state_cart']->get_page()];?></th>
                 	<td><?php echo $huge_array[2][$row_count+$_SESSION['state_cart']->get_page()];?></td>
                 	<td><?php echo $huge_array[1][$row_count+$_SESSION['state_cart']->get_page()];?></td>
-                	<td><?php echo "<button type='submit' name='" . $row_count ."' value='". $huge_array[0][$row_count+$_SESSION['state_cart']->get_page()] ."'>Remove item</button>";?></td>
+                	<td><?php echo "<button class='btn btn-danger' type='submit' name='" . $row_count ."' value='". $huge_array[0][$row_count+$_SESSION['state_cart']->get_page()] ."'>Remove item</button>";?></td>
                 	<?php $row_count++; ?>
                 	</tr>
                 <?php endwhile;?>
+		</tbody>
                 </table>
-        	<div>
-                <input type="submit" name="prev_page" value="<<">
-                <?php $page_calc = (intdiv($_SESSION['state_cart']->get_page(),10)); echo "( $page_calc )"; ?>
-                <input type="submit" name="next_page" value=">>">
-        	</div>
-        </div>
+		</div>
+		<div class="c">
+        		<div class="c btn-group" role="group" aria-label="Secret">
+                	<input type="submit" class="btn btn-info" name="prev_page" value="<<">
+                	<text class="btn btn-info"><?php $page_calc = (intdiv($_SESSION['state_cart']->get_page(),10)); echo " $page_calc "; ?></text>
+                	<input type="submit" class="btn btn-info" name="next_page" value=">>">
+        		</div>
+		</div>
+		<div class="b">
+		<?php if($logged_in){	echo "Total cost for this KALAS = ". $total_cost." (bukake dollars).";
+					echo "<input class='btn btn-primary' type='submit' name='sub_order' value='Confirm order'>";
+				    }
+		?>
+		</div>
+        
 
 
 
 </form>
 
-</div>
 
 
 
-</body>
 </html>
