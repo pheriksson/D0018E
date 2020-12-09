@@ -32,7 +32,7 @@ class TableState{
 	function __construct(){
 		$this->cur_page=0;
 		$this->reset_table=1;
-		$this->cur_query="SELECT * FROM products";
+		$this->cur_query="SELECT * FROM products WHERE active=1";
 	}
 	function get_page(){
 		return $this->cur_page;
@@ -91,9 +91,9 @@ if(isset($_POST['send_bar'])){
 	if(!(empty($_POST['search_bar']))){
 		//Sanitize input field to prevent sql injections .
 		$read_field = $_POST['search_bar'];
-		$_SESSION['state']->upd_query("SELECT * FROM products WHERE name LIKE '$read_field%'");
+		$_SESSION['state']->upd_query("SELECT * FROM products WHERE name LIKE '$read_field%' AND active=1");
 	}else{
-		$_SESSION['state']->upd_query("SELECT * FROM products");
+		$_SESSION['state']->upd_query("SELECT * FROM products WHERE active=1");
 	}
 }
 

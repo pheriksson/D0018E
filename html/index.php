@@ -63,10 +63,7 @@ $loggedin = (isset($_SESSION["uname"]) && !empty($_SESSION["uname"]))
   <div style=" position: fixed; top: 5px; right: 5px; padding: 5px;">
       <?php
       if ($loggedin){
-        $sqlCart = "SELECT * FROM cart WHERE user_id='$uname'";
-        $resultCart = mysqli_query($conn,$sqlCart);
-        $rowCart = mysqli_fetch_row($resultCart);
-        echo $rowCart[1]." items.";
+	echo "Items:".(int)get_cart_amount($conn);
       }
       ?>
   </div>
@@ -76,9 +73,7 @@ $loggedin = (isset($_SESSION["uname"]) && !empty($_SESSION["uname"]))
   <div style=" position: fixed; top: 30px; right: 5px; padding: 5px;">
       <?php
       if ($loggedin){
-        echo "Total: ";
-        echo $rowCart[2];
-        echo " kr.";
+        echo "Total: ". (int)get_cart_value($conn). " kr." ;
       }
       ?>
   </div>

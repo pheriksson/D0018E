@@ -39,7 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
         $result = mysqli_query($conn,$sql);
         $row = mysqli_fetch_row($result);
         $count = $row[0];
-        if($count > 0){
+        if(($count > 0) && ($count['role']>0)){
 	    $result2= mysqli_query($conn,$sql);
             $_SESSION["uname"] = $uname;
             mysqli_data_seek($result, 0);

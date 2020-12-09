@@ -68,6 +68,7 @@ CREATE TABLE order_items (
   product_id int,
   user_id int,
   amount int,
+  active int(1) DEFAULT 1,
   PRIMARY KEY (order_id, product_id, user_id),
   CONSTRAINT fk_order_items_orders FOREIGN KEY (order_id) REFERENCES orders(id),
   CONSTRAINT fk_order_items_products FOREIGN KEY (product_id)

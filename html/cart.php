@@ -58,10 +58,9 @@ class TableState{
 
 <?php
 include "config.php";
-//$_SESSION['user_id'] //user id
-//$_SESSION['uname'] //user email.
-//$_SESSION['state_cart'] //user state for cart.
-//Knapp för att bekräfta order -> flytta cart_items -> order_items, samt skapa en order. När admin bekräftar order -> transaction.
+
+//Cleanup of inactive items for all users in 'cart_items'
+mysqli_query($conn,"DELETE cart_items FROM cart_items INNER JOIN products ON cart_items.product_id=products.id WHERE active=0");
 
 
 
@@ -72,6 +71,7 @@ if(empty($_SESSION['state_cart'])){
         $_SESSION['state_cart'] = new TableState();
 }
 
+//Fråga efter alla status här så att vi kan plocka bort sen.
 $_SESSION['state_cart']->upd_query("SELECT amount, name, cost_unit, product_id, stock FROM cart_items AS C INNER JOIN products AS P ON C.product_id=P.id WHERE C.user_id=".$_SESSION['user_id']."");
 
 
@@ -189,7 +189,7 @@ function gen_array($query_dump){
         $temp_arr = array(array(),array(),array(),array(),array());
         $i=0;
         while($row=mysqli_fetch_array($query_dump)){
-                $temp_arr[0][$i] = $row['product_id'];	//
+           	$temp_arr[0][$i] = $row['product_id'];	//
                 $temp_arr[1][$i] = $row['amount'];	//Amount that user wants to buy of item X.
                 $temp_arr[2][$i] = $row['cost_unit'];	//Cost per said unit.
                 $temp_arr[3][$i] = $row['name'];	//Name of said unit.
@@ -198,6 +198,11 @@ function gen_array($query_dump){
         }
         return $temp_arr;
 }
+
+
+
+
+
 
 function order_items($conn,$items){
 
@@ -274,6 +279,7 @@ function order_items($conn,$items){
 
 	if($items_in_stock && $create_oi && $res_1 && $res_2 && $res_3 && $res_4 && $res_5){
 		mysqli_commit($conn);
+		echo "<meta http-equiv='refresh' content='0'>"; //Refresh page to update table.
 	}else{
 		mysqli_rollback($conn);
 	}
