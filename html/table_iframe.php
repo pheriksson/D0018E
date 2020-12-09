@@ -174,7 +174,7 @@ function add_item_to_cart($conn,$user_id,$prod_id){
 	if(!$ret_val){
 		die("query failed, query that failed = ".$query);
 	}
-
+  header(Location:index.php); //Så att mini-menyn uppdateras
 
 }
 
@@ -200,7 +200,7 @@ function gen_array($query_dump){
 <form method="POST" action="table_iframe.php">
 	<div>
 		<input type="text" name="search_bar" >
-		<input type="submit" name="send_bar" value="Search"> <br><br> 
+		<input type="submit" name="send_bar" value="Search"> <br><br>
 	</div>
 	<div>
 		<table>
@@ -241,4 +241,3 @@ function gen_array($query_dump){
 
 </body>
 </html>
-
