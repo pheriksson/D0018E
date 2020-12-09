@@ -10,18 +10,18 @@ if($_SESSION["role"] != 3){
 
 if (isset($_GET['del'])) {
 	$id = $_GET['del'];
-	mysqli_query($conn, "DELETE FROM users WHERE id=$id");
+	mysqli_query($conn, "UPDATE users SET role = 0 WHERE id = $id");
   unset($_GET['del']);
 	header('location: users.php');
 }
 
 if (isset($_GET['email']) && $_GET['email'] != "") {
 	$email = $_GET['email'];
-	$results = mysqli_query($conn, "SELECT * FROM users WHERE email LIKE '%$email%'");
+	$results = mysqli_query($conn, "SELECT * FROM users WHERE email LIKE '%$email%' AND role != 0");
   unset($_GET['email']);
 }
 else{
-  $results = mysqli_query($conn, "SELECT * FROM users");
+  $results = mysqli_query($conn, "SELECT * FROM users WHERE role != 0");
 }
 
 ?>
