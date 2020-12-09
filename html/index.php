@@ -195,7 +195,7 @@ function gen_array($query_dump){
 
 
 
-<form method="POST" action="table_iframe.php">
+<form method="POST" action="index.php">
 	<div>
 		<input type="text" name="search_bar" >
 		<input type="submit" name="send_bar" value="Search"> <br><br>
