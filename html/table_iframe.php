@@ -174,7 +174,7 @@ function add_item_to_cart($conn,$user_id,$prod_id){
 	if(!$ret_val){
 		die("query failed, query that failed = ".$query);
 	}
-  header(Location:index.php); //Så att mini-menyn uppdateras
+  header('Location: index.php'); //Så att mini-menyn uppdateras
 
 }
 
