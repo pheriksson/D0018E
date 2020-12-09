@@ -173,7 +173,7 @@ function add_item_to_cart($conn,$user_id,$prod_id){
 	if(!$ret_val){
 		die("query failed, query that failed = ".$query);
 	}
-
+  Header('Location: index.php');
 }
 
 function gen_array($query_dump){
