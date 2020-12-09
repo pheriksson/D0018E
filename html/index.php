@@ -71,7 +71,7 @@ class TableState{
 
 
 include "config.php";
-include "minimenu.php"
+include "minimenu.php";
 
 //Init state for user.
 
