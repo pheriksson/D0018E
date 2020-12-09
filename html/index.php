@@ -69,8 +69,6 @@ class TableState{
 
 //Kvar att göra, kolla att användare är inloggad -> om inloggad visa knappar, annars vissa ej knappar.
 
-
-include "config.php";
 include "minimenu.php";
 
 //Init state for user.
