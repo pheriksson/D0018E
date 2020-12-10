@@ -118,9 +118,9 @@
 
       //Helper function validate integers and correct length
       function validate_integers($input){
-        $zip = global $zip;
-        $cc = global $cc;
-        $pnumb = global $pnumb;
+        global $zip;
+        global $cc;
+        global $pnumb;
         switch($input){
           case $zip:
           if (strlen($zip) != 5){
