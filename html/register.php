@@ -30,7 +30,7 @@
             while($rows = $result->fetch_assoc()){
               $genders = $rows['gender'];
               echo "<option value = $genders>$genders</option>";
-              echo <br>;
+              echo "<br>";
             }
             ?>
           </select>
