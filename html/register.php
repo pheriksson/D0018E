@@ -128,19 +128,16 @@
           case $zip:
           if (strlen($zip) != 5){
             echo "Valid zipcode is 5 numbers";
-          } else {
             break;
           }
           case $cc:
           if(strlen($cc) != 16){
             echo "Valid credict card length is 16 digits";
-          } else {
             break;
           }
           case $pnumb:
           if(strlen($pnumb) != 12){
             echo "Valid personal number is 12 digits";
-          } else {
             break;
           }
           default:
@@ -151,7 +148,10 @@
       //Validate input for integer only fields
       if (!(validate_integers($cc) && validate_integers($zip)
       && validate_integers($pnumb))){
-        echo "Personal number, zipcode and credict card can only contain numbers";
+        echo '<script language="javascript">';
+        echo 'alert("Personal number, zipcode and credict card can only contain numbers")';
+        echo '</script>';
+        exit();
       }
 
       if(!$empty){
