@@ -95,6 +95,7 @@
       }
       if($empty){
         echo "Fill in all the fields.";
+        header('Location: login.php');
       }
 
       //Validate input for Email, must contain @ and '.' sign
@@ -117,6 +118,9 @@
 
       //Helper function validate integers and correct length
       function validate_integers($input){
+        $zip = global $zip;
+        $cc = global $cc;
+        $pnumb = global $pnumb;
         switch($input){
           case $zip:
           if (strlen($zip) != 5){
