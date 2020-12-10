@@ -94,6 +94,7 @@
         }
       }
       if($empty){
+        <script> alert("Fill in all the fields!") </script>
         echo "Fill in all the fields.";
         header('Location: login.php');
       }
@@ -121,6 +122,7 @@
         global $zip;
         global $cc;
         global $pnumb;
+
         switch($input){
           case $zip:
           if (strlen($zip) != 5){
