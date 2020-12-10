@@ -36,7 +36,7 @@
 
           <div>
             <input type="text" class="textbox" id="txt_pnumb" name="txt_pnumb"
-            placeholder="Swedish social security equivalent (YYYY-MM-DD-XXXX)" size = 50/>
+            placeholder="Swedish social security equivalent (YYYY-MM-DD-XXXX)"/>
           </div>
           <div>
             <input type="text" class="textbox" id="txt_ctr" name="txt_ctr" placeholder="Country"/>
