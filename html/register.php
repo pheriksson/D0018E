@@ -94,9 +94,9 @@
         }
       }
       if($empty){
-        <script> alert("Fill in all the fields!") </script>
-        echo "Fill in all the fields.";
-        header('Location: login.php');
+        echo '<script language="javascript">';
+        echo 'alert("Fill in all the fields!")';
+        echo '</script>';
       }
 
       //Validate input for Email, must contain @ and '.' sign
