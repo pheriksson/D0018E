@@ -22,7 +22,7 @@
           <input type="text" class="textbox" id="txt_lname" name="txt_lname" placeholder="Last Name"/>
         </div>
         <div>
-          Sex : 
+          Sex :
           <select name = "dropdown" id = "dropdown">
             <option value = "">--- Select --- </option>
             <?php
@@ -30,7 +30,7 @@
             while($rows = $result->fetch_assoc()){
               $genders = $rows['gender'];
               echo "<option value = $genders>$genders</option>";
-              echo <brb>;
+              echo <br>;
             }
             ?>
           </select>
