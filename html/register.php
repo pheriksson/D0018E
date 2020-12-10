@@ -172,7 +172,10 @@
               if (mysqli_query($conn, $sql)) {
                 header('Location: login.php');
               } else {
-                echo "Funka inte.. noob";
+                echo '<script language="javascript">';
+                echo 'alert("Last if statement (SQL Query insert into database)
+                failed, whyy????")';
+                echo '</script>';
               }
             }
           }
