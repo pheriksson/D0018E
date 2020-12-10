@@ -97,6 +97,7 @@
         echo '<script language="javascript">';
         echo 'alert("Fill in all the fields!")';
         echo '</script>';
+        exit();
       }
 
       //Validate input for Email, must contain @ and '.' sign
