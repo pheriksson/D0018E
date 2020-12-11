@@ -8,6 +8,7 @@
     height:80px;
     background-color:lightgrey;
     padding: 5px;
+    z-index:9999999; //Flyttar fram href så att länken ej placeras i bakgrunden (oklickbar).
 }
 </style>
 <style>
@@ -24,7 +25,7 @@
 <!--                           Init                       -->
 <?php
 include "config.php";
-$loggedin = (isset($_SESSION["uname"]) && !empty($_SESSION["uname"]))
+$loggedin = (isset($_SESSION["uname"]) && !empty($_SESSION["uname"]));
 ?>
 
 
@@ -37,7 +38,7 @@ $loggedin = (isset($_SESSION["uname"]) && !empty($_SESSION["uname"]))
     $uname = $_SESSION["uname"];
   }
   else{
-    echo "<a href='./login.php'>Login</a>";
+    echo "<a href='login.php'>Login</a>";
   }
   ?>
 

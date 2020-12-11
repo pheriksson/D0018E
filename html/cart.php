@@ -76,7 +76,7 @@ mysqli_query($conn,"DELETE cart_items FROM cart_items INNER JOIN products ON car
 
 //Init state for user on cart.
 
-if(!$_SESSION['state_cart'] || !$_SESSION['user_id']){
+if(!(isset($_SESSION['state_cart'])) || !$_SESSION['user_id']){
 	//Check to see if user is logged in.
         if(!$_SESSION['user_id']){
 		header('Location: index.php');
