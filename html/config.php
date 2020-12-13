@@ -28,4 +28,6 @@ function get_cart_value($conn){
 }
 
 
+//Add function for checking if user is online, if not ref to index.php (cleanare med bara ett funktions anrop änn att de ska vara skit lite överallt).
+
 ?>
