@@ -6,11 +6,15 @@ $userid=$_SESSION['user_id'];
 if($_SESSION["role"] < 1){
   header("Location:index.php");
 }
-
+if($_SESSION["role"] == 1){
+  $results = mysqli_query($conn, "SELECT order_items.*, products.name, products.cost_unit FROM order_items INNER JOIN products ON products.id=order_items.product_id WHERE user_id = $userid AND order_id = $id");
+}
+else{
+  $results = mysqli_query($conn, "SELECT order_items.*, products.name, products.cost_unit FROM order_items INNER JOIN products ON products.id=order_items.product_id WHERE order_id = $id");
+}
 
 if (isset($_GET['id']) && $_GET['id'] != "") {
 	$id = $_GET['id'];
-	$results = mysqli_query($conn, "SELECT order_items.*, products.name, products.cost_unit FROM order_items INNER JOIN products ON products.id=order_items.product_id WHERE user_id = $userid AND order_id = $id");
   unset($_GET['id']);
 }
 else{
