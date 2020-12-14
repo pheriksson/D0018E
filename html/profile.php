@@ -110,9 +110,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 
   <div class="secretmenu">
     <?php
+      echo "<a href='./orders.php'>Manage orders</a>";
+      echo "<br>";
       if($ArrayUser["role"] > 1){
-        echo "<a href='./orders.php'>Manage orders</a>";
-        echo "<br>";
         echo "<a href='./stock.php'>Show and edit stock</a>";
         echo "<br>";
       }
