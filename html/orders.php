@@ -99,7 +99,7 @@ function confirm_order($conn, $order_id){
 		</thead>
 		<?php while($row=mysqli_fetch_array($query_orders)) {?>
 			<tr>
-				<td><?php echo "<a href='orderview.php?id=".$row['order_id']."'>".$row['order_id']."</a>";?></td>
+				<td><?php echo "<a href='orderview.php?id=".$row['id']."'>".$row['id']."</a>";?></td>
 				<td><?php echo $row['created_at']?></td>
 				<td><?php if($row['order_sent']<1){echo "Awaiting confirmation.";}else{echo "Sent!";}?></td>
 			</tr>
