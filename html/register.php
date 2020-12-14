@@ -111,8 +111,8 @@
       }
       //Validate input for text-only fields
       if (!(validate_text($fname) && validate_text($lname) && validate_text($country)
-      && validate_text($city) && validate_text($address))) {
-        echo "Name, Country, City, Address can only contain letters.";
+      && validate_text($city))) {
+        echo "Name, Country, and City can only contain letters.";
       }
 
 
@@ -154,6 +154,7 @@
         exit();
       }
 
+
       if(!$empty){
         $sql = "SELECT * FROM users WHERE email='$email'";
         $result = mysqli_query($conn,$sql);
@@ -167,12 +168,12 @@
 
           $sql = "INSERT INTO users (email, first_name, last_name,  sex,
             p_nmb, password, adress, city, zip_code, country, role, credit_card)
-            Values ('$email', '$fname', '$lname', '$sex', $pnumb, '$password',
-              '$address', '$city', $zip, '$country', 1, $cc)";
+            Values ('$email', '$fname', '$lname', '$sex', '$pnumb', '$password',
+              '$address', '$city', '$zip', '$country', 1, '$cc')";
               if (mysqli_query($conn, $sql)) {
                 header('Location: login.php');
               } else {
-                echo "Test";
+                echo "Sista query faila";
                 echo '<script language="javascript">';
                 echo 'alert("Last if statement (SQL Query insert into database)
                 failed, whyy????")';
