@@ -80,7 +80,7 @@
       $city = mysqli_real_escape_string($conn,$_POST['txt_city']);
       $zip = mysqli_real_escape_string($conn,$_POST['txt_zip']);
       $cc = mysqli_real_escape_string($conn,$_POST['txt_cc']);
-      //  $sex = mysqli_real_escape_string($conn,$_POST['submit']);
+
 
       $userInfo = array($email, $password, $fname, $lname, $pnumb, $country,
       $address, $city, $zip, $cc, $sex);
@@ -167,11 +167,12 @@
 
           $sql = "INSERT INTO users (email, first_name, last_name,  sex,
             p_nmb, password, adress, city, zip_code, country, role, credit_card)
-            Values ('$email', '$fname', '$lname', '$sex', '$pnumb', '$password',
-              '$address', '$city', '$zip', '$country', 1, '$cc')";
+            Values ('$email', '$fname', '$lname', '$sex', $pnumb, '$password',
+              '$address', '$city', $zip, '$country', 1, $cc)";
               if (mysqli_query($conn, $sql)) {
                 header('Location: login.php');
               } else {
+                echo "Test";
                 echo '<script language="javascript">';
                 echo 'alert("Last if statement (SQL Query insert into database)
                 failed, whyy????")';
