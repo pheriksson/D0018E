@@ -107,17 +107,6 @@ function confirm_order($conn, $order_id){
 
 		</table>
 	<!-- FOR USER TO GIVE FEEDBACK -->
-		<h3>Feedback :) (jk, ill kill you)</h3>
-		<table class="table table-striped">
-		<?php while($row=mysqli_fetch_array($query_feedback)) {?>
-			<tr>
-				<td><?php echo "Prod id:".$row['product_id']; ?></td>
-				<td>NAMN PÅ PROD PLACE HOLDER</td>
-				<td><?php echo "<a href='feedback.php?id=".$row['product_id']."'>Give feedback(dont ill kill you, i know your ip bitch)</a>";?></td>
-			</tr>
-		<?php }?>
-
-		</table>
 
 
 	<!-- DISPLAY ALL PRODUCTS THAT USER HAS RECIEVED AND TEXT BOXT TO GIVE FEEDBACK ON THAT PRODUCT -->
@@ -144,7 +133,7 @@ function confirm_order($conn, $order_id){
 
 		<?php while($row=mysqli_fetch_array($query)){ ?>
 			<tr>
-			<td><?php echo $row['order_id']; ?> </td>
+			<td><?php echo "<a href='orderview.php?id=".$row['id']."'>".$row['id']."</a>";?></td>
 			<td><?php echo $row['user_id']; ?> </td>
 			<td><?php echo $row['first_name']; ?> </td>
 			<td><?php echo $row['last_name']; ?> </td>
