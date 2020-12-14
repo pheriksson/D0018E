@@ -133,7 +133,7 @@ function confirm_order($conn, $order_id){
 
 		<?php while($row=mysqli_fetch_array($query)){ ?>
 			<tr>
-			<td><?php echo "<a href='orderview.php?id=".$row['id']."'>".$row['id']."</a>";?></td>
+			<td><?php echo "<a href='orderview.php?id=".$row['order_id']."'>".$row['order_id']."</a>";?></td>
 			<td><?php echo $row['user_id']; ?> </td>
 			<td><?php echo $row['first_name']; ?> </td>
 			<td><?php echo $row['last_name']; ?> </td>
