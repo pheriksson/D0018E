@@ -92,7 +92,7 @@ if(isset($_POST['send_bar'])){
 
 $query=$_SESSION['state']->get_query();
 
-$huge_array= gen_array(mysqli_query($conn,$query));
+$huge_array= gen_array(mysqli_query($conn,$query),$conn);
 $max_num_items= count($huge_array[0]);
 
 
@@ -169,14 +169,16 @@ function add_item_to_cart($conn,$user_id,$prod_id){
   Header('Location: index.php');
 }
 
-function gen_array($query_dump){
-	$temp_arr = array(array(),array(),array(),array());
+function gen_array($query_dump,$conn){
+	$temp_arr = array(array(),array(),array(),array(),array());
 	$i=0;
 	while($row=mysqli_fetch_array($query_dump)){
 		$temp_arr[0][$i] = $row['name'];
 		$temp_arr[1][$i] = $row['cost_unit'];
 		$temp_arr[2][$i] = $row['stock'];
 		$temp_arr[3][$i] = $row['id'];
+		$uggly_res_fetch_score = mysqli_query($conn,"SELECT AVG(score) as S FROM rating WHERE product_id=".$temp_arr[3][$i]."");
+		$temp_arr[4][$i] = mysqli_fetch_assoc($uggly_res_fetch_score)['S'];
 		$i++;
 	}
 	return $temp_arr;
@@ -197,11 +199,12 @@ function gen_array($query_dump){
 		</div>
 	</div>
 		<table class="table table-striped table-dark">
-		<thead class="thead-dark">
+		<thead>
 			<tr>
 				<th scope="col">Product</th>
 				<th scope="col">Price</th>
 				<th scope="col">In stock</th>
+				<th scope="col">Rating</th>
 				<th><?php if($logged_in){echo "Place Order";}?></th>
 			</tr>
 		</thead>
@@ -209,13 +212,17 @@ function gen_array($query_dump){
 		<tbody>
 		<?php $row_count = 0;?>
 		<?php while(($row_count<10) And (($row_count+$_SESSION['state']->get_page()) < $max_num_items) ):?>
+			<?php $index = $row_count+$_SESSION['state']->get_page(); ?>
 			<tr>
-			<th scope="row"><?php echo $huge_array[0][$row_count+$_SESSION['state']->get_page()];?></th>
-			<td><?php echo $huge_array[1][$row_count+$_SESSION['state']->get_page()];?></td>
-			<td><?php if($huge_array[2][$row_count+$_SESSION['state']->get_page()]>0){echo "YES";}else{echo "NO";}?> </td>
+			<th scope="row"><?php echo $huge_array[0][$index];?></th>
+			<td><?php echo $huge_array[1][$index];?></td>
+			<td><?php if($huge_array[2][$index]>0){echo "YES";}else{echo "NO";}?> </td>
+			<td><?php if(!is_null($huge_array[4][$index])){
+					echo (int)$huge_array[4][$index]."/5";
+				}else{echo "not rated.";} ?></td>
 			<td><?php
 				if($logged_in){
-					echo "<button class='btn btn-info' type='submit' name='" . $row_count ."' value='". $huge_array[3][$row_count+$_SESSION['state']->get_page()] ."'>Add to cart</button>";
+					echo "<button class='btn btn-info' type='submit' name='" . $row_count ."' value='". $huge_array[3][$index] ."'>Add to cart</button>";
 				}?> </td>
 			<?php $row_count++; ?>
 			</tr>

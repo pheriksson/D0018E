@@ -158,18 +158,21 @@ if(isset($_POST['prev_page'])){
         if(($_SESSION['state_cart']->get_page())>=10){
                 $_SESSION['state_cart']->prev_page();
         }
+	unset($_POST['prev_page']);
 
 }
 if(isset($_POST['next_page'])){
         if(($_SESSION['state_cart']->get_page()+10)<$max_num_items){
                 $_SESSION['state_cart']->next_page();
         }
+	unset($_POST['next_page']);
+
 }
 
 
 if(isset($_POST['sub_order'])){
 	order_items($conn,$huge_array);
-	unset($_POST['sub_order']);
+	unset($_POST['sub_order']); //Funkar inte??
 }
 
 
@@ -336,11 +339,12 @@ function get_total_cost($cost_arr, $amount_arr, $n){
 		<tbody>
                 <?php $row_count = 0;?>
 		<?php while(($row_count<10) And (($row_count+$_SESSION['state_cart']->get_page()) < $max_num_items) ):?>
-                	<tr>
-                	<th scope="row"><?php echo $huge_array[3][$row_count+$_SESSION['state_cart']->get_page()];?></th>
-                	<td><?php echo $huge_array[2][$row_count+$_SESSION['state_cart']->get_page()];?></td>
-                	<td><?php echo $huge_array[1][$row_count+$_SESSION['state_cart']->get_page()];?></td>
-                	<td><?php echo "<button class='btn btn-danger' type='submit' name='" . $row_count ."' value='". $huge_array[0][$row_count+$_SESSION['state_cart']->get_page()] ."'>Remove item</button>";?></td>
+                	<?php $index=$row_count+$_SESSION['state_cart']->get_page(); ?>
+			<tr>
+                	<th scope="row"><?php echo $huge_array[3][$index];?></th>
+                	<td><?php echo $huge_array[2][$index];?></td>
+                	<td><?php echo $huge_array[1][$index];?></td>
+                	<td><?php echo "<button class='btn btn-danger' type='submit' name='" . $row_count ."' value='". $huge_array[0][$index] ."'>Remove item</button>";?></td>
                 	<?php $row_count++; ?>
                 	</tr>
                 <?php endwhile;?>
