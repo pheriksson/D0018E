@@ -10,7 +10,7 @@ if($_SESSION["role"] < 1){
 
 if (isset($_GET['id']) && $_GET['id'] != "") {
 	$id = $_GET['id'];
-	$results = mysqli_query($conn, "SELECT order_items.*, products.name FROM order_items INNER JOIN products ON products.id=order_items.product_id WHERE user_id = $userid AND order_id = $id");
+	$results = mysqli_query($conn, "SELECT order_items.*, products.name, products.cost_unit FROM order_items INNER JOIN products ON products.id=order_items.product_id WHERE user_id = $userid AND order_id = $id");
   unset($_GET['id']);
 }
 else{
@@ -43,6 +43,7 @@ else{
 		<tr>
 			<th>Product</th>
 			<th>Amount</th>
+      <th>Cost per unit</th>
       <th>Feedback</th>
 		</tr>
 	</thead>
@@ -53,12 +54,14 @@ else{
 		<tr>
 			<td><?php echo $products['name']; ?></td>
 			<td><?php echo $products['amount']; ?></td>
+      <td><?php echo $products['cost_unit']; ?></td>
 			<td>
 				<a href="feedback.php?id=<?php echo $products['product_id']; ?>">Rate item</a>
 			</td>
 		</tr>
 	<?php } ?>
-</table>
 
+</table>
+<a href="orders.php" class="btn btn-default">Back</a>
 </body>
 </html>
