@@ -1,6 +1,6 @@
 <?php
 include "config.php";
-
+$userid=$_SESSION['user_id'];
 
 
 if($_SESSION["role"] < 1){
@@ -10,7 +10,7 @@ if($_SESSION["role"] < 1){
 
 if (isset($_GET['id']) && $_GET['id'] != "") {
 	$id = $_GET['id'];
-	$results = mysqli_query($conn, "SELECT order_items.*, products.name FROM order_items INNER JOIN products ON products.id=order_items.product_id WHERE user_id = $_SESSION['user_id'] AND order_id = $id");
+	$results = mysqli_query($conn, "SELECT order_items.*, products.name FROM order_items INNER JOIN products ON products.id=order_items.product_id WHERE user_id = $userid AND order_id = $id");
   unset($_GET['id']);
 }
 else{
