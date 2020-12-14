@@ -152,7 +152,7 @@ function confirm_order($conn, $order_id){
 	<?php } ?>
 
 
-
+<a href="index.php" class="btn btn-default">Back</a>
 
 
 </html>
