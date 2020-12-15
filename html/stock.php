@@ -25,8 +25,15 @@ if (isset($_GET['del'])) {
 	header('location: stock.php');
 }
 
+if (isset($_GET['product']) && $_GET['product'] != "") {
+	$product = $_GET['product'];
+	$results = mysqli_query($conn, "SELECT * FROM products WHERE name LIKE '%$product%'");
+  unset($_GET['product']);
+}
+else{
+  $results = mysqli_query($conn, "SELECT * FROM products");
+}
 
-$results = mysqli_query($conn, "SELECT * FROM products");
 
 
 ?>
@@ -53,7 +60,7 @@ $results = mysqli_query($conn, "SELECT * FROM products");
                 <form method="get" action="stock.php">
                     <div>
                         <label>Product</label>
-                        <input type="text" name="Product" value="">
+                        <input type="text" name="product" value="">
                         <span class="help-block"></span>
                         <input type="submit" class="btn btn-primary" value="Search">
                     </div>
