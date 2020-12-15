@@ -32,7 +32,7 @@ if (isset($_GET['product']) && $_GET['product'] != "") {
   //unset($_GET['product']);
   if (isset($_GET['stockModify']) && $_GET['stockModify'] != NULL){
     $add = $_GET['stockModify'];
-    $sql = "update products SET stock = stock + $add WHERE name = '$productToModify'";
+    $sql = "update products SET stock = stock + $add WHERE name LIKE = '%$productToModify%'";
     $result = mysqli_query($conn, $sql);
   }
 }
