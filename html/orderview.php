@@ -66,7 +66,7 @@ else{
       <td><?php echo $products['cost_unit']; ?></td>
 			<td>
       <?php
-      if($_SESSION["role"] == 1 && $order_sent[0] && search_array($products['id'], $results2))){
+      if($_SESSION["role"] == 1 && $order_sent[0] && search_array($products['id'], $results2)){
         echo "<a href='feedback.php?id=".$products['product_id']."'>Rate item</a>";
       }
       else{
