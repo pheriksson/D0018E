@@ -89,11 +89,11 @@ function search_array($idToSearch, $resultToSearch)
 {
   while ($rowToSearch = mysqli_fetch_array($resultToSearch)){
     if($rowToSearch['product_id'] == $idToSearch){
-      mysql_data_seek($resultToSearch,0);
+      mysqli_data_seek($resultToSearch,0);
       return true;
     }
   }
-  mysql_data_seek($resultToSearch,0);
+  mysqli_data_seek($resultToSearch,0);
   return false;
 }
 
