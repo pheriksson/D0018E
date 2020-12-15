@@ -52,7 +52,7 @@ $results = mysqli_query($conn, "SELECT * FROM products");
 <body>
                 <form method="get" action="stock.php">
                     <div>
-                        <label>Email</label>
+                        <label>Product</label>
                         <input type="text" name="Product" value="">
                         <span class="help-block"></span>
                         <input type="submit" class="btn btn-primary" value="Search">
@@ -62,6 +62,10 @@ $results = mysqli_query($conn, "SELECT * FROM products");
 	<thead>
 		<tr>
 			<th>Product</th>
+      <th>ID</th>
+      <th>Left in stock</th>
+      <th>Cost per unit</th>
+      <th>Active status</th>
 			<th colspan="2">Action</th>
 		</tr>
 	</thead>
