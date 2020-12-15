@@ -57,7 +57,7 @@ else{
   $results2 = mysqli_query($conn, "SELECT order_sent FROM orders where id = $id");
   $order_sent = mysqli_fetch_row($results2);
   $results2 = mysqli_query($conn, "SELECT product_id FROM rating where user_id = $userid");
-  $ratings = mysqli_fetch_array($results2);
+
   while($products = mysqli_fetch_array($results)){
     ?>
 		<tr>
@@ -66,7 +66,7 @@ else{
       <td><?php echo $products['cost_unit']; ?></td>
 			<td>
       <?php
-      if($_SESSION["role"] == 1 && $order_sent[0] && !in_array($proucts, ratings)){
+      if($_SESSION["role"] == 1 && $order_sent[0] && !in_array($products['id'], mysqli_fetch_array($results2))){
         echo "<a href='feedback.php?id=".$products['product_id']."'>Rate item</a>";
       }
       else{
