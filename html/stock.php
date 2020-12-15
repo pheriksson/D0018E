@@ -31,7 +31,7 @@ if (isset($_GET['product']) && $_GET['product'] != "") {
 
   if (isset($_GET['stockModify']) && $_GET['stockModify'] != NULL){
     $add = $_GET['stockModify'];
-    $sql = "update products SET stock = stock + $add WHERE prod_name = $product";
+    $sql = "update products SET stock = stock + $add WHERE prod_name = '$product'";
     $result = mysqli_query($conn, $sql);
   }
 }
