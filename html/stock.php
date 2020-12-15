@@ -26,7 +26,7 @@ if (isset($_GET['del'])) {
 }
 
 if (isset($_GET['product']) && $_GET['product'] != "") {
-	$product = $_GET['product'];
+	$product=add_slashes(preg_replace("/[^a-zA-Z0-9\'\"\.\&\s]/","",$_GET['product']));
 	$results = mysqli_query($conn, "SELECT * FROM products WHERE name LIKE '%$product%'");
   unset($_GET['product']);
 }
@@ -34,6 +34,9 @@ else{
   $results = mysqli_query($conn, "SELECT * FROM products");
 }
 
+
+//$prod_name=add_slashes(preg_replace("/[^a-zA-Z0-9\'\"\.\&\s]/","",$_POST['prod_name'])); 
+//Only allow alpha numeric with ' " & and . punctuation. Prevent injection attacks
 
 
 ?>
@@ -63,6 +66,12 @@ else{
                         <input type="text" name="product" value="">
                         <span class="help-block"></span>
                         <input type="submit" class="btn btn-primary" value="Search">
+                    </div>
+                    <div>
+                        <label>Number to add/subtract</label>
+                        <input type="text" name="stockModify" value="">
+                        <span class="help-block"></span>
+                        <input type="submit" class="btn btn-primary" value="Modify stock">
                     </div>
                 </form>
 <table>
