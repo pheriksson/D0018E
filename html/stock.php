@@ -26,17 +26,15 @@ if (isset($_GET['del'])) {
 }
 
 if (isset($_GET['product']) && $_GET['product'] != "") {
-	$product=add_slashes(preg_replace("/[^a-zA-Z0-9\'\"\.\&\s]/","",$_GET['product']));
+	$product = $_GET['product'];
 	$results = mysqli_query($conn, "SELECT * FROM products WHERE name LIKE '%$product%'");
   unset($_GET['product']);
 }
 else{
   $results = mysqli_query($conn, "SELECT * FROM products");
 }
+//test
 
-
-//$prod_name=add_slashes(preg_replace("/[^a-zA-Z0-9\'\"\.\&\s]/","",$_POST['prod_name'])); 
-//Only allow alpha numeric with ' " & and . punctuation. Prevent injection attacks
 
 
 ?>
