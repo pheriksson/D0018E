@@ -29,7 +29,7 @@ if (isset($_GET['product']) && $_GET['product'] != "") {
 	$product = $_GET['product'];
 	$results = mysqli_query($conn, "SELECT * FROM products WHERE name LIKE '%$product%'");
   unset($_GET['product']);
-  if (isset($_GET['stockModify']) && $_GET['stockModify'] != 0){
+  if (isset($_GET['stockModify']) && $_GET['stockModify'] != NULL){
     $add = $_GET['stockModify'];
     $sql = "update products SET stock = stock + $add WHERE prod_name = $product";
     $result = mysqli_query($conn, $sql);
@@ -72,7 +72,7 @@ else{
                     </div>
                     <div>
                         <label>Number to add/subtract</label>
-                        <input type="text" name="stockModify" value="">
+                        <input type="number" name="stockModify" value="">
                         <span class="help-block"></span>
                         <input type="submit" class="btn btn-primary" value="Modify stock">
                     </div>
