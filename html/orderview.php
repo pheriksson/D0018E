@@ -88,7 +88,7 @@ else{
 function search_array($idToSearch, $resultToSearch)
 {
   while ($rowToSearch = mysqli_fetch_array($resultToSearch)){
-    if($rowToSearch['id'] == $idToSearch){
+    if($rowToSearch['products_id'] == $idToSearch){
       mysql_data_seek($resultToSearch,0);
       return true;
     }
