@@ -28,10 +28,11 @@ if (isset($_GET['del'])) {
 if (isset($_GET['product']) && $_GET['product'] != "") {
 	$product = $_GET['product'];
 	$results = mysqli_query($conn, "SELECT * FROM products WHERE name LIKE '%$product%'");
+  $productToModify = $product;
   unset($_GET['product']);
   if (isset($_GET['stockModify']) && $_GET['stockModify'] != NULL){
     $add = $_GET['stockModify'];
-    $sql = "update products SET stock = stock + $add WHERE name = '$product'";
+    $sql = "update products SET stock = stock + $add WHERE name = '$productToModify'";
     $result = mysqli_query($conn, $sql);
   }
 }
