@@ -66,7 +66,7 @@ else{
       <td><?php echo $products['cost_unit']; ?></td>
 			<td>
       <?php
-      if($_SESSION["role"] == 1 && $order_sent[0] && !in_array($products['id'], mysqli_fetch_array($results2))){
+      if($_SESSION["role"] == 1 && $order_sent[0] && search_array($products['id'], $results2))){
         echo "<a href='feedback.php?id=".$products['product_id']."'>Rate item</a>";
       }
       else{
@@ -81,3 +81,20 @@ else{
 <a href="orders.php" class="btn btn-default">Back</a>
 </body>
 </html>
+
+
+
+<?php
+function search_array($idToSearch, $resultToSearch)
+{
+  while ($rowToSearch = mysqli_fetch_array($resultToSearch)){
+    if($rowToSearch['id'] == $idToSearch){
+      mysql_data_seek($resultToSearch,0);
+      return true;
+    }
+  }
+  mysql_data_seek($resultToSearch,0);
+  return false;
+}
+
+?>
