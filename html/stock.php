@@ -29,7 +29,7 @@ if (isset($_GET['product']) && $_GET['product'] != "") {
 	$product = $_GET['product'];
 	$results = mysqli_query($conn, "SELECT * FROM products WHERE name LIKE '%$product%'");
   unset($_GET['product']);
-  if (isset($_GET['stockModify']) != 0){
+  if (isset($_GET['stockModify']) && $_GET['stockModify'] != 0){
     $add = $_GET['stockModify'];
     $sql = "update products SET stock = stock + $add WHERE prod_name = $product";
     $result = mysqli_query($conn, $sql);
