@@ -173,11 +173,8 @@
               if (mysqli_query($conn, $sql)) {
                 header('Location: login.php');
               } else {
-                echo "Sista query faila";
-                echo '<script language="javascript">';
-                echo 'alert("Last if statement (SQL Query insert into database)
-                failed, whyy????")';
-                echo '</script>';
+                echo "Insertion to SQL database failed";
+        
               }
             }
           }
