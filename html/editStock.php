@@ -8,25 +8,25 @@ if(!isset($_SESSION["uname"]) && empty($_SESSION["uname"])){
 }
 
 if (isset($_GET['edit']) && ($_SESSION["role"] == 3)) {
-	$uname = $_GET['edit'];
+	$product = $_GET['edit'];
 }
 else{
-$uname = ($_SESSION["uname"]);
+$product = ($_SESSION["uname"]);
 }
 
-$sql = "SELECT * FROM users WHERE email='$uname'";
+$sql = "SELECT * FROM products WHERE name='$product'";
 $result = mysqli_query($conn,$sql);
 $ArrayUser = mysqli_fetch_array($result);
 
 
-$fname = $ArrayUser["first_name"];
-$lname = $ArrayUser["last_name"];
-$adress = $ArrayUser["adress"];
-$city = $ArrayUser["city"];
-$zip_code = $ArrayUser["zip_code"];
+$name = $ArrayUser["name"];
+$stock = $ArrayUser["stock"];
+$active = $ArrayUser["active"];
+$cost = $ArrayUser["cost_unit"];
+/* $zip_code = $ArrayUser["zip_code"];
 $country = $ArrayUser["country"];
 $card = $ArrayUser["credit_card"];
-$role = $ArrayUser["role"];
+$role = $ArrayUser["role"]; */
 
 
 
