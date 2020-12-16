@@ -95,11 +95,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
     <?php
     echo "<a href='./orders.php'>Manage orders</a>";
     echo "<br>";
-    if($ArrayUser["role"] > 1){
+    if($_SESSION["role"] > 1){
       echo "<a href='./stock.php'>Show and edit stock</a>";
       echo "<br>";
     }
-    if($ArrayUser["role"] == 3){
+    if($_SESSION["role"] == 3){
       echo "<a href='./users.php'>View and edit users</a>";
     }
     ?>
