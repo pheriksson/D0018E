@@ -14,18 +14,6 @@ else{
   $product = ($_SESSION["uname"]);
 }
 
-$sql = "SELECT * FROM products WHERE name='$product'";
-$result = mysqli_query($conn,$sql);
-$ArrayUser = mysqli_fetch_array($result);
-
-
-$name = $ArrayUser["name"];
-$stock = $ArrayUser["stock"];
-$active = $ArrayUser["active"];
-$cost = $ArrayUser["cost_unit"];
-/* $zip_code = $ArrayUser["zip_code"];
-$country = $ArrayUser["country"];
-$card = $ArrayUser["credit_card"]; */
 $role = $_SESSION["role"];
 
 
@@ -39,18 +27,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
   $active = mysqli_real_escape_string($conn,$_POST['active']);
   $cost = mysqli_real_escape_string($conn,$_POST['cost']);
 
-  /*$sql = "SELECT * FROM products WHERE name='$product'";
-  $result = mysqli_query($conn,$sql);
-//  $ArrayUser = mysqli_fetch_array($result);*/
-
-
-/*  $name = $ArrayUser["name"];
-  $stock = $ArrayUser["stock"];
-  $active = $ArrayUser["active"];
-  $cost = $ArrayUser["cost_unit"];
-  /* $zip_code = $ArrayUser["zip_code"];
-  $country = $ArrayUser["country"];
-  $card = $ArrayUser["credit_card"]; */
   $role = $_SESSION["role"];
 
 
@@ -133,7 +109,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
             <h2>Add to stock</h2>
           </div>
           <p>Fill in the fields for adding a new product.
-          Remember to set active status to 0 if product is not yet in stock.</p>
+            Remember to set active status to 0 if product is not yet in stock.</p>
           </br>
           <form method="post" action="<?php echo $_SERVER['REQUEST_URI'];?>">
             <div class="form-group">

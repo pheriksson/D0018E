@@ -23,9 +23,6 @@ $name = $ArrayUser["name"];
 $stock = $ArrayUser["stock"];
 $active = $ArrayUser["active"];
 $cost = $ArrayUser["cost_unit"];
-/* $zip_code = $ArrayUser["zip_code"];
-$country = $ArrayUser["country"];
-$card = $ArrayUser["credit_card"]; */
 $role = $_SESSION["role"];
 
 
@@ -41,16 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 
   $sql = "SELECT * FROM products WHERE name='$product'";
   $result = mysqli_query($conn,$sql);
-//  $ArrayUser = mysqli_fetch_array($result);
 
-
-/*  $name = $ArrayUser["name"];
-  $stock = $ArrayUser["stock"];
-  $active = $ArrayUser["active"];
-  $cost = $ArrayUser["cost_unit"];
-  /* $zip_code = $ArrayUser["zip_code"];
-  $country = $ArrayUser["country"];
-  $card = $ArrayUser["credit_card"]; */
   $role = $_SESSION["role"];
 
 
