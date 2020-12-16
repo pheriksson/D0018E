@@ -37,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
   $name = mysqli_real_escape_string($conn,$_POST['name']);
   $stock = mysqli_real_escape_string($conn,$_POST['stock']);
   $active = mysqli_real_escape_string($conn,$_POST['active']);
-  $cost = mysqli_real_escape_string($conn,$_POST['cost_unit']);
+  $cost = mysqli_real_escape_string($conn,$_POST['cost']);
 
   $sql = "SELECT * FROM products WHERE name='$product'";
   $result = mysqli_query($conn,$sql);
