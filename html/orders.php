@@ -13,7 +13,7 @@ include "config.php";
 
 
 //Clean orders from users where order_sent=0 and user_id role=0 (inactive user) or keep to gather data of user patterns??.
-if($_SESSION['role']>2){
+if($_SESSION['role']>=2){
 	//check for get and update table (DONE).
 	if(isset($_GET['confirm'])){
 		confirm_order($conn, $_GET['confirm']);
