@@ -32,7 +32,7 @@ $role = $_SESSION["role"];
 
 
 
-if ($_SERVER["REQUEST_METHOD"] == "POST"){
+if ($_SERVER["REQUEST_METHOD"] == "GET"){
 
   /*$name = mysqli_real_escape_string($conn,$_POST['name']);
   $stock = mysqli_real_escape_string($conn,$_POST['stock']);
