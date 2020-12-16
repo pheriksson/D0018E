@@ -133,7 +133,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
           </div>
           <p>Fill in the fields you like to update.
             If you set stock to 0, remember to set active status to 0
-            If all fields are empty, product doesn't exist and new one can be added.</p>
+          </p>
           </br>
           <form method="post" action="<?php echo $_SERVER['REQUEST_URI'];?>">
             <div class="form-group">
