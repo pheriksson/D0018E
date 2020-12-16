@@ -39,7 +39,19 @@ if ($_SERVER["REQUEST_METHOD"] == "GET"){
   $active = mysqli_real_escape_string($conn,$_POST['active']);
   $cost = mysqli_real_escape_string($conn,$_POST['cost_unit']); */
 
+  $sql = "SELECT * FROM products WHERE name='$product'";
+  $result = mysqli_query($conn,$sql);
+  $ArrayUser = mysqli_fetch_array($result);
 
+
+  $name = $ArrayUser["name"];
+  $stock = $ArrayUser["stock"];
+  $active = $ArrayUser["active"];
+  $cost = $ArrayUser["cost_unit"];
+  /* $zip_code = $ArrayUser["zip_code"];
+  $country = $ArrayUser["country"];
+  $card = $ArrayUser["credit_card"]; */
+  $role = $_SESSION["role"];
 
 
 
@@ -122,7 +134,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET"){
             If you set stock to 0, remember to set active status to 0
             If all fields are empty, product doesn't exist and new one can be added.</p>
           </br>
-          <form method="post" action="<?php echo $_SERVER['REQUEST_URI'];?>">
+          <form method="get" action="<?php echo $_SERVER['REQUEST_URI'];?>">
             <div class="form-group">
               <label>Product Name</label>
               <input type="text" name="fname" class="form-control" value="<?php echo $name; ?>">
