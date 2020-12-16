@@ -39,9 +39,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
   $active = mysqli_real_escape_string($conn,$_POST['active']);
   $cost = mysqli_real_escape_string($conn,$_POST['cost']);
 
-  $sql = "SELECT * FROM products WHERE name='$product'";
+  /*$sql = "SELECT * FROM products WHERE name='$product'";
   $result = mysqli_query($conn,$sql);
-//  $ArrayUser = mysqli_fetch_array($result);
+//  $ArrayUser = mysqli_fetch_array($result);*/
 
 
 /*  $name = $ArrayUser["name"];
@@ -56,9 +56,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 
 
 
-  $sqlUpdate = "UPDATE products SET name = '$name', stock = $stock, cost_unit = $cost, active = $active WHERE name= '$name'";
+  $sqlAdd = "INSERT INTO products (name, stock, cost_unit, active)
+  VALUES ('$name', $stock, $cost, $active);
 
-  if(!mysqli_query($conn,$sqlUpdate)){
+  if(!mysqli_query($conn, $sqlAdd)){
     die("error");
   }
   else{
