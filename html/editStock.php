@@ -133,66 +133,35 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
             <div class="row">
                 <div class="col-md-12">
                     <div class="page-header">
-                        <h2>Update Profile</h2>
+                        <h2>Update stock</h2>
                     </div>
                     <p>Fill in the fields you like to update.
-                    If you would like to change your password, fill in the
-                    password fields. Otherwise leave them blank.</p>
+                    If you set stock to 0, remember to set active status to 0
+                    If all fields are empty, product doesn't exist and new one can be added.</p>
                     </br>
                     <form method="post" action="<?php echo $_SERVER['REQUEST_URI'];?>">
                         <div class="form-group">
-                            <label>First Name</label>
-                            <input type="text" name="fname" class="form-control" value="<?php echo $fname; ?>">
+                            <label>Product Name</label>
+                            <input type="text" name="fname" class="form-control" value="<?php echo $name; ?>">
                             <span class="help-block"></span>
                         </div>
                         <div class="form-group">
-                            <label>Last name</label>
-                            <input type="text" name="lname" class="form-control" value="<?php echo $lname; ?>">
+                            <label>Left in stock</label>
+                            <input type="text" name="stock" class="form-control" value="<?php echo $stock; ?>">
                             <span class="help-block"></span>
                         </div>
                         <div class="form-group">
-                            <label>Address</label>
-                            <input type="text" name="adress" class="form-control" value="<?php echo $adress; ?>">
+                            <label>Active status</label>
+                            <input type="text" name="active" class="form-control" value="<?php echo $active; ?>">
                             <span class="help-block"></span>
                         </div>
                         <div class="form-group">
-                            <label>City</label>
-                            <input type="text" name="city" class="form-control" value="<?php echo $city; ?>">
+                            <label>Cost per unit</label>
+                            <input type="text" name="cost" class="form-control" value="<?php echo $cost; ?>">
                             <span class="help-block"></span>
                         </div>
-                        <div class="form-group">
-                            <label>Zip code</label>
-                            <input type="text" name="zip" class="form-control" value="<?php echo $zip_code; ?>">
-                            <span class="help-block"></span>
-                        </div>
-                        <div class="form-group">
-                            <label>Country</label>
-                            <input type="text" name="country" class="form-control" value="<?php echo $country; ?>">
-                            <span class="help-block"></span>
-                        </div>
-                        <div class="form-group">
-                            <label>Card Number</label>
-                            <input type="text" name="card" class="form-control" value="<?php echo $card; ?>">
-                            <span class="help-block"></span>
-                        </div>
-                        <?php if(isset($_GET['edit']) && ($_SESSION["role"] == 3)){ ?>
-                          <div class="form-group">
-                              <label>Role</label>
-                              <input type="text" name="role" class="form-control" value="<?php echo $role; ?>">
-                              <span class="help-block"></span>
-                          </div>
-                        <?php } ?>
-                        <div class="form-group">
-                            <label>Password</label>
-                            <input type="password" name="pw1" class="form-control">
-                            <span class="help-block"></span>
-                        </div>
-                        <div class="form-group">
-                            <label>Confirm password</label>
-                            <input type="password" name="pw2" class="form-control">
-                            <span class="help-block"></span>
-                        </div>
-                        <input type="submit" class="btn btn-primary" value="Update">
+
+                        <input type="submit" class="btn btn-primary" value="Update or add new item to stock">
                         <a href="index.php" class="btn btn-default">Back</a>
                         <div class="form-group">
                         <?php
