@@ -80,7 +80,7 @@ Om de däremot är POST skapa en ny, kör insert into, sno kod från profile.php
                     </div>
 
                 </form>
-                <form action = "editStock.php" method = "GET">
+                <form action = "addStock.php" method = "POST">
                 <!--  <input type = "hidden" name = "addToStock" value = "Add new product to stock" /> -->
                   <input onclick = "window.location.href = 'editStock.php' ;" type = "submit" value = "Add new product to stock"  class = "btn btn-primary"/>
                 </form>
