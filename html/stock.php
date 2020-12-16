@@ -28,20 +28,25 @@ if (isset($_GET['del'])) {
 if (isset($_GET['product']) && $_GET['product'] != "") {
 	$product = $_GET['product'];
 	$results = mysqli_query($conn, "SELECT * FROM products WHERE name LIKE '%$product%'");
-  $productToModify = $product;
+
   //unset($_GET['product']);
-  if (isset($_GET['stockModify']) && $_GET['stockModify'] != NULL){
+/*  if (isset($_GET['stockModify']) && $_GET['stockModify'] != NULL){
     $add = $_GET['stockModify'];
     $sql = "update products SET stock = stock + $add WHERE name LIKE '%$productToModify%'";
     $result = mysqli_query($conn, $sql);
-    $sql2 = "select active from products where name LIKE '%$productToModify%'";
-    echo "$sql2";
-  }
+    $sqlCheckStock = "select stock from products where name LIKE '%$productToModify%'";
+    if ($sqlCheckStock == 0){
+      $sqlNotActive = "update products SET active = 0 where name LIKE '%$productToModify'";
+      $result = mysqli_query($conn, $sqlNotActive);
+    }
+  } */
 }
 else{
   $results = mysqli_query($conn, "SELECT * FROM products");
 }
-//test
+/* Fixa en edit orders sida.php, om metoden är GET kör en update table (ändra typ stock, active, namn etc)
+Om de däremot är POST skapa en ny, kör insert into, sno kod från profile.php så är de lugge.
+*/
 
 
 
@@ -73,13 +78,11 @@ else{
                         <span class="help-block"></span>
                         <input type="submit" class="btn btn-primary" value="Search">
                     </div>
-                    <div>
-                        <label>Number to add/subtract</label>
-                        <input type="number" name="stockModify" value="">
-                        <span class="help-block"></span>
-                        <input type="submit" class="btn btn-primary" value="Modify stock">
-                    </div>
+
                 </form>
+                <form target = "_blank" action = "editStock.php" method = "POST">
+                  <input type = "hidden" name = "addToStock" value = "Add new product to stock" />
+                  <input onclick = "window.location.href = 'editStock.php' ;" type = "submit" value = "Add stock" />
 <table>
 	<thead>
 		<tr>
@@ -101,12 +104,11 @@ else{
       <td><?php echo $product['stock']; ?></td>
       <td><?php echo $product['cost_unit']; ?></td>
       <td><?php echo $product['active']; ?></td>
+
 			<td>
-				<a href="profile.php?edit=<?php echo $user['email']; ?>">Edit</a>
+				<a href="editStock.php?edit=<?php echo $product['name']; ?>">Edit</a>
 			</td>
-			<td>
-				<a href="stock.php?del=<?php echo $product['id']; ?>">Delete</a>
-			</td>
+
 		</tr>
 	<?php } ?>
 </table>
