@@ -26,7 +26,7 @@ $cost = $ArrayUser["cost_unit"];
 /* $zip_code = $ArrayUser["zip_code"];
 $country = $ArrayUser["country"];
 $card = $ArrayUser["credit_card"]; */
-$role = $ArrayUser["role"];
+$role = $_SESSION["role"];
 
 
 
@@ -34,15 +34,15 @@ $role = $ArrayUser["role"];
 
 if ($_SERVER["REQUEST_METHOD"] == "POST"){
 
-  $name = mysqli_real_escape_string($conn,$_POST['name']);
+  /*$name = mysqli_real_escape_string($conn,$_POST['name']);
   $stock = mysqli_real_escape_string($conn,$_POST['stock']);
   $active = mysqli_real_escape_string($conn,$_POST['active']);
-  $cost = mysqli_real_escape_string($conn,$_POST['cost_unit']);
+  $cost = mysqli_real_escape_string($conn,$_POST['cost_unit']); */
 
 
 
 
-  
+
 
   $sqlUpdate = "UPDATE products SET name = 'name', stock = $stock, cost_unit = $cost, active = $active WHERE name= 'product'";
 
