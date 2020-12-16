@@ -34,17 +34,17 @@ $role = $_SESSION["role"];
 
 if ($_SERVER["REQUEST_METHOD"] == "POST"){
 
-  /*$name = mysqli_real_escape_string($conn,$_POST['name']);
+  $name = mysqli_real_escape_string($conn,$_POST['name']);
   $stock = mysqli_real_escape_string($conn,$_POST['stock']);
   $active = mysqli_real_escape_string($conn,$_POST['active']);
-  $cost = mysqli_real_escape_string($conn,$_POST['cost_unit']); */
+  $cost = mysqli_real_escape_string($conn,$_POST['cost_unit']);
 
   $sql = "SELECT * FROM products WHERE name='$product'";
   $result = mysqli_query($conn,$sql);
   $ArrayUser = mysqli_fetch_array($result);
 
 
-  $name = $ArrayUser["name"];
+/*  $name = $ArrayUser["name"];
   $stock = $ArrayUser["stock"];
   $active = $ArrayUser["active"];
   $cost = $ArrayUser["cost_unit"];
@@ -56,7 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 
 
 
-  $sqlUpdate = "UPDATE products SET name = 'name', stock = 'stock', cost_unit = 'cost', active = 'active' WHERE name= 'product'";
+  $sqlUpdate = "UPDATE products SET name = '$name', stock = $stock, cost_unit = $cost, active = $active WHERE name= '$name'";
 
   if(!mysqli_query($conn,$sqlUpdate)){
     die("error");
