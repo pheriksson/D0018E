@@ -7,7 +7,7 @@
     <!-- Htmlspecialchars validates input, prevents XSS attacks -->
     <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>">
       <div id="div_createuser">
-        <h1>Login</h1>
+        <h1>Register</h1>
 
         <div>
           <input type="text" class="textbox" id="txt_email" name="txt_email" placeholder="Email"/>
@@ -80,7 +80,6 @@
       $city = mysqli_real_escape_string($conn,$_POST['txt_city']);
       $zip = mysqli_real_escape_string($conn,$_POST['txt_zip']);
       $cc = mysqli_real_escape_string($conn,$_POST['txt_cc']);
-
 
       $userInfo = array($email, $password, $fname, $lname, $pnumb, $country,
       $address, $city, $zip, $cc, $sex);
@@ -174,7 +173,7 @@
                 header('Location: login.php');
               } else {
                 echo "Insertion to SQL database failed";
-        
+
               }
             }
           }
