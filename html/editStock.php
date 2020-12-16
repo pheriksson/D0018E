@@ -32,7 +32,7 @@ $role = $_SESSION["role"];
 
 
 
-if ($_SERVER["REQUEST_METHOD"] == "GET"){
+if ($_SERVER["REQUEST_METHOD"] == "POST"){
 
   /*$name = mysqli_real_escape_string($conn,$_POST['name']);
   $stock = mysqli_real_escape_string($conn,$_POST['stock']);
@@ -134,10 +134,10 @@ if ($_SERVER["REQUEST_METHOD"] == "GET"){
             If you set stock to 0, remember to set active status to 0
             If all fields are empty, product doesn't exist and new one can be added.</p>
           </br>
-          <form method="get" action="<?php echo $_SERVER['REQUEST_URI'];?>">
+          <form method="post" action="<?php echo $_SERVER['REQUEST_URI'];?>">
             <div class="form-group">
               <label>Product Name</label>
-              <input type="text" name="fname" class="form-control" value="<?php echo $name; ?>">
+              <input type="text" name="name" class="form-control" value="<?php echo $name; ?>">
               <span class="help-block"></span>
             </div>
             <div class="form-group">
