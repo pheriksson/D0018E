@@ -57,7 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 
 
   $sqlAdd = "INSERT INTO products (name, stock, cost_unit, active)
-  VALUES ('$name', $stock, $cost, $active);
+  VALUES ('$name', $stock, $cost, $active)";
 
   if(!mysqli_query($conn, $sqlAdd)){
     die("error");
