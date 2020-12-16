@@ -16,7 +16,7 @@ else{
 
 
 if($_SESSION["role"] == 1){
-  $results = mysqli_query($conn, "SELECT order_items.*, products.name, products.cost_unit, products.id FROM order_items INNER JOIN products ON products.id=order_items.product_id WHERE user_id = $userid AND order_id = $id");
+  $results = mysqli_query($conn, "SELECT order_items.*, products.name, products.cost_unit, products.id, products.stock FROM order_items INNER JOIN products ON products.id=order_items.product_id WHERE user_id = $userid AND order_id = $id");
 }
 else{
   $results = mysqli_query($conn, "SELECT order_items.*, products.name, products.cost_unit, products.stock FROM order_items INNER JOIN products ON products.id=order_items.product_id WHERE order_id = $id");
