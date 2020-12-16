@@ -7,8 +7,8 @@ if(!isset($_SESSION["uname"]) && empty($_SESSION["uname"])){
   header('Location: login.php');
 }
 
-if (isset($_GET['add']) && ($_SESSION["role"] == 3)) {
-  $product = $_GET['add'];
+if (isset($_GET['edit']) && ($_SESSION["role"] == 3)) {
+  $product = $_GET['edit'];
 }
 else{
   $product = ($_SESSION["uname"]);
