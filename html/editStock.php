@@ -46,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 
   $sqlUpdate = "UPDATE products SET name = 'name', stock = $stock, cost_unit = $cost, active = $active WHERE name= 'product'";
 
-  if(!mysqli_query($conn,$sqltable)){
+  if(!mysqli_query($conn,$sqlUpdate)){
     die("error");
   }
   else{
