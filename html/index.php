@@ -218,7 +218,7 @@ function gen_array($query_dump,$conn){
 			<td><?php echo $huge_array[1][$index];?></td>
 			<td><?php if($huge_array[2][$index]>0){echo "YES";}else{echo "NO";}?> </td>
 			<td><?php if(!is_null($huge_array[4][$index])){
-					echo (int)$huge_array[4][$index]."/5";
+					echo "<a href='product.php?productid=".$huge_array[3][$index]."'>".(int)$huge_array[4][$index]."/5</a>";
 				}else{echo "not rated.";} ?></td>
 			<td><?php
 				if($logged_in){
