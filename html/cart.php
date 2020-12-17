@@ -244,7 +244,7 @@ function order_items($conn,$items){
 
 	// <----------------- Fetch the information from the cart_items to be transfered to order_items ------------------> //
 
-	$query="SELECT cart_items.product_id, cart_items.amount, products.cost_unit FROM cart_items INNER JOIN products ON cart_items.product_id = products.product_id WHERE user_id=".$_SESSION['user_id']."";
+	$query="SELECT cart_items.product_id, cart_items.amount, products.cost_unit FROM cart_items INNER JOIN products ON cart_items.product_id = products.id WHERE user_id=".$_SESSION['user_id']."";
 	$res_3 = mysqli_query($conn, $query);
 	$create_oi=1; //Create order items: if one of the queries fails to create a order_item -> create_oi = false.
 
