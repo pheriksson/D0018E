@@ -64,7 +64,7 @@ else{
 		<tr>
 			<td><?php echo $products['name']; ?></td>
 			<td><?php echo $products['amount']; ?></td>
-      <td><?php echo $products['cost_unit']; ?></td>
+      <td><?php echo $products['cost_snapshot']; ?></td>
       <td><?php
       if($_SESSION["role"] > 1){echo $products['stock'];} ?> </td>
 			<td>

@@ -130,7 +130,7 @@ elseif(isset($_POST['9'])){
 	unset($_POST['9']);
 }
 
-//Positionering viktigt här, annars kommer html uppdateras innan vi ändrar värde för 'amount' i table, och table kommer därav att "lagga" efter. 
+//Positionering viktigt här, annars kommer html uppdateras innan vi ändrar värde för 'amount' i table, och table kommer därav att "lagga" efter.
 $query=$_SESSION['state_cart']->get_query();
 $huge_array= gen_array(mysqli_query($conn,$query));
 $max_num_items=count($huge_array[0]); //used for loop when creating table.
@@ -162,7 +162,7 @@ if(isset($_POST['sub_order'])){
 
 
 
-//Table är efter sql state. 
+//Table är efter sql state.
 function delete_item($conn, $user_id, $prod_id){
 	//TO BE IMPLEMENTED.
 	//check if amount <2 (then the amount row for prod_id, user_id will be removed from the cart_items table.)
@@ -244,14 +244,14 @@ function order_items($conn,$items){
 
 	// <----------------- Fetch the information from the cart_items to be transfered to order_items ------------------> //
 
-	$query="SELECT product_id, amount FROM cart_items WHERE user_id=".$_SESSION['user_id']."";
+	$query="SELECT cart_items.product_id, cart_items.amount, products.cost_unit FROM cart_items INNER JOIN products ON cart_items.product_id = products.product_id WHERE user_id=".$_SESSION['user_id']."";
 	$res_3 = mysqli_query($conn, $query);
 	$create_oi=1; //Create order items: if one of the queries fails to create a order_item -> create_oi = false.
 
 	while($res_arr=mysqli_fetch_array($res_3)){
 		//$temp_pid=$res_arr['product_id'];
 		//$temp_amount=$res_arr['amount'];
-		$fml_1 = mysqli_query($conn, "INSERT INTO order_items(order_id, product_id, user_id, amount) VALUES(".$order_id.",".$res_arr['product_id'].",".$_SESSION['user_id'].",".$res_arr['amount'].")");
+		$fml_1 = mysqli_query($conn, "INSERT INTO order_items(order_id, product_id, user_id, amount, cost_snapshot) VALUES(".$order_id.",".$res_arr['product_id'].",".$_SESSION['user_id'].",".$res_arr['amount'].",".$res_arr['cost_unit'].")");
 		if(!$fml_1){
 			$create_oi=0;
 		}
@@ -340,7 +340,7 @@ function get_total_cost($cost_arr, $amount_arr, $n){
         		</div>
 		</div>
 		<div class="b">
-		<?php echo "Total cost = ". $total_cost." ($).";
+		<?php echo "Total cost for this KALAS = ". $total_cost;
 		      echo "<input class='btn btn-primary' type='submit' name='sub_order' value='Confirm order'>";
 		?>
 		</div>
