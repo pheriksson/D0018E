@@ -18,13 +18,6 @@ if($_SESSION["role"] < 2){
 }
 
 
-if (isset($_GET['del'])) {
-	$id = $_GET['del'];
-	mysqli_query($conn, "UPDATE users SET role = 0 WHERE id = $id");
-  unset($_GET['del']);
-	header('location: stock.php');
-}
-
 if (isset($_GET['product']) && $_GET['product'] != "") {
 	$product = $_GET['product'];
 	$results = mysqli_query($conn, "SELECT * FROM products WHERE name LIKE '%$product%'");
