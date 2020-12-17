@@ -13,7 +13,7 @@ include "config.php";
 
 
 
-if($_SESSION["role"] != 3){
+if($_SESSION["role"] < 2){
   header("Location:index.php");
 }
 

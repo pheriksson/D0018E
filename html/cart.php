@@ -79,28 +79,13 @@ mysqli_query($conn,"DELETE cart_items FROM cart_items INNER JOIN products ON car
 if(!(isset($_SESSION['state_cart'])) || !$_SESSION['user_id']){
 	//Check to see if user is logged in.
         if(!$_SESSION['user_id']){
-		header('Location: index.php');
+		header('Location: login.php');
 	}
 	$_SESSION['state_cart'] = new TableState();
 }
 
 //Fråga efter alla status här så att vi kan plocka bort sen.
 $_SESSION['state_cart']->upd_query("SELECT amount, name, cost_unit, product_id, stock FROM cart_items AS C INNER JOIN products AS P ON C.product_id=P.id WHERE C.user_id=".$_SESSION['user_id']."");
-
-
-
-//Cannot be in init since if you log out you will still keep your state
-if(isset($_SESSION['uname']) && ($_SESSION['uname']!="")){
-        $logged_in=True;
-}else{
-        $logged_in=False;
-}
-
-
-
-
-
-
 
 
 if(isset($_POST['0'])){
@@ -193,9 +178,6 @@ function delete_item($conn, $user_id, $prod_id){
 		$query_amount="UPDATE cart_items SET amount='$new_amount' WHERE user_id='$user_id' AND product_id='$prod_id'";
 	}
 	$ret_val=mysqli_query($conn,$query_amount);
-	if(!$ret_val){
-		die("query failed, query that failed =".$query_amount);
-	}
 
 }
 
@@ -325,7 +307,6 @@ function get_total_cost($cost_arr, $amount_arr, $n){
 
 
 <form method="POST" action="cart.php">
-        
 		<div class="container">
                 <table class="table table-striped table-dark">
 			<thead class="thead-dark">
@@ -359,12 +340,10 @@ function get_total_cost($cost_arr, $amount_arr, $n){
         		</div>
 		</div>
 		<div class="b">
-		<?php if($logged_in){	echo "Total cost for this KALAS = ". $total_cost." (bukake dollars).";
-					echo "<input class='btn btn-primary' type='submit' name='sub_order' value='Confirm order'>";
-				    }
+		<?php echo "Total cost for this KALAS = ". $total_cost." (bukake dollars).";
+		      echo "<input class='btn btn-primary' type='submit' name='sub_order' value='Confirm order'>";
 		?>
 		</div>
-        
 
 
 
