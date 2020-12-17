@@ -340,7 +340,7 @@ function get_total_cost($cost_arr, $amount_arr, $n){
         		</div>
 		</div>
 		<div class="b">
-		<?php echo "Total cost for this KALAS = ". $total_cost." (bukake dollars).";
+		<?php echo "Total cost = ". $total_cost." ($).";
 		      echo "<input class='btn btn-primary' type='submit' name='sub_order' value='Confirm order'>";
 		?>
 		</div>

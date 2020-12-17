@@ -65,7 +65,7 @@ function confirm_order($conn, $order_id){
 		mysqli_commit($conn);
 	}else{
 		mysqli_rollback($conn);
-		die("seomting fucky");
+		die("Stock for that order is not avaliable. TBI: View what items are not in stock");
 	}
 
 }
