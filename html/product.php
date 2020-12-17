@@ -20,7 +20,7 @@ if($_SESSION["role"] < 2){
 
 if (isset($_GET['productid']) && $_GET['productid'] != "") {
 	$product = $_GET['productid'];
-	$results = mysqli_query($conn, "SELECT * FROM ratings WHERE product_id = $product");
+	$results = mysqli_query($conn, "SELECT * FROM rating WHERE product_id = $product");
 
 }
 else{
