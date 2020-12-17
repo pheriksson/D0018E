@@ -13,10 +13,6 @@ include "config.php";
 
 
 
-if($_SESSION["role"] < 2){
-  header("Location:index.php");
-}
-
 
 if (isset($_GET['productid']) && $_GET['productid'] != "") {
 	$product = $_GET['productid'];
