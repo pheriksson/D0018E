@@ -37,12 +37,6 @@ CREATE TABLE products (
   cost_unit int
 );
 
-CREATE TABLE cart (
-  user_id int PRIMARY KEY,
-  total_amount int,
-  total_cost int,
-  CONSTRAINT fk_cart_users FOREIGN KEY (user_id) REFERENCES users(id)
-);
 
 CREATE TABLE cart_items (
   user_id int,
@@ -68,10 +62,21 @@ CREATE TABLE order_items (
   product_id int,
   user_id int,
   amount int,
+  cost_snapshot int,
   active int(1) DEFAULT 1,
   PRIMARY KEY (order_id, product_id, user_id),
   CONSTRAINT fk_order_items_orders FOREIGN KEY (order_id) REFERENCES orders(id),
   CONSTRAINT fk_order_items_products FOREIGN KEY (product_id)
   REFERENCES products(id),
   CONSTRAINT fk_order_items_users FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+CREATE TABLE rating(
+	id int PRIMARY KEY AUTO_INCREMENT,
+	user_id int,
+	product_id int,
+	score int(1) NOT NULL,
+	comment varchar(70),
+	CONSTRAINT FK_RATING_USER FOREIGN KEY (user_id) REFERENCES users(id),
+	CONSTRAINT FK_RATING_PRODUCT FOREIGN KEY (product_id) REFERENCES products(id)
 );

@@ -206,7 +206,7 @@ function order_items($conn,$items){
 
 	//To be implemented.
 	if(empty($items[3][0])){
-		echo "no items in cart, buy some items and spend that bukaki dollar";
+		echo "no items in cart";
 	}else{
 
 	//START TRANSACTION.
@@ -307,6 +307,8 @@ function get_total_cost($cost_arr, $amount_arr, $n){
 
 
 <form method="POST" action="cart.php">
+
+
 		<div class="container">
                 <table class="table table-striped table-dark">
 			<thead class="thead-dark">
@@ -314,6 +316,7 @@ function get_total_cost($cost_arr, $amount_arr, $n){
                         		<th scope="col">Product</th>
                         		<th scope="col">Cost per unit</th>
                         		<th scope="col">Amount requested</th>
+					<th scope="col">Cost</th>
 					<th scope="col">Remove</th>
                 		</tr>
 			</thead>
@@ -325,6 +328,7 @@ function get_total_cost($cost_arr, $amount_arr, $n){
                 	<th scope="row"><?php echo $huge_array[3][$index];?></th>
                 	<td><?php echo $huge_array[2][$index];?></td>
                 	<td><?php echo $huge_array[1][$index];?></td>
+			<td><?php echo $huge_array[2][$index]*$huge_array[1][$index];?> </td>
                 	<td><?php echo "<button class='btn btn-danger' type='submit' name='" . $row_count ."' value='". $huge_array[0][$index] ."'>Remove item</button>";?></td>
                 	<?php $row_count++; ?>
                 	</tr>
@@ -339,8 +343,9 @@ function get_total_cost($cost_arr, $amount_arr, $n){
                 	<input type="submit" class="btn btn-info" name="next_page" value=">>">
         		</div>
 		</div>
+
 		<div class="b">
-		<?php echo "Total cost for this KALAS = ". $total_cost;
+		<?php echo "Total cost: ". $total_cost;
 		      echo "<input class='btn btn-primary' type='submit' name='sub_order' value='Confirm order'>";
 		?>
 		</div>
