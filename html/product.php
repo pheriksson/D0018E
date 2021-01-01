@@ -50,16 +50,23 @@ else{
 	<thead>
 		<tr>
 			<th>Score</th>
-      <th>Comment</th>
+      			<th>Comment</th>
+			<?php if($_SESSION['role']>1){ ?>
+				<th>User ID</th>
+				<th>Review ID</th>
+			<?php } ?>
 		</tr>
 	</thead>
 
-	<?php
-  while($product = mysqli_fetch_array($results)){
-    ?>
+	<?php while($product = mysqli_fetch_array($results)){ ?>
 		<tr>
 			<td><?php echo $product['score']; ?></td>
-      <td><?php echo $product['comment']; ?></td>
+      			<td><?php echo $product['comment']; ?></td>
+			<?php if($_SESSION['role']>1){ ?>
+      				<td><?php echo $product['user_id']; ?></td>
+      				<td><?php echo $product['id']; ?></td>
+			<?php } ?>
+
 		</tr>
 	<?php } ?>
 </table>
