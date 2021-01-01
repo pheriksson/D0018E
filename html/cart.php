@@ -27,7 +27,7 @@ class TableState{
         public $reset_table;
         public $cur_query;
 
-	        function __construct(){
+	function __construct(){
                 $this->cur_page=0;
                 $this->reset_table=1;
                 $this->cur_query="";
@@ -308,6 +308,9 @@ function get_total_cost($cost_arr, $amount_arr, $n){
 
 <form method="POST" action="cart.php">
 
+		<div> 
+			<a href='./orders.php'>View orders</a>
+		</div> 
 
 		<div class="container">
                 <table class="table table-striped table-dark">

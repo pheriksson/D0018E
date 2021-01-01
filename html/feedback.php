@@ -78,7 +78,7 @@ function clean_posts(){
 		<input type='radio' name='rating' value='5' id='star5'>
 		<label for='star5'>5</label>
 	<!-- button -->
-		<input type="submit" name="submit" value="submit_rew">
+		<input type="submit" name="submit" value="submit review">
 
 	</form>
 
