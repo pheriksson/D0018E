@@ -83,9 +83,9 @@ if(isset($_POST['send_bar'])){
 	if(!(empty($_POST['search_bar']))){
 		//Sanitize input field to prevent sql injections .
 		$read_field = $_POST['search_bar'];
-		$_SESSION['state']->upd_query("SELECT * FROM products WHERE name LIKE '$read_field%' AND active=1");
+		$_SESSION['state']->upd_query("SELECT * FROM products WHERE name LIKE '$read_field%' AND active=1 AND stock>0");
 	}else{
-		$_SESSION['state']->upd_query("SELECT * FROM products WHERE active=1");
+		$_SESSION['state']->upd_query("SELECT * FROM products WHERE active=1 AND stock>0");
 	}
 }
 

@@ -73,7 +73,7 @@ include "config.php";
 mysqli_query($conn,"DELETE cart_items FROM cart_items INNER JOIN products ON cart_items.product_id=products.id WHERE active=0");
 
 
-
+//logged_in();
 //Init state for user on cart.
 
 if(!(isset($_SESSION['state_cart'])) || !$_SESSION['user_id']){
