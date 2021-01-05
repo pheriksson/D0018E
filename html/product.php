@@ -51,7 +51,7 @@ else{
 		<tr>
 			<th>Score</th>
       			<th>Comment</th>
-			<?php if($_SESSION['role']>1){ ?>
+			<?php if(isset($_SESSION['role'])&& ($_SESSION['role']>1)){ ?>
 				<th>User ID</th>
 				<th>Review ID</th>
 			<?php } ?>
@@ -62,7 +62,7 @@ else{
 		<tr>
 			<td><?php echo $product['score']; ?></td>
       			<td><?php echo $product['comment']; ?></td>
-			<?php if($_SESSION['role']>1){ ?>
+			<?php if(isset($_SESSION['role'])&& ($_SESSION['role']>1)){ ?>
       				<td><?php echo $product['user_id']; ?></td>
       				<td><?php echo $product['id']; ?></td>
 			<?php } ?>
