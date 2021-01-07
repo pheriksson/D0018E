@@ -1,5 +1,5 @@
 Create DATABASE tenta;
-
+Use tenta;
 CREATE TABLE R(
 	A int PRIMARY KEY,
 	B int,
