@@ -1,3 +1,5 @@
+Create DATABASE tenta;
+
 CREATE TABLE R(
 	A int PRIMARY KEY,
 	B int,
@@ -16,3 +18,15 @@ CREATE TABLE S(
   CONSTRAINT FK_S_T FOREIGN KEY (D) REFERENCES T(D),
   primary key (C, D)
 );
+
+INSERT INTO R Values(2,5,17);
+INSERT INTO R Values(3,2,19);
+INSERT INTO R Values(6,4,12);
+INSERT INTO R Values(7,9,9);
+
+INSERT INTO S Values(12,18);
+INSERT INTO S Values(19,27);
+
+INSERT INTO T Values(18,304);
+INSERT INTO T Values(25,725);
+INSERT INTO T Values(27,256);
